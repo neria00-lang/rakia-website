@@ -1,0 +1,12 @@
+{
+  "name": "rakia-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "אתר תדמית תיאטרון רקיע",
+  "scripts": {
+    "start": "serve . -l $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
