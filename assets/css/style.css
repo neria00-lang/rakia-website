@@ -124,6 +124,8 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold)}
 .reel-box .play span{width:84px;height:84px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#20180a;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .2s}
 .reel-box:hover .play span{transform:scale(1.08)}
 .reel-box video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+.reel-box.yt-embed{cursor:default;aspect-ratio:16/9}
+.reel-box.yt-embed iframe{width:100%;height:100%;display:block;border:0}
 .reel p.cap{margin-top:18px;color:#666;font-size:.98rem}
 
 /* ===== GALLERY ===== */
