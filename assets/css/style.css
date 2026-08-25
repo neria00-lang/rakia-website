@@ -140,6 +140,14 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold)}
 .pol:nth-child(5n+5){transform:rotate(-4deg)}
 .btn-dark{background:#3a4152;color:#fff;padding:11px 30px;border-radius:8px;display:inline-block;font-weight:600}
 
+/* ===== WHATSAPP ICON ===== */
+.ico-wa{width:1.1em;height:1.1em;vertical-align:-.15em;flex-shrink:0;fill:currentColor}
+.wa-float{color:#fff}
+.wa-float .ico-wa{width:28px;height:28px}
+.btn-wa .ico-wa{width:22px;height:22px}
+.nav-cta .ico-wa{width:18px;height:18px}
+.socials a .ico-wa{width:18px;height:18px}
+
 /* ===== TESTIMONIALS ===== */
 .testi{background:linear-gradient(180deg,#1c8a7f,#136a60);padding:80px 5vw 70px;clip-path:polygon(0 40px,50% 0,100% 40px,100% 100%,0 100%);text-align:center;color:#fff}
 .testi .section-title h2{color:#fff}
