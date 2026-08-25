@@ -2,6 +2,29 @@
 
 document.addEventListener('DOMContentLoaded', function(){
 
+  /* ---------- המלצות אקראיות: 3 מתוך המאגר המשותף בכל טעינת דף ---------- */
+  var testiGrid = document.querySelector('.testi-grid');
+  if(testiGrid && Array.isArray(window.TESTIMONIALS) && window.TESTIMONIALS.length){
+    var pool = window.TESTIMONIALS.slice();
+    // ערבוב Fisher-Yates
+    for(var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    var picked = pool.slice(0, Math.min(3, pool.length));
+    var esc = function(s){
+      var d = document.createElement('div');
+      d.textContent = s == null ? '' : s;
+      return d.innerHTML;
+    };
+    testiGrid.innerHTML = picked.map(function(t){
+      return '<div class="card"><div class="q">&#8220;</div>' +
+        '<p>' + esc(t.quote) + '</p>' +
+        '<div class="who"><span><b>' + esc(t.name) + '</b> · ' + esc(t.role) + '</span>' +
+        '<span class="tag">' + esc(t.tag) + '</span></div></div>';
+    }).join('');
+  }
+
   /* ---------- נגישות מקלדת לאלמנטים לחיצים (div[role=button]) ---------- */
   document.querySelectorAll('[role="button"][tabindex]').forEach(function(el){
     el.addEventListener('keydown', function(e){
