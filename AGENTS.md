@@ -156,6 +156,11 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
    `@keyframes marquee-scroll`, duration 42s, `linear infinite`), `.client-logo`,
    `.client-logo.dark-bg`. יש `mask-image` לדהייה בקצוות, `animation-play-state:paused`
    בהובר, ותמיכה ב-`prefers-reduced-motion`.
+   ⚠️ ל-`.marquee` יש `direction:ltr` **בכוונה** (commit `cdf2119`). בלי זה, בגלל
+   ה-RTL של הדף, ה-`.marquee-track` מתיישר לימין וכל 3 העותקים הכפולים "תלויים"
+   משמאל מחוץ לאזור הנראה — האנימציה שמזיזה שמאלה מרוקנת את הסרט אחרי מחזור אחד
+   (~22 שניות) והאזור נשאר ריק. **אל תסיר את `direction:ltr` מ-`.marquee`.**
+   הסדר של הלוגואים הופך ל-LTR (לוגו ראשון משמאל) — זה בסדר, הסדר שרירותי.
 6. **אם לוגו קיים לא איכותי/שבור**: חפש את הלוגו הרשמי באתר של המוסד עצמו
    (לא ויקיפדיה — קבצי לוגו שם לרוב מסומנים "non-free / fair use" ואסורים
    לשימוש מסחרי). דוגמה שכבר נעשתה: רשות הטבע והגנים —
