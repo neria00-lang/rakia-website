@@ -162,7 +162,10 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold)}
 /* ===== CLIENTS (מרקיז נע) ===== */
 .clients{background:var(--cream2);padding:60px 0;text-align:center;clip-path:polygon(0 0,50% 34px,100% 0,100% 100%,0 100%)}
 .clients .section-title{padding:0 5vw}
-.marquee{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+/* direction:ltr קריטי — ב-RTL ה-track מיושר לימין וכל העותקים הכפולים "תלויים" משמאל
+   מחוץ לאזור הנראה, כך שהאנימציה שמזיזה שמאלה מרוקנת את האזור אחרי מחזור אחד.
+   ב-LTR קצה ה-track נעול לשמאל והעותקים ממשיכים ימינה — הלופ נשאר רציף. */
+.marquee{overflow:hidden;width:100%;direction:ltr;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marquee-track{display:flex;align-items:center;gap:14px;width:max-content;animation:marquee-scroll 42s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
