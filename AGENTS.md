@@ -23,10 +23,11 @@
   (זה ה-git root בפועל. התיקייה `אתר` שמעליה **אינה** repo — אל תנסה git שם.)
 - **אתר סטטי טהור**: HTML + CSS + JS וניל, **בלי שום build step, בלי framework,
   בלי npm run build**. מה שכתוב בקובץ HTML זה בדיוק מה שיוצג בדפדפן.
-- **4 עמודי HTML**, כל אחד עצמאי ומלא (לא template engine, אין includes):
+- **5 עמודי HTML**, כל אחד עצמאי ומלא (לא template engine, אין includes):
   - `index.html` — דף הבית
   - `higia-hazman.html` — עמוד תוכנית/שירות ספציפי
   - `sadeh.html` — עמוד תוכנית/שירות ספציפי (שחקני שטח)
+  - `tochen-chinami.html` — תוכן חינמי (פלייליסט יוטיוב "סיור סליחות" + קישור לקבוצת וואטסאפ)
   - `about.html` — אודות
 - **CSS משותף**: `assets/css/style.css` (קובץ אחד, כל העמודים מפנים אליו).
 - **JS משותף**: `assets/js/main.js` (טעינת התנהגות: תפריט מובייל, בחירת המלצות
@@ -44,6 +45,7 @@ about.html
 higia-hazman.html
 index.html
 sadeh.html
+tochen-chinami.html
 package.json
 assets/css/style.css
 assets/js/main.js
@@ -166,6 +168,17 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
    לשימוש מסחרי). דוגמה שכבר נעשתה: רשות הטבע והגנים —
    `https://static.parks.org.il/wp-content/uploads/2025/01/cropped-LOGO_FINAL_RGB-03-2.png`.
 
+### לעדכן את עמוד "תוכן חינמי" (`tochen-chinami.html`)
+- **סרטוני הפלייליסט**: כל 9 הסרטונים מוטמעים ידנית כ-`<iframe>` (youtube-nocookie,
+  `loading="lazy"`) בתוך `.video-grid` → `.video-card`. הפלייליסט המקור:
+  `https://www.youtube.com/playlist?list=PLMGjToKeCQ7g` ("*הגיע הזמן* - סיור סליחות",
+  ערוץ נריה צור). כדי להוסיף סרטון — עוד `.video-card` עם ה-VIDEO_ID החדש.
+- **קבוצת וואטסאפ**: הקישור `https://chat.whatsapp.com/EoU7nK4JyKT7KrKsjJ6Qp8`
+  הופק מהברקוד `אתר/ברקוד לקבוצות.png` (הועתק ל-`media/whatsapp-groups-qr.png`).
+  אם הברקוד/הקבוצה משתנים — לפענח מחדש את ה-QR ולעדכן גם את התמונה וגם את ה-href.
+- CSS ייעודי ב-`style.css` תחת הכותרת "תוכן חינמי": `.free-content`, `.video-grid`,
+  `.video-card`, `.groups`.
+
 ### להחליף וידאו מוטמע (embed)
 בדף הבית (`index.html`) יש אזור `.reel-box.yt-embed` עם iframe שמצביע ל-
 `https://www.youtube-nocookie.com/embed/<VIDEO_ID>` (גרסת פרטיות משופרת של
@@ -183,7 +196,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 ### להוסיף עמוד/הצגה חדשה
 אין מנגנון תבניות — יוצרים HTML חדש עם אותו header/footer/nav כמו שאר
 העמודים (העתק-הדבק את המבנה מ-`sadeh.html` והתאם תוכן), ומוסיפים קישור
-אליו ב-`nav.main-nav` בכל 4 העמודים הקיימים (חשוב לעדכן את הניווט בכולם,
+אליו ב-`nav.main-nav` בכל 5 העמודים הקיימים (חשוב לעדכן את הניווט בכולם,
 לא רק בעמוד החדש).
 
 ---
