@@ -1,0 +1,173 @@
+/* ============================================================
+   רקיע – חינוך יצירתי | שכבת נגישות (ת"י 5568 / WCAG 2.0 AA)
+   נטען אחרי style.css. מכיל: דילוג לתוכן, חיווי פוקוס, תפריט
+   הנגישות (וידג'ט תקנה 35) ומחלקות ההעדפה שהוא מפעיל על <html>.
+   ============================================================ */
+
+/* ---------- טקסט לקוראי מסך בלבד ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- דילוג לתוכן הראשי ---------- */
+.skip-link{position:fixed;top:-120px;inset-inline-start:8px;z-index:300;
+  background:var(--gold,#f6b31b);color:#20180a;font-weight:700;
+  font-family:'Heebo',sans-serif;font-size:1rem;
+  padding:12px 22px;border-radius:0 0 12px 12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.skip-link:focus,.skip-link:focus-visible{top:0}
+
+/* ---------- חיווי מיקוד מקלדת אחיד ---------- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
+textarea:focus-visible,summary:focus-visible,[role="button"]:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--blue,#2456d6);outline-offset:2px;border-radius:3px}
+header nav.main-nav a:focus-visible,.nav-cta:focus-visible,
+.hero a:focus-visible,.hero-arrow:focus-visible,
+footer a:focus-visible,.wa-float:focus-visible,.testi a:focus-visible{
+  outline-color:#fff;outline-offset:3px}
+main#main-content:focus,main#main-content:focus-visible{outline:none}
+/* גיבוי לדפדפנים ללא :focus-visible */
+a:focus,button:focus,[role="button"]:focus{outline:2px solid var(--blue,#2456d6)}
+a:focus:not(:focus-visible),button:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible){outline:none}
+
+/* ---------- כיבוד העדפת מערכת: פחות תנועה ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+}
+
+/* ============================================================
+   מחלקות העדפה — מופעלות על <html> ע"י assets/js/a11y.js
+   ============================================================ */
+
+/* קישורים מודגשים */
+html.a11y-links a:not(.btn):not(.btn-wa):not(.nav-cta):not(.cat-btn):not(.btn-dark){
+  text-decoration:underline!important;text-underline-offset:2px;font-weight:700!important}
+
+/* ניגודיות */
+html.a11y-contrast-high{filter:contrast(1.35) saturate(1.1)}
+html.a11y-contrast-invert{filter:invert(1) hue-rotate(180deg)}
+html.a11y-contrast-mono{filter:grayscale(1) contrast(1.15)}
+html.a11y-contrast-invert img,html.a11y-contrast-invert video,
+html.a11y-contrast-invert iframe,html.a11y-contrast-invert .hero-slides,
+html.a11y-contrast-invert .client-logo img{filter:invert(1) hue-rotate(180deg)}
+
+/* גודל טקסט */
+html.a11y-text-115{font-size:115%}
+html.a11y-text-130{font-size:130%}
+html.a11y-text-150{font-size:150%}
+
+/* מרווח שורות */
+html.a11y-lines-16 p,html.a11y-lines-16 li,html.a11y-lines-16 dd{line-height:1.6!important}
+html.a11y-lines-20 p,html.a11y-lines-20 li,html.a11y-lines-20 dd{line-height:2!important}
+html.a11y-lines-16 p,html.a11y-lines-20 p{margin-bottom:.9em}
+
+/* גופן קריא (מחסנית מערכת בלבד — בלי webfont) */
+html.a11y-readable-font,html.a11y-readable-font *:not(.ico):not(.ico-wa){
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,"Noto Sans Hebrew","Arial Hebrew",sans-serif!important;
+  letter-spacing:.01em}
+
+/* הדגשת כותרות */
+html.a11y-headings h1,html.a11y-headings h2,html.a11y-headings h3{
+  outline:2px dashed currentColor;outline-offset:4px}
+
+/* סמן גדול */
+html.a11y-cursor-big,html.a11y-cursor-big *{
+  cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M6 3l30 18-13 3 7 15-5 2-7-15-9 9z" fill="%23000" stroke="%23fff" stroke-width="2"/></svg>') 4 2,auto!important}
+
+/* עצירת אנימציות (בחירת המשתמש) */
+html.a11y-reduce-motion *,html.a11y-reduce-motion *::before,html.a11y-reduce-motion *::after{
+  animation-duration:.001ms!important;animation-iteration-count:1!important;
+  transition-duration:.001ms!important;scroll-behavior:auto!important}
+html.a11y-reduce-motion .marquee-track,html.a11y-reduce-motion .hero-slide,
+html.a11y-reduce-motion .hero-arrow{animation:none!important}
+html.a11y-reduce-motion .hero-slide:nth-child(n+2){opacity:0}
+
+/* ============================================================
+   תפריט הנגישות — כפתור צף + חלונית
+   ============================================================ */
+#a11y-widget-trigger{
+  position:fixed;bottom:22px;inset-inline-start:22px;z-index:150;
+  width:56px;height:56px;border-radius:50%;
+  background:var(--navy,#0e1830);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);cursor:pointer;
+  border:2px solid var(--gold,#f6b31b);transition:transform .2s ease}
+#a11y-widget-trigger:hover{transform:scale(1.08)}
+#a11y-widget-trigger.is-active{box-shadow:0 0 0 3px rgba(246,179,27,.55),0 6px 18px rgba(0,0,0,.4)}
+
+@media (max-width:600px){
+  #a11y-widget-trigger{width:48px;height:48px;bottom:16px;inset-inline-start:16px}
+}
+
+#a11y-widget-panel{
+  position:fixed;bottom:88px;inset-inline-start:22px;z-index:151;
+  width:min(360px,calc(100vw - 32px));max-height:min(78vh,560px);overflow-y:auto;
+  background:#fff;color:var(--ink,#1c2333);
+  border:1px solid rgba(0,0,0,.12);border-radius:16px;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+  padding:18px;font-family:'Heebo',sans-serif;text-align:right}
+#a11y-widget-panel[hidden]{display:none}
+
+.a11y-head{display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--gold,#f6b31b);padding-bottom:10px;margin-bottom:14px}
+.a11y-head h2{font-family:'Secular One',sans-serif;font-size:1.25rem;margin:0;color:var(--navy,#0e1830)}
+.a11y-close{font-size:1.6rem;line-height:1;width:36px;height:36px;border-radius:50%;
+  background:#f0f0f0;color:#333;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.a11y-close:hover{background:#e2e2e2}
+
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a11y-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  min-height:92px;padding:12px 8px;text-align:center;
+  background:#f6f4ef;border:2px solid transparent;border-radius:12px;
+  color:var(--ink,#1c2333);font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;
+  transition:border-color .15s ease,background .15s ease}
+.a11y-card:hover{background:#efece4}
+.a11y-card.is-on{border-color:var(--teal,#177c72);background:#e5f2f0}
+.a11y-card-ic{font-size:1.4rem;font-weight:800;line-height:1;color:var(--teal-dark,#0f5f58)}
+.a11y-card.is-on .a11y-card-ic{color:var(--teal-dark,#0f5f58)}
+.a11y-card-tx{display:block}
+.a11y-card-val{font-size:.75rem;font-weight:700;color:var(--teal-dark,#0f5f58)}
+
+.a11y-reset{
+  display:block;width:100%;margin-top:14px;padding:11px;
+  background:var(--navy,#0e1830);color:#fff;border-radius:10px;
+  font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer}
+.a11y-reset:hover{background:var(--navy2,#0a1124)}
+.a11y-note{margin-top:12px;font-size:.8rem;line-height:1.6;color:#555}
+.a11y-note a{color:var(--teal-dark,#0f5f58);font-weight:700;text-decoration:underline}
+
+/* החלונית והכפתור חייבים להישאר קריאים גם כשמצב היפוך/אפור פעיל */
+html.a11y-contrast-invert #a11y-widget-panel,
+html.a11y-contrast-invert #a11y-widget-trigger,
+html.a11y-contrast-mono #a11y-widget-panel,
+html.a11y-contrast-mono #a11y-widget-trigger,
+html.a11y-contrast-invert .skip-link,
+html.a11y-contrast-mono .skip-link{filter:invert(1) hue-rotate(180deg)}
+
+/* ---------- כיסוי מסך לתפריט הניווט במובייל (סגירה בלחיצה בחוץ) ---------- */
+.nav-scrim{position:fixed;inset:0;z-index:55;background:rgba(10,17,36,.5);border:0}
+.nav-scrim[hidden]{display:none}
+@media (min-width:921px){ .nav-scrim{display:none!important} }
+
+/* ---------- חיווי מצב לטופס יצירת הקשר ---------- */
+.form-status{margin-top:14px;padding:12px 14px;border-radius:10px;
+  background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.5);
+  color:#eafff2;font-size:.9rem;line-height:1.6}
+.form-status.is-error{background:rgba(194,55,74,.18);border-color:rgba(194,55,74,.6);color:#ffe3e6}
+.form-status[hidden]{display:none}
+.quote-form input[aria-invalid="true"],
+.quote-form textarea[aria-invalid="true"]{outline:2px solid var(--red,#c2374a);outline-offset:1px}
+
+/* ---------- הדפסה: לבטל כל שינויי הנגישות הוויזואליים ---------- */
+@media print{
+  html[class*="a11y-"]{filter:none!important}
+  html[class*="a11y-text-"]{font-size:100%!important}
+  html[class*="a11y-lines-"] p,html[class*="a11y-lines-"] li{line-height:normal!important}
+  html.a11y-cursor-big,html.a11y-cursor-big *{cursor:auto!important}
+  #a11y-widget-trigger,#a11y-widget-panel,.skip-link{display:none!important}
+}

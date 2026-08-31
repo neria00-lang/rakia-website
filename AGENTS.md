@@ -46,9 +46,12 @@ higia-hazman.html
 index.html
 sadeh.html
 tochen-chinami.html
+negishut.html               ← הצהרת נגישות (ראה סעיף 9)
 package.json
 assets/css/style.css
+assets/css/a11y.css         ← שכבת נגישות (ראה סעיף 9)
 assets/js/main.js
+assets/js/a11y.js           ← תפריט נגישות (ראה סעיף 9)
 assets/js/testimonials-data.js
 assets/fonts/DanaYadAlefAlefAlef-Normal.{otf,woff}
 media/                      ← תמונות/וידאו כלליים
@@ -253,8 +256,10 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
       לבצע זאת נכשל (agent נתקל במגבלת usage) — עדיין לא הושלם.
 - [ ] דחיסת קובצי וידאו כבדים ב-`media/`.
 - [ ] תמונות אמיתיות חסרות להצגת "המסע לירושלים" (סיגד).
-- [ ] קישורי רשתות חברתיות אמיתיים בפוטר (כרגע placeholder).
-- [ ] לשקול הוספת עמוד הצהרת נגישות.
+- [ ] קישורי רשתות חברתיות אמיתיים בפוטר — ה-placeholders (אינסטגרם/פייסבוק עם
+      `href="#"`) **הוסרו** בפאס הנגישות. כשיהיו חשבונות אמיתיים — להוסיף קישורים
+      חדשים ל-`.socials` בכל העמודים, עם `aria-label` ברור ואייקון (לא אמוג'י).
+- [x] **עמוד הצהרת נגישות + הנגשת האתר לפי ת"י 5568 (WCAG 2.0 AA)** — בוצע. ראה סעיף 9.
 
 ---
 
@@ -264,3 +269,43 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 תיקיית משתמש (`C:\Users\User\Desktop\BizFlow-Planner\bizflow-new`), עם
 repo/Railway/deploy נפרדים לחלוטין. זו החלטה ארכיטקטונית מכוונת — אל תערבב
 שינויים בין שני הפרויקטים, ואל תניח שהגדרות/credentials של אחד תקפים לשני.
+
+---
+
+## 9. נגישות (ת"י 5568 / WCAG 2.0 AA) — איך זה בנוי
+
+הנגישות מיושמת בקוד עצמו, לא ע"י תוסף/overlay. אל תסיר את הרכיבים הבאים:
+
+- **`negishut.html`** — עמוד הצהרת נגישות (חובה חוקית). מקושר בפוטר של כל העמודים
+  (`.flinks`). מכיל את כל 7 סעיפי החובה: מחויבות, תקן, אמצעי נגישות, מגבלות ידועות,
+  פרטי איש קשר (נריה צור / neria00@gmail.com / 052-6154838), תאריך ביקורת, ועברית.
+  **אם משנים מבנה/רכיב מהותי באתר — לעדכן את "מגבלות נגישות ידועות" ואת תאריך
+  העדכון בעמוד הזה.**
+- **`assets/css/a11y.css`** — שכבת CSS נפרדת (נטענת אחרי `style.css` בכל עמוד).
+  מכילה: `.skip-link`, `:focus-visible` גלובלי, `.sr-only`, `.nav-scrim`,
+  `.form-status`, וכל מחלקות ה-`a11y-*` שתפריט הנגישות מפעיל על `<html>`,
+  counter-invert, ו-`@media print` שמאפס הכל. **נשמר בנפרד מ-`style.css` בכוונה**
+  (סעיף 3 אומר "קובץ CSS אחד" — זה החריג המכוון היחיד, לבידוד שכבת הנגישות).
+- **`assets/js/a11y.js`** — תפריט הנגישות (וידג'ט תקנה 35). כפתור צף בפינה +
+  חלונית עם 8 טוגלים (הדגשת קישורים, ניגודיות, גודל טקסט, מרווח שורות, גופן קריא,
+  הדגשת כותרות, סמן גדול, עצירת אנימציות) + איפוס. קיצור: `Alt+A`. ההעדפות
+  נשמרות ב-`localStorage` תחת המפתח `rakia_a11y_v1` (version 1).
+  הכלי **רק מחליף מחלקות CSS על `<html>`** — אסור שיגע ב-DOM של התוכן, ב-`alt`,
+  או ב-ARIA. זו הגבולה בין כלי-נוחות מותר ל-overlay אסור (ה-FTC קנס את accessiBe
+  ב-2025 על overlay שהתיימר "לתקן" אתרים).
+- **סקריפט bootstrap ב-`<head>` של כל עמוד** — לפני `</head>`, מיד אחרי טעינת
+  `a11y.css`. מיישם את מחלקות ה-`a11y-*` השמורות **לפני** הצביעה הראשונה (מונע
+  הבהוב). **חייב להישאר זהה ל-`CLASS_RULES` שב-`a11y.js`** — אם מוסיפים טוגל
+  חדש, לעדכן את שניהם + את `a11y.css` + לקדם את מספר ה-version בכל המקומות.
+
+מבנה סמנטי שקיים בכל עמוד (לא להסיר): `<a class="skip-link">` ראשון ב-`<body>`,
+`<nav class="main-nav" aria-label="ניווט ראשי">`, `<main id="main-content" tabindex="-1">`
+עוטף את כל התוכן, `<nav class="flinks" aria-label="ניווט תחתון">` בפוטר.
+הכפתור hamburger מקבל `aria-expanded`/`aria-controls`. המודאל (`#showModal`)
+והלייטבוקס (`#lightbox`) מקבלים `role="dialog"` + `aria-modal` + ניהול פוקוס
+ב-`main.js` (שמירת פוקוס קודם, מלכודת Tab, Escape, החזרת פוקוס).
+
+### תיקוני ניגודיות שבוצעו (ב-`style.css`, אל תחזיר לאחור)
+`.filter-bar button` ו-`.free-content .playlist-link a` → `var(--teal-dark)`;
+`.show-card .meta`, `.section-sub`, `.reel p.cap`, `.card .who` → `#5a5a5a`.
+כל אלה היו מתחת ל-4.5:1 מול הרקע.

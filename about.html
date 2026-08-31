@@ -8,21 +8,44 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/a11y.css">
+<script>
+/* נגישות: החלת העדפות תצוגה שמורות לפני הצביעה הראשונה (מניעת הבהוב) */
+(function(){try{var p=JSON.parse(localStorage.getItem('rakia_a11y_v1'));if(!p||p.version!==1)return;var c=document.documentElement.classList;
+c.toggle('a11y-links',!!p.links);
+c.toggle('a11y-contrast-high',p.contrast==='high');
+c.toggle('a11y-contrast-invert',p.contrast==='invert');
+c.toggle('a11y-contrast-mono',p.contrast==='mono');
+c.toggle('a11y-text-115',p.textSize===115);
+c.toggle('a11y-text-130',p.textSize===130);
+c.toggle('a11y-text-150',p.textSize===150);
+c.toggle('a11y-lines-16',p.lineSpacing==='16');
+c.toggle('a11y-lines-20',p.lineSpacing==='20');
+c.toggle('a11y-readable-font',!!p.readableFont);
+c.toggle('a11y-headings',!!p.headings);
+c.toggle('a11y-cursor-big',!!p.cursorBig);
+c.toggle('a11y-reduce-motion',!!p.reduceMotion);
+}catch(e){}})();
+</script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
+
 <header>
   <div class="logo"><img src="media/logo-real.png" alt="רקיע – חינוך יצירתי"></div>
-  <nav class="main-nav">
+  <nav class="main-nav" id="main-nav" aria-label="ניווט ראשי">
     <a href="index.html">בית</a>
     <a href="higia-hazman.html">הצגות "הגיע הזמן"</a>
     <a href="sadeh.html">שחקני שטח</a>
     <a href="tochen-chinami.html">תוכן חינמי</a>
-    <a href="about.html" class="active">אודות ושאלות נפוצות</a>
+    <a href="about.html" class="active" aria-current="page">אודות ושאלות נפוצות</a>
     <a class="nav-cta" href="https://wa.me/972526154838"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.001 3C9.383 3 4 8.373 4 15c0 2.634.858 5.079 2.312 7.062L4.8 27.2l5.302-1.68A11.94 11.94 0 0 0 16.001 27C22.619 27 28 21.627 28 15S22.619 3 16.001 3zm6.965 16.541c-.297.836-1.47 1.53-2.403 1.727-.639.135-1.474.243-4.283-.92-3.594-1.487-5.906-5.14-6.086-5.379-.173-.239-1.456-1.939-1.456-3.699 0-1.76.897-2.623 1.216-2.982.297-.334.648-.418.865-.418.216 0 .433.002.622.011.216.01.483-.082.756.577.297.716.996 2.472 1.083 2.653.087.181.146.393.029.632-.115.239-.173.388-.343.597-.173.209-.362.467-.518.627-.173.179-.354.373-.152.732.202.359.897 1.481 1.926 2.398 1.325 1.182 2.443 1.549 2.802 1.727.359.179.567.15.777-.09.216-.239.867-1.011 1.099-1.359.231-.348.462-.29.777-.174.318.116 2.011.949 2.357 1.121.347.174.577.26.663.404.087.144.087.836-.211 1.672z"/></svg> דברו איתנו</a>
   </nav>
-  <button class="hamburger" aria-label="תפריט"><span></span><span></span><span></span></button>
+  <button class="hamburger" aria-label="פתיחת תפריט ניווט" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
 </header>
+
+<main id="main-content" tabindex="-1">
 
 <section class="page-hero">
   <span class="crumb">בית · אודות</span>
@@ -58,42 +81,42 @@
   <div class="faq-list">
 
     <div class="faq-item">
-      <button class="faq-q">האם ההצגות מתאימות מבחינת תוכן וצניעות לציבור הדתי? <span class="plus">+</span></button>
+      <button class="faq-q">האם ההצגות מתאימות מבחינת תוכן וצניעות לציבור הדתי? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>כן. הצגות "הגיע הזמן" נכתבות מתוך התייחסות מודעת לערכי הציבור הדתי, ואנחנו שמחים לעבור על התוכן מראש מול גורם רבני או מוביל קהילתי לפני האירוע, כדי שתגיעו רגועים לגמרי.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">מה קורה אם שחקן מאחר או נחלה ביום האירוע? <span class="plus">+</span></button>
+      <button class="faq-q">מה קורה אם שחקן מאחר או נחלה ביום האירוע? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>אנחנו מגיעים מוקדם להתארגנות ובניית התפאורה, ויש לנו תהליך גיבוי מסודר לכל תרחיש. שקט תעשייתי הוא חלק בלתי נפרד מהשירות שלנו – זה בדיוק מה שאתם משלמים עליו.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">כמה זמן מראש כדאי להזמין? <span class="plus">+</span></button>
+      <button class="faq-q">כמה זמן מראש כדאי להזמין? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>מומלץ לתאם 1–3 חודשים מראש. בעונות שיא (חנוכה, פורים, יום העצמאות, בין המצרים) שווה לסגור מוקדם יותר, כדי להבטיח את התאריך והשחקנים המבוקשים.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">אנחנו עירייה / מוסד ציבורי – אפשר הצעת מחיר מסודרת מול הרכש? <span class="plus">+</span></button>
+      <button class="faq-q">אנחנו עירייה / מוסד ציבורי – אפשר הצעת מחיר מסודרת מול הרכש? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>בהחלט. אנחנו מוציאים הצעת מחיר מפורטת וחשבונית מס כדין, ורגילים לעבוד מול מערכות רכש עירוניות והזמנות עבודה רשמיות.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">ההצגות מתאימות גם לחוץ, ומה קורה אם יורד גשם? <span class="plus">+</span></button>
+      <button class="faq-q">ההצגות מתאימות גם לחוץ, ומה קורה אם יורד גשם? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>כן, אנחנו מופיעים גם בחוץ וגם באולמות. לאירועי חוץ נתאם מראש פתרון גיבוי למקרה של מזג אוויר קיצוני, כך שהאירוע לא יפגע.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">לאיזה גילאים ההצגות מתאימות? <span class="plus">+</span></button>
+      <button class="faq-q">לאיזה גילאים ההצגות מתאימות? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>הצגות "הגיע הזמן" מותאמות לגילאי גן חובה עד כיתה ו׳. שחקני שטח גמישים יותר ויכולים להתאים גם לנוער ולמבוגרים, בהתאם לאירוע.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">אפשר לכתוב תוכן ייעודי לנושא או לאירוע ספציפי שלנו? <span class="plus">+</span></button>
+      <button class="faq-q">אפשר לכתוב תוכן ייעודי לנושא או לאירוע ספציפי שלנו? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>זו בדיוק הייחודיות של שחקני שטח: אנחנו כותבים טקסטים על כל נושא שתבחרו ומתאימים את הדמויות בדיוק לאירוע – בין אם זו דמות היסטורית, סיפור מקומי או נושא לימודי.</p></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q">מה כלול במחיר – תפאורה, הגברה, נסיעות? <span class="plus">+</span></button>
+      <button class="faq-q">מה כלול במחיר – תפאורה, הגברה, נסיעות? <span class="plus" aria-hidden="true">+</span></button>
       <div class="faq-a"><p>המחיר כולל הפקה מלאה: שחקנים, תפאורה, תאורה והגברה בהתאם לצורך. פרטים מדויקים לפי סוג האירוע נסגרים מראש בהצעת המחיר, כדי שלא תהיו בהפתעות.</p></div>
     </div>
 
@@ -131,19 +154,20 @@
   </div>
 </section>
 
+</main>
+
 <footer>
-  <img src="media/logo-real.png" alt="רקיע">
-  <div class="flinks">
+  <img src="media/logo-real.png" alt="רקיע – חינוך יצירתי">
+  <nav class="flinks" aria-label="ניווט תחתון">
     <a href="higia-hazman.html">הצגות "הגיע הזמן"</a>
     <a href="sadeh.html">שחקני שטח</a>
     <a href="about.html">אודות</a>
     <a href="about.html#faq">שאלות נפוצות</a>
     <a href="index.html#cta">צור קשר</a>
-  </div>
+    <a href="negishut.html">הצהרת נגישות</a>
+  </nav>
   <div class="socials">
-    <a href="https://wa.me/972526154838" aria-label="וואטסאפ"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.001 3C9.383 3 4 8.373 4 15c0 2.634.858 5.079 2.312 7.062L4.8 27.2l5.302-1.68A11.94 11.94 0 0 0 16.001 27C22.619 27 28 21.627 28 15S22.619 3 16.001 3zm6.965 16.541c-.297.836-1.47 1.53-2.403 1.727-.639.135-1.474.243-4.283-.92-3.594-1.487-5.906-5.14-6.086-5.379-.173-.239-1.456-1.939-1.456-3.699 0-1.76.897-2.623 1.216-2.982.297-.334.648-.418.865-.418.216 0 .433.002.622.011.216.01.483-.082.756.577.297.716.996 2.472 1.083 2.653.087.181.146.393.029.632-.115.239-.173.388-.343.597-.173.209-.362.467-.518.627-.173.179-.354.373-.152.732.202.359.897 1.481 1.926 2.398 1.325 1.182 2.443 1.549 2.802 1.727.359.179.567.15.777-.09.216-.239.867-1.011 1.099-1.359.231-.348.462-.29.777-.174.318.116 2.011.949 2.357 1.121.347.174.577.26.663.404.087.144.087.836-.211 1.672z"/></svg></a>
-    <a href="#" aria-label="אינסטגרם">&#128247;</a>
-    <a href="#" aria-label="פייסבוק">&#128100;</a>
+    <a href="https://wa.me/972526154838" aria-label="שליחת הודעה בוואטסאפ"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.001 3C9.383 3 4 8.373 4 15c0 2.634.858 5.079 2.312 7.062L4.8 27.2l5.302-1.68A11.94 11.94 0 0 0 16.001 27C22.619 27 28 21.627 28 15S22.619 3 16.001 3zm6.965 16.541c-.297.836-1.47 1.53-2.403 1.727-.639.135-1.474.243-4.283-.92-3.594-1.487-5.906-5.14-6.086-5.379-.173-.239-1.456-1.939-1.456-3.699 0-1.76.897-2.623 1.216-2.982.297-.334.648-.418.865-.418.216 0 .433.002.622.011.216.01.483-.082.756.577.297.716.996 2.472 1.083 2.653.087.181.146.393.029.632-.115.239-.173.388-.343.597-.173.209-.362.467-.518.627-.173.179-.354.373-.152.732.202.359.897 1.481 1.926 2.398 1.325 1.182 2.443 1.549 2.802 1.727.359.179.567.15.777-.09.216-.239.867-1.011 1.099-1.359.231-.348.462-.29.777-.174.318.116 2.011.949 2.357 1.121.347.174.577.26.663.404.087.144.087.836-.211 1.672z"/></svg></a>
   </div>
   <div class="copyline">© רקיע – חינוך יצירתי · נריה צור · 052-6154838</div>
 </footer>
@@ -152,5 +176,6 @@
 
 <script src="assets/js/testimonials-data.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/a11y.js"></script>
 </body>
 </html>
