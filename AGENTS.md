@@ -52,6 +52,7 @@ assets/js/main.js
 assets/js/testimonials-data.js
 assets/fonts/DanaYadAlefAlefAlef-Normal.{otf,woff}
 media/                      ← תמונות/וידאו כלליים
+media/hero/                 ← hero-1..4.jpg — 4 תמונות הסליידשואו של דף הבית (דחוסות, 1920px)
 media/clients/              ← 13 לוגואים אמיתיים של לקוחות (למרקיע הנע)
 media/sadeh/                ← תמונות/וידאו לעמוד sadeh
 media/shows/<שם>/            ← תמונות/פוסטרים לפי הצגה ספציפית
@@ -178,6 +179,29 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
   אם הברקוד/הקבוצה משתנים — לפענח מחדש את ה-QR ולעדכן גם את התמונה וגם את ה-href.
 - CSS ייעודי ב-`style.css` תחת הכותרת "תוכן חינמי": `.free-content`, `.video-grid`,
   `.video-card`, `.groups`.
+
+### לשנות את ה-Hero של דף הבית (סליידשואו תמונות + טקסט גדול מיושר לימין)
+ה-Hero בדף הבית (`index.html`, `<section class="hero">`) הוא **סליידשואו רקע**
+של 4 תמונות שמתחלפות ב-crossfade + זום עדין (Ken Burns), עם טקסט גדול מיושר
+לימין וממורכז אנכית (בהשראת shahart.co.il). **CSS טהור — בלי JS.**
+- **התמונות**: `media/hero/hero-1.jpg` … `hero-4.jpg`. כדי להחליף — פשוט
+  מחליפים את הקובץ באותו שם. **חובה לדחוס** לפני הוספה (יש ffmpeg במחשב):
+  `ffmpeg -y -i <מקור> -vf "scale=1920:-2" -q:v 5 media/hero/hero-N.jpg`
+  (יעד ~300–600KB לתמונה). עדכן גם את `width`/`height` ב-`<img>` המתאים אם
+  יחס הגובה-רוחב שונה. להוסיף/להסיר תמונות = לעדכן גם את מספר ה-`.hero-slide`
+  ב-HTML וגם את `animation-delay` + חלוקת ה-% ב-`@keyframes heroFade` (כרגע
+  4 תמונות × 6s, מחזור 24s; ל-N תמונות: delay = i×(24/N), משך = 24s).
+- **קריאוּת הטקסט** מגיעה מ-`.hero-scrim` (שכבת גרדיאנט כהה, כהה יותר בצד ימין
+  מאחורי הטקסט). אם תמונה חדשה בהירה מדי והטקסט לא נקרא — מגבירים את
+  ה-opacity ב-`.hero-scrim` (ב-`style.css`, גם ברירת מחדל וגם ב-media query
+  של מובייל).
+- **התמונה הראשונה** מקבלת `opacity:1` ב-CSS כברירת מחדל (`.hero-slide:nth-child(1)`)
+  כדי שלא יהיה פריים ריק לפני שהאנימציה מתחילה / אם אין תמיכה באנימציות.
+  **אל תסיר את זה** (זה בדיוק הבאג שהיה בסרט הנע). `prefers-reduced-motion`
+  מכובד — בלי אנימציה, מציג רק את התמונה הראשונה.
+- CSS רלוונטי ב-`style.css` תחת "HERO (home)": `.hero`, `.hero-slides`,
+  `.hero-slide`, `@keyframes heroFade`, `.hero-scrim`, `.hero-inner`,
+  `.hero-center`, `.hero h1`, `.hero-arrow`.
 
 ### להחליף וידאו מוטמע (embed)
 בדף הבית (`index.html`) יש אזור `.reel-box.yt-embed` עם iframe שמצביע ל-
