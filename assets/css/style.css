@@ -18,11 +18,21 @@
   --blue:#2456d6; --red:#c2374a;
   --green:#25d366;
   --ink:#1c2333;
+  --sky:#cfe8f2;          /* תכלת בהיר — באנר עליון */
+  --sky-ink:#0d2b3c;      /* טקסט כהה על התכלת */
   --shadow:0 10px 30px rgba(10,14,30,.25);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+/* "משטח מואר": שכבת תאורה סביבתית עדינה מעל כל הדף —
+   פס אנכי מואר במרכז, שוליים שמאל/ימין מעט כהים. soft-light = מווסת את הצבע ולא מכסה. */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147482000;
+  background:radial-gradient(78% 118% at 50% 40%,
+    rgba(255,255,255,.16) 0%,rgba(255,255,255,.03) 40%,
+    rgba(0,0,0,.02) 60%,rgba(0,0,0,.13) 100%);
+  mix-blend-mode:soft-light}
+@media (prefers-contrast:more),(prefers-reduced-transparency:reduce){body::after{display:none}}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -55,30 +65,34 @@ a,button,[role="button"],input,select,textarea,summary{-webkit-tap-highlight-col
 }
 
 /* ===== NAV ===== */
-/* שכבת chrome שקופה-למחצה — התוכן נגלל מתחתיה (חומריות Apple). בסיס אטום 78% כ-fallback */
+/* באנר תכלת בהיר — שכבת זכוכית, עם הבהרה עדינה מלמעלה (משטח מואר). בסיס אטום כ-fallback */
 header{position:sticky;top:0;z-index:60;
-  background:rgba(10,17,36,.78);
-  backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);
+  background:
+    radial-gradient(140% 200% at 50% -70%,rgba(255,255,255,.6),rgba(255,255,255,0) 55%),
+    rgba(207,232,242,.86);
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
   display:flex;align-items:center;justify-content:space-between;padding:10px 40px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  box-shadow:0 8px 24px rgba(0,0,0,.22)}
+  border-bottom:1px solid rgba(9,50,70,.12);
+  box-shadow:0 6px 22px rgba(9,44,66,.16)}
 @supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){
-  header{background:rgba(10,17,36,.62)}
+  header{background:
+    radial-gradient(140% 200% at 50% -70%,rgba(255,255,255,.55),rgba(255,255,255,0) 55%),
+    rgba(207,232,242,.7)}
 }
 /* משתמשים שביקשו פחות שקיפות — משטחי זכוכית הופכים אטומים ומוצקים */
 @media (prefers-reduced-transparency:reduce),(prefers-contrast:more){
-  header{background:var(--navy);backdrop-filter:none;-webkit-backdrop-filter:none}
+  header{background:var(--sky);backdrop-filter:none;-webkit-backdrop-filter:none}
   .quote-form{background:#141d33;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:rgba(255,255,255,.28)}
   .modal-overlay{background:rgba(6,9,18,.92);backdrop-filter:none;-webkit-backdrop-filter:none}
 }
 header .logo{display:flex;align-items:center;gap:10px}
 header .logo img{height:52px}
 nav.main-nav{display:flex;gap:30px}
-nav.main-nav a{color:#fff;font-weight:500;font-size:1rem;transition:color .2s;white-space:nowrap}
-nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold)}
+nav.main-nav a{color:var(--sky-ink);font-weight:600;font-size:1rem;transition:color .2s;white-space:nowrap}
+nav.main-nav a:hover,nav.main-nav a.active{color:var(--teal-dark)}
 .nav-cta{background:var(--green);color:#06341c;font-weight:800;padding:9px 20px;border-radius:30px;display:flex;align-items:center;gap:8px;font-size:.95rem}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:6px;z-index:70}
-.hamburger span{width:26px;height:3px;background:#fff;border-radius:3px;transition:transform .25s,opacity .25s}
+.hamburger span{width:26px;height:3px;background:var(--sky-ink);border-radius:3px;transition:transform .25s,opacity .25s}
 .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
@@ -377,7 +391,10 @@ footer img{height:44px}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:920px){
-  nav.main-nav{position:fixed;inset:0 0 0 auto;width:78vw;max-width:320px;background:var(--navy2);flex-direction:column;padding:100px 30px 30px;gap:26px;transform:translateX(100%);transition:transform .3s;box-shadow:-10px 0 30px rgba(0,0,0,.4)}
+  nav.main-nav{position:fixed;inset:0 0 0 auto;width:78vw;max-width:320px;
+    background:linear-gradient(180deg,#dcedf5,var(--sky));
+    flex-direction:column;padding:100px 30px 30px;gap:26px;transform:translateX(100%);transition:transform .3s;
+    box-shadow:-12px 0 34px rgba(9,44,66,.28)}
   nav.main-nav.open{transform:translateX(0)}
   nav.main-nav a{font-size:1.15rem}
   .hamburger{display:flex}
