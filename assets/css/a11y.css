@@ -26,7 +26,7 @@ textarea:focus-visible,summary:focus-visible,[role="button"]:focus-visible,
 footer a:focus-visible,.wa-float:focus-visible,.testi a:focus-visible{
   outline-color:#fff;outline-offset:3px}
 /* header תכלת בהיר + כפתור וואטסאפ ירוק — מתאר כהה שנראה על שניהם */
-header nav.main-nav a:focus-visible,.nav-cta:focus-visible,
+header a.logo:focus-visible,header nav.main-nav a:focus-visible,.nav-cta:focus-visible,
 header .hamburger:focus-visible{
   outline-color:var(--navy,#0e1830);outline-offset:3px}
 main#main-content:focus,main#main-content:focus-visible{outline:none}
