@@ -25,14 +25,19 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
-/* "משטח מואר": שכבת תאורה סביבתית עדינה מעל כל הדף —
-   פס אנכי מואר במרכז, שוליים שמאל/ימין מעט כהים. soft-light = מווסת את הצבע ולא מכסה. */
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147482000;
-  background:radial-gradient(78% 118% at 50% 40%,
-    rgba(255,255,255,.16) 0%,rgba(255,255,255,.03) 40%,
-    rgba(0,0,0,.02) 60%,rgba(0,0,0,.13) 100%);
-  mix-blend-mode:soft-light}
-@media (prefers-contrast:more),(prefers-reduced-transparency:reduce){body::after{display:none}}
+/* "משטח מואר": שתי שכבות תאורה קבועות מעל כל הדף.
+   ::before = וינייטה (multiply) — מכהה שוליים, נראית על רקעים בהירים.
+   ::after  = הילת מרכז (screen) — מבהירה מרכז, נראית על רקעים כהים. */
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147482000}
+body::before{
+  background:radial-gradient(72% 108% at 50% 40%,
+    #ffffff 0%,#ffffff 34%,#ece7dd 63%,#dbd5c6 100%);
+  mix-blend-mode:multiply}
+body::after{
+  background:radial-gradient(56% 80% at 50% 36%,
+    rgba(255,255,255,.14) 0%,rgba(255,255,255,.04) 46%,rgba(255,255,255,0) 72%);
+  mix-blend-mode:screen}
+@media (prefers-contrast:more){body::before,body::after{display:none}}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -86,7 +91,7 @@ header{position:sticky;top:0;z-index:60;
   .modal-overlay{background:rgba(6,9,18,.92);backdrop-filter:none;-webkit-backdrop-filter:none}
 }
 header .logo{display:flex;align-items:center;gap:10px}
-header .logo img{height:52px}
+header .logo img{height:46px;width:auto}
 nav.main-nav{display:flex;gap:30px}
 nav.main-nav a{color:var(--sky-ink);font-weight:600;font-size:1rem;transition:color .2s;white-space:nowrap}
 nav.main-nav a:hover,nav.main-nav a.active{color:var(--teal-dark)}
@@ -127,6 +132,13 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--teal-dark)}
   linear-gradient(to top,rgba(10,17,36,.72) 0%,transparent 48%)}
 .hero-inner{position:relative;width:100%;max-width:1240px;margin:0 auto;padding:0 5vw}
 .hero-center{max-width:600px;text-align:right}
+/* לוגו גדול מעל הכותרת — הילת אור לבנה כפולה כדי שהמילה השחורה תיקרא על ה-hero הכהה */
+.hero-logo{display:block;width:clamp(160px,20vw,240px);height:auto;margin:0 0 22px;
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,1))
+    drop-shadow(0 0 5px rgba(255,255,255,.95))
+    drop-shadow(0 0 14px rgba(255,255,255,.55))
+    drop-shadow(0 6px 20px rgba(0,0,0,.5))}
 .hero h1{font-size:clamp(2.5rem,6.4vw,5rem);line-height:1.06;text-shadow:0 2px 24px rgba(0,0,0,.45)}
 .hero h1 .script{display:block;font-size:clamp(2.3rem,6vw,4.3rem);line-height:1.15;transform:rotate(-1.5deg);text-shadow:0 2px 20px rgba(0,0,0,.4)}
 .hero p{margin:24px 0 32px;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.7;color:#eae4d6;max-width:440px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
