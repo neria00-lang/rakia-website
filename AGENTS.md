@@ -29,7 +29,12 @@
   - `sadeh.html` — עמוד תוכנית/שירות ספציפי (שחקני שטח)
   - `tochen-chinami.html` — תוכן חינמי (פלייליסט יוטיוב "סיור סליחות" + קישור לקבוצת וואטסאפ)
   - `about.html` — אודות
-- **CSS משותף**: `assets/css/style.css` (קובץ אחד, כל העמודים מפנים אליו).
+- **CSS משותף**: `assets/css/style.css` (הבסיס — טוקנים, לייאאוט, קומפוננטות) +
+  `assets/css/updated-design.css` (שכבת עיצוב עליונה, "עיצוב מעודכן 1" — נטענת
+  **אחרונה**, אחרי `style.css` ואחרי `a11y.css`, בכל עמוד. משנה פלטה/גבולות/צללים
+  אבל לא נוגעת במבנה ה-HTML. אם עורכים עיצוב ויזואלי — קודם תבדקו אם יש כבר override
+  ב-`updated-design.css` לפני שמוסיפים/משנים ב-`style.css`, כדי לא "לירות בעצמכם ברגל"
+  עם כלל שהשכבה העליונה דורסת בלי שתשימו לב).
 - **JS משותף**: `assets/js/main.js` (טעינת התנהגות: תפריט מובייל, בחירת המלצות
   אקראיות, וכו').
 - **מאגר תוכן**: `assets/js/testimonials-data.js` — מערך JS גלובלי `window.TESTIMONIALS`.
@@ -50,6 +55,7 @@ negishut.html               ← הצהרת נגישות (ראה סעיף 9)
 package.json
 assets/css/style.css
 assets/css/a11y.css         ← שכבת נגישות (ראה סעיף 9)
+assets/css/updated-design.css ← שכבת עיצוב עליונה, נטענת אחרונה (ראה סעיף 2)
 assets/js/main.js
 assets/js/a11y.js           ← תפריט נגישות (ראה סעיף 9)
 assets/js/testimonials-data.js
@@ -309,3 +315,15 @@ repo/Railway/deploy נפרדים לחלוטין. זו החלטה ארכיטקט�
 `.filter-bar button` ו-`.free-content .playlist-link a` → `var(--teal-dark)`;
 `.show-card .meta`, `.section-sub`, `.reel p.cap`, `.card .who` → `#5a5a5a`.
 כל אלה היו מתחת ל-4.5:1 מול הרקע.
+
+באותו אופן, ב-`updated-design.css` (ראה סעיף 2): `.groups h2/p/.qr-hint`,
+`.cta p/.cta .phone`, ו-`.page-hero .crumb` נצבעו מחדש (בעיקר ל-`var(--navy)`)
+כי הצבעים שירשו מ-`style.css` הותאמו לרקעים כהים, ועל הרקעים הבהירים החדשים
+(`--sky`, `#d4f3ed`) היחס ירד עד ל-~1:1 (בלתי קריא) או קצת מתחת ל-4.5:1.
+**כל שינוי צבע חדש ב-`updated-design.css` — לחשב יחס ניגודיות מול הרקע בפועל
+(לא מול הרקע שה-selector "ירש" מ-`style.css`), במיוחד ברקעים בהירים.**
+
+⚠️ **תיקיית אחות**: קיימת (או הייתה קיימת) תיקייה `אתר/עיצוב מעודכן 1/` — clone
+נפרד לגמרי (git remote זהה, `neria00-lang/rakia-website`) שממנו הובא הקובץ
+`updated-design.css`. **זו לא תיקיית העבודה הרשמית** — היא רק שימשה כמקור לעיצוב
+החדש. אל תערוך שם ישירות; כל עבודה עתידית ב-`דף-בית` (כאן).
