@@ -181,7 +181,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 ### לעדכן את עמוד "תוכן חינמי" (`tochen-chinami.html`)
 - **סרטוני הפלייליסט**: כל 9 הסרטונים מוטמעים ידנית כ-`<iframe>` (youtube-nocookie,
   `loading="lazy"`) בתוך `.video-grid` → `.video-card`. הפלייליסט המקור:
-  `https://www.youtube.com/playlist?list=PLMGjToKeCQ7g` ("*הגיע הזמן* - סיור סליחות",
+  `https://www.youtube.com/playlist?list=PLenhGqrfzbHo` ("*הגיע הזמן* - סיור סליחות",
   ערוץ נריה צור). כדי להוסיף סרטון — עוד `.video-card` עם ה-VIDEO_ID החדש.
 - **קבוצת וואטסאפ**: הקישור `https://chat.whatsapp.com/EoU7nK4JyKT7KrKsjJ6Qp8`
   הופק מהברקוד `אתר/ברקוד לקבוצות.png` (הועתק ל-`media/whatsapp-groups-qr.png`).
