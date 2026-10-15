@@ -303,11 +303,16 @@ document.addEventListener('DOMContentLoaded', function(){
         '.\nמתעניין/ת ב: ' + type +
         (date ? '\nמועד משוער: ' + date : '') +
         (msg ? '\n' + msg : '');
-      var win = window.open('https://wa.me/972526154838?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      var waUrl = 'https://wa.me/972526154838?text=' + encodeURIComponent(text);
+      // בלי 'noopener' ב-features: איתו window.open תמיד מחזיר null (גם כשהחלון נפתח),
+      // וההודעה הייתה מציגה "נחסם" בטעות. מנתקים את ה-opener ידנית במקום.
+      var win = window.open(waUrl, '_blank');
       if(win){
+        try { win.opener = null; } catch(err){}
         setStatus('נפתח חלון וואטסאפ עם הפרטים שמילאתם — צריך רק ללחוץ "שליחה". אם החלון לא נפתח, אפשר להתקשר 052-6154838.', false);
       } else {
-        setStatus('הדפדפן חסם את פתיחת וואטסאפ. אפשר לכתוב ישירות למספר 052-6154838 או לאפשר חלונות קופצים ולנסות שוב.', true);
+        // חלון קופץ נחסם באמת — עוברים לוואטסאפ באותה לשונית
+        window.location.href = waUrl;
       }
     });
   }

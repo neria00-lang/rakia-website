@@ -409,9 +409,10 @@ footer img{height:44px}
   header .logo img{height:38px}
   nav.main-nav{position:fixed;inset:0 0 0 auto;width:78vw;max-width:320px;
     background:linear-gradient(180deg,#dcedf5,var(--sky));
-    flex-direction:column;padding:100px 30px 30px;gap:26px;transform:translateX(100%);transition:transform .3s;
+    flex-direction:column;padding:100px 30px 30px;gap:26px;transform:translateX(100%);visibility:hidden;transition:transform .3s,visibility 0s .3s;
     box-shadow:-12px 0 34px rgba(9,44,66,.28)}
-  nav.main-nav.open{transform:translateX(0)}
+  /* visibility:hidden כשסגור — כדי שקישורים מחוץ למסך לא יקבלו פוקוס מקלדת */
+  nav.main-nav.open{transform:translateX(0);visibility:visible;transition:transform .3s,visibility 0s}
   nav.main-nav a{font-size:1.15rem}
   .hamburger{display:flex}
   .nav-cta{display:none}
