@@ -5,12 +5,11 @@
    כל הדמויות דקורטיביות (aria-hidden, alt="").
    ===================================================================== */
 :root{
-  /* "מדבקה": קו לבן סביב הגזירה + צל כחול רך — בלי מסגרת */
-  --cast-edge:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);
-  --cast-fx:var(--cast-edge) drop-shadow(5px 7px 0 rgba(14,24,48,.17));
   --cast-pop:cubic-bezier(.34,1.45,.64,1);
 }
-.cast-img{display:block;max-width:none;filter:var(--cast-fx);user-select:none;-webkit-user-drag:none}
+/* קו ה"מדבקה" הלבן והצל אפויים בתוך קובצי ה-WebP עצמם (לא filter: drop-shadow ב-CSS) —
+   פילטרים חיים על עשרות תמונות מונפשות מיצו את זיכרון ה-GPU ותמונות שלמות בעמוד נעלמו. */
+.cast-img{display:block;max-width:none;user-select:none;-webkit-user-drag:none}
 
 /* ---------- 1. הצצה מאחורי קצה עליון (כרטיסים, רשתות, כפתורים) ----------
    חלון בגובה --h שיושב מעל הקצה; הדמות "עולה" מאחורי הקצה כשהאלמנט נכנס למסך
