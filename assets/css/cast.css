@@ -138,6 +138,27 @@
 .lost .btns a.alt{background:transparent;color:var(--navy);border:2px solid var(--navy)}
 @keyframes castLost{0%,100%{rotate:-2deg}50%{rotate:2deg}}
 
+/* ---------- 8. הזמנה לקבוצת הוואטסאפ (assets/js/wa-popup.js) ----------
+   כרטיס לא-חוסם שעולה מעל כפתור הוואטסאפ הצף, עם השופר מציץ מעליו. */
+.wa-pop{position:fixed;left:22px;bottom:96px;z-index:140;width:min(340px,calc(100vw - 24px));
+  background:#fffaf0;color:var(--navy);border:2px solid var(--navy);border-radius:16px;
+  box-shadow:7px 7px 0 var(--teal);padding:22px 22px 16px;text-align:right;
+  opacity:0;translate:0 24px;scale:.96;transform-origin:15% 100%;visibility:hidden;
+  transition:opacity .3s,translate .45s var(--cast-pop),scale .45s var(--cast-pop),visibility 0s .45s}
+.wa-pop.open{opacity:1;translate:0 0;scale:1;visibility:visible;transition-delay:0s}
+.wa-pop-char{position:absolute;bottom:calc(100% - 4px);left:18px;height:118px;width:auto;pointer-events:none}
+.wa-pop-x{position:absolute;top:8px;left:10px;width:34px;height:34px;border-radius:50%;font-size:1.6rem;line-height:1;color:var(--navy)}
+.wa-pop-x:hover{background:rgba(14,24,48,.08)}
+.wa-pop-kicker{font-size:.8rem;font-weight:800;color:var(--teal-dark);margin-bottom:4px}
+.wa-pop h2{font-size:1.45rem;line-height:1.15;margin-bottom:8px;color:var(--navy)}
+.wa-pop-text{font-size:.95rem;line-height:1.55;color:#354b5e;margin-bottom:14px}
+.wa-pop .btn-wa{width:100%;justify-content:center;font-size:1rem;padding:12px 18px}
+.wa-pop-later{display:block;margin:8px auto 0;font-size:.88rem;color:#526273;text-decoration:underline;padding:4px 8px}
+@media(max-width:800px){.wa-pop{left:12px;right:12px;width:auto;bottom:84px}}
+@media(prefers-reduced-motion:reduce){.wa-pop{transition:opacity .2s,visibility 0s .2s;translate:none;scale:none}}
+html.a11y-reduce-motion .wa-pop{transition:opacity .2s,visibility 0s .2s;translate:none;scale:none}
+@media print{.wa-pop{display:none!important}}
+
 /* ---------- מובייל ---------- */
 @media(max-width:800px){
   .usecase-grid.has-cast{margin-top:90px;row-gap:100px}

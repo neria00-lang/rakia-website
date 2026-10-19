@@ -118,3 +118,16 @@ footer{background:#04101f;padding:38px 4vw;border-top:0}footer img{height:48px}
   footer{justify-content:center;text-align:center;padding:34px 20px}footer .flinks{justify-content:center;gap:14px}.wa-float{bottom:18px;left:18px}
 }
 @media(max-width:430px){.hero h1{font-size:3rem}.page-hero h1{font-size:2.55rem}.polaroids{grid-template-columns:1fr}.values-strip{grid-template-columns:1fr}.quote-form{padding:21px}}
+
+/* תפריט מובייל: ל-header יש backdrop-filter, שהופך אותו ל-containing block של ה-nav ה-fixed —
+   ה-nav נכלא בגובה ה-header (פס של ~38px) והקישורים "נשפכו" מתחתיו בלי רקע. מבטלים את הטשטוש
+   של ה-header במובייל (הרקע שלו ממילא 94% אטום), והתפריט מקבל רקע חצי-שקוף + טשטוש משלו. */
+@media(max-width:920px){
+  header{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,250,240,.97)}
+  nav.main-nav{top:76px;bottom:0;height:auto;overflow-y:auto;
+    background:rgba(255,250,240,.88);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);
+    border-inline-start:2px solid var(--navy);border-bottom:0}
+  nav.main-nav a{color:var(--navy)}
+  nav.main-nav a.active{color:var(--teal-dark)}
+}
+@media(max-width:800px){nav.main-nav{top:64px}}/* גובה ה-header במובייל */
