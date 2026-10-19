@@ -234,11 +234,22 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 מיפוי נוכחי: ראה את ה-HTML (כל `media/cast/` בעמודים). הפחתת תנועה (מערכת או `a11y-reduce-motion`) = הכל סטטי.
 **ב-RTL**: תמונה רחבה מהחלון שלה גולשת שמאלה — כשהחלון צר מהתמונה, למקם אותה `absolute; left:50%; translate:-50%`.
 
-### להחליף וידאו מוטמע (embed)
-בדף הבית (`index.html`) יש אזור `.reel-box.yt-embed` עם iframe שמצביע ל-
-`https://www.youtube-nocookie.com/embed/<VIDEO_ID>` (גרסת פרטיות משופרת של
-יוטיוב — לא `youtube.com` הרגיל). כדי להחליף וידאו, מספיק להחליף את ה-`<VIDEO_ID>`
-בכתובת ה-`src` של ה-iframe.
+### סרטוני יוטיוב (טריילרים, סרטונים ראשיים, המלצות בווידאו)
+**כל הסרטונים (חוץ מעמוד התוכן החינמי) מנוהלים בקובץ אחד: `assets/js/videos-data.js`**
+(`window.RAKIA_VIDEOS`). אין סרטוני mp4 באתר — הכל ביוטיוב (ערוץ תאטרון רקיע, הפלייליסטים:
+שחקני השטח `PLQnDjcG0Gx6w`, חנוכה `PLCUS2wST2bAM`, פורים `PLS2j8pYsvec0`, ירושלים `PLS_2XXddNh9A`).
+- **להוסיף המלצה בווידאו**: שורה חדשה ב-`ITEMS` — `{id, tag, v, who, quote}`.
+  `tag`: `chanukah`/`purim`/`jerusalem` (עמוד "הגיע הזמן", מסונן לפי כפתורי החגים) או `sadeh` (עמוד שחקני שטח).
+  `v:true` = אנכי (שורטס/רילס). `who`/`quote` — מתוך כותרת הסרטון ביוטיוב (ציטוט אמיתי בלבד!).
+- **להוסיף טריילר**: למלא את `TRAILERS.jerusalem = {id, title}` — יופיע אוטומטית בעמוד "הגיע הזמן"
+  (בסינון ירושלים/בין המצרים) ובחלונות "חוזרים לירושלים" + "בין המצרים" (`SHOW_TRAILER`).
+- **סרטון ראשי**: `FEATURES` (home / sadehMain / sadehJerusalem). **בחירות**: `HOME_PICKS`, `SHOW_PICK`.
+- **מנגנון** (`assets/js/videos.js` + `assets/css/videos.css`): כרטיס "קל" — תמונה (`i.ytimg.com/vi/ID/hqdefault.jpg`)
+  + כפתור ניגון; ה-iframe של `youtube-nocookie.com` נטען רק בלחיצה, וסרטון אחד מתנגן בכל רגע.
+  נקודות עגינה ב-HTML: `data-yt-feature`, `data-yt-row` (+`data-yt-filtered` לחיבור לסינון), `data-yt-trailer`,
+  `data-yt-open="trailer:chanukah"` (כפתור שפותח חלון), `.m-trailer`/`.m-video` במודאל ההצגות.
+- **CSP** (`serve.json`): `img-src` כולל `https://i.ytimg.com`, `frame-src` = `youtube-nocookie.com`. לא להסיר.
+- כדי לשלוף רשימת סרטונים מפלייליסט: דף הפלייליסט (ytInitialData, רשומות עם `playlistId` תואם) + oEmbed לכותרת/כיווניות.
 
 ### כפתורי/אייקוני וואטסאפ
 בכל מקום באתר שיש קישור ל-WhatsApp (כפתור צף, CTA, ניווט, סושיאל בפוטר),

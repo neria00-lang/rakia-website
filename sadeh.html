@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="assets/css/a11y.css">
 <link rel="stylesheet" href="assets/css/updated-design.css">
 <link rel="stylesheet" href="assets/css/cast.css">
+<link rel="stylesheet" href="assets/css/videos.css">
 <script>
 /* נגישות: החלת העדפות תצוגה שמורות לפני הצביעה הראשונה (מניעת הבהוב) */
 (function(){try{var p=JSON.parse(localStorage.getItem('rakia_a11y_v1'));if(!p||p.version!==1)return;var c=document.documentElement.classList;
@@ -173,15 +174,17 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 
 <section class="reel">
   <div class="section-title"><h2>שנייה בשטח</h2></div>
-  <div class="reel-stage" data-cast-reveal>
+  <div class="reel-stage wide" data-cast-reveal>
   <span class="cast-peek" aria-hidden="true" style="--h:130px;--k:1.45;left:5%"><img class="cast-img" src="media/cast/c25.webp" alt="" width="779" height="772" loading="lazy" decoding="async"></span>
-  <div class="reel-box" tabindex="0" role="button" aria-label="הפעלת סרטון">
-    <img src="media/sadeh/yerushalayim-3.jpg" alt="תצוגה מקדימה של סרטון מהשטח">
-    <div class="play"><span>&#9658;</span></div>
-    <video src="media/sadeh/reel-1.mp4" preload="none" playsinline style="display:none"></video>
+  <div class="yt-duo">
+    <figure><div class="yt-feature" data-yt-feature="sadehMain"></div><figcaption>ערך בחוויה – שחקני השטח של רקיע</figcaption></figure>
+    <figure><div class="yt-feature" data-yt-feature="sadehJerusalem"></div><figcaption>"ירושלים של משחק" – סיור מומחז לכל אירוע</figcaption></figure>
   </div>
   </div>
   <p class="cap">קטע קצר מתוך אחד האירועים — כך נראית האינטראקציה עם הקהל</p>
+  <h3 class="yt-sub-title">מה אומרים אחרי שחקני השטח</h3>
+  <p class="yt-swipe-hint" aria-hidden="true">החליקו לעוד סרטונים ←</p>
+  <div class="yt-row" data-yt-row="sadeh"></div>
 </section>
 
 <section class="testi" id="testi">
@@ -300,5 +303,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 <script src="assets/js/a11y.js"></script>
 <script src="assets/js/cast.js"></script>
 <script src="assets/js/wa-popup.js"></script>
+<script src="assets/js/videos-data.js"></script>
+<script src="assets/js/videos.js"></script>
 </body>
 </html>

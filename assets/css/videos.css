@@ -1,0 +1,91 @@
+/* =====================================================================
+   VIDEOS — כרטיסי יוטיוב "קלים" (assets/js/videos.js + videos-data.js)
+   .v = אנכי 9:16 (רוב ההמלצות), .h = רוחבי 16:9 (טריילרים וחלק מהסרטונים).
+   במחשב: קיר מסודר (grid). במובייל: שורה שמחליקים הצידה (scroll-snap).
+   ===================================================================== */
+.yt-lite,.yt-frame{position:relative;display:block;width:100%;padding:0;border:3px solid var(--navy);border-radius:14px;
+  overflow:hidden;background:#0e1830;box-shadow:6px 6px 0 var(--gold);cursor:pointer;text-align:right}
+.yt-lite.v,.yt-frame.v{aspect-ratio:9/16}
+.yt-lite.h,.yt-frame.h{aspect-ratio:16/9}
+/* hqdefault היא 4:3 עם פסים שחורים — cover חותך אותם בדיוק לפריים של הסרטון */
+.yt-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s,filter .35s}
+.yt-lite:hover img{transform:scale(1.04);filter:brightness(.9)}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-play{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;
+  background:var(--amber,#f2a71b);box-shadow:0 6px 20px rgba(0,0,0,.45);transition:transform .2s}
+.yt-play::before{content:"";position:absolute;top:50%;left:54%;translate:-50% -50%;
+  border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent #20180a}
+.yt-lite:hover .yt-play,.yt-lite:focus-visible .yt-play{transform:scale(1.1)}
+.yt-lite.h .yt-play{width:76px;height:76px;margin:-38px 0 0 -38px}
+.yt-cap{position:absolute;inset:auto 0 0 0;padding:44px 14px 14px;color:#fff;
+  background:linear-gradient(0deg,rgba(8,12,26,.92) 0%,rgba(8,12,26,.6) 55%,transparent 100%)}
+.yt-cap q{display:block;font-weight:800;font-size:1rem;line-height:1.3;margin-bottom:4px}
+.yt-cap q::before{content:"״"}.yt-cap q::after{content:"״"}
+.yt-who{display:block;font-size:.8rem;color:#d9deec;line-height:1.3}
+.yt-lite.h .yt-cap q{font-size:1.1rem}
+
+/* תג קטן מעל כרטיס (ירושלים של משחק / חנוכה ...) */
+.yt-cell{position:relative;min-width:0}
+.yt-cell[hidden]{display:none}
+.yt-tag{display:inline-block;margin-bottom:8px;background:var(--teal);color:#fff;font-size:.75rem;font-weight:700;padding:3px 11px;border-radius:20px}
+
+/* קיר / שורה */
+.yt-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:26px 22px;align-items:center;max-width:1240px;margin:0 auto}
+.yt-cell.h{grid-column:span 2}
+.yt-row.picks{grid-template-columns:repeat(4,minmax(0,1fr));max-width:980px}
+.yt-swipe-hint{display:none}
+.yt-empty{text-align:center;color:#526273;font-size:1.05rem;margin:10px auto 0;max-width:520px}
+
+/* סרטון ראשי */
+.yt-feature{margin:0 auto}
+.yt-feature .yt-lite.v,.yt-feature .yt-frame.v{max-width:340px;margin:0 auto}
+.yt-feature .yt-lite.h,.yt-feature .yt-frame.h{max-width:820px;margin:0 auto}
+.yt-sub-title{text-align:center;font-family:'Secular One',sans-serif;color:var(--navy);font-size:clamp(1.5rem,3vw,2.1rem);margin:70px 0 30px}
+
+/* שחקני שטח: אנכי + רוחבי זה לצד זה */
+.yt-duo{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:30px;align-items:center;max-width:1040px;margin:0 auto}
+.yt-duo figcaption,.yt-trailer-title{margin-top:14px;text-align:center;color:#405266;font-weight:700;font-size:.98rem}
+
+/* טריילר בעמוד "הגיע הזמן" */
+.yt-trailer{max-width:860px;margin:0 auto 60px}
+.yt-trailer[hidden]{display:none}
+.yt-trailer-kicker{display:block;text-align:center;font-family:'Dana Yad',cursive;font-size:1.7rem;color:var(--teal-dark);margin-bottom:10px}
+
+/* מודאל ההצגה: טריילר במקום התמונה + המלצה נבחרת */
+.m-trailer .yt-lite,.m-trailer .yt-frame{border:0;border-radius:0;box-shadow:none}
+.m-trailer[hidden],.m-video[hidden],.m-img[hidden]{display:none!important}
+.m-video{margin:18px 0 6px}
+.m-video-title{font-weight:800;color:var(--navy);margin-bottom:10px}
+.m-video .yt-cell.v{max-width:210px}
+.m-video .yt-cell.h{max-width:420px}
+
+/* כפתור "צפו בטריילר" (כרטיס "הגיע הזמן" בדף הבית) */
+.trailer-btn{display:inline-flex;align-items:center;gap:9px;margin-top:16px;align-self:flex-start;background:#fff;color:var(--navy);
+  border:2px solid var(--navy);border-radius:999px;padding:9px 18px 9px 22px;font-weight:800;font-size:.98rem;box-shadow:4px 4px 0 var(--navy);transition:transform .15s,box-shadow .15s}
+.trailer-btn::before{content:"";width:0;height:0;border-style:solid;border-width:7px 0 7px 12px;border-color:transparent transparent transparent var(--red)}
+.trailer-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--navy)}
+
+/* חלון סרטון */
+.yt-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,12,26,.88)}
+.yt-modal.open{display:flex}
+.yt-modal-box{position:relative;width:min(960px,100%)}
+.yt-modal-slot.v{width:min(380px,100%,calc((100vh - 90px) * 9 / 16));margin:0 auto}
+.yt-modal-slot .yt-frame{box-shadow:none;border-color:#fff}
+.yt-modal-x{position:absolute;top:-46px;left:0;width:40px;height:40px;border-radius:50%;background:#fff;color:var(--navy);font-size:1.8rem;line-height:1}
+
+@media(max-width:800px){
+  /* שורה שמחליקים — הכרטיס הבא "מציץ" מהצד כדי שיהיה ברור שיש עוד */
+  .yt-row,.yt-row.picks{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 15px 16px;margin:0 -15px;
+    scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .yt-cell{scroll-snap-align:center}
+  .yt-cell.v{flex:0 0 62%}
+  .yt-cell.h{flex:0 0 86%}
+  .yt-swipe-hint{display:block;text-align:center;color:#526273;font-size:.85rem;margin:-4px 0 12px}
+  .yt-duo{grid-template-columns:1fr;gap:34px}
+  .yt-duo .yt-lite.v,.yt-duo .yt-frame.v{max-width:280px;margin:0 auto}
+  .yt-sub-title{margin-top:56px}
+}
+@media(prefers-reduced-motion:reduce){.yt-lite img,.yt-play,.trailer-btn{transition:none}}
+html.a11y-reduce-motion .yt-lite img,html.a11y-reduce-motion .yt-play{transition:none}
+@media print{.yt-row,.yt-feature,.yt-duo,.yt-trailer,.trailer-btn{display:none!important}}
+.yt-duo figure{margin:0}

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="assets/css/a11y.css">
 <link rel="stylesheet" href="assets/css/updated-design.css">
 <link rel="stylesheet" href="assets/css/cast.css">
+<link rel="stylesheet" href="assets/css/videos.css">
 <script>
 /* נגישות: החלת העדפות תצוגה שמורות לפני הצביעה הראשונה (מניעת הבהוב) */
 (function(){try{var p=JSON.parse(localStorage.getItem('rakia_a11y_v1'));if(!p||p.version!==1)return;var c=document.documentElement.classList;
@@ -78,6 +79,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
     <div class="cat yellow">
       <h2>הצגות<br>'הגיע הזמן'</h2>
       <p>הצגות מרגשות ומלאות ערכים. סביב מעגל השנה. מבוסס על סדרת הקומיקס האהובה- "הגיע הזמן".</p>
+      <button type="button" class="trailer-btn" data-yt-open="trailer:chanukah">צפו בטריילר של "בימים ההם"</button>
       <div class="photo"><img src="media/actor-glasses.png" alt="שחקן מהצגות הגיע הזמן"></div>
       <a class="cat-btn" href="higia-hazman.html">לכל ההצגות</a>
     </div>
@@ -102,16 +104,11 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 
 <section class="reel">
   <div class="section-title"><h2>ככה זה נראה בשטח</h2></div>
-  <div class="reel-box yt-embed">
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/zycGnSwBDRM"
-      title="רקיע - קטע מהשטח"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      loading="lazy"
-      allowfullscreen></iframe>
-  </div>
+  <div class="yt-feature" data-yt-feature="home"></div>
   <p class="cap">טעימה מההצגות שלנו</p>
+  <h3 class="yt-sub-title">מה אומרים עלינו – בווידאו</h3>
+  <p class="yt-swipe-hint" aria-hidden="true">החליקו לעוד סרטונים ←</p>
+  <div class="yt-row picks" data-yt-row="home-picks" data-yt-tags></div>
 </section>
 
 <section class="gallery">
@@ -249,5 +246,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 <script src="assets/js/a11y.js"></script>
 <script src="assets/js/cast.js"></script>
 <script src="assets/js/wa-popup.js"></script>
+<script src="assets/js/videos-data.js"></script>
+<script src="assets/js/videos.js"></script>
 </body>
 </html>
