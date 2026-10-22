@@ -9,7 +9,7 @@
 window.RAKIA_VIDEOS = {
   TRAILERS: {
     chanukah:  { id: 'mFgkA-UprSo', title: 'טריילר – "בימים ההם", הצגת חנוכה' },
-    jerusalem: null   // יתווסף כשיעלה ליוטיוב: { id: '...', title: 'טריילר – "חוזרים לירושלים"' }
+    jerusalem: { id: 'M3XiGhFwUNc', title: 'טריילר – "שחוברה לה יחדיו", הצגה על ירושלים' }
   },
 
   FEATURES: {
