@@ -14,7 +14,9 @@ window.RAKIA_VIDEOS = {
 
   FEATURES: {
     // סרטון ראשי בדף הבית
-    home:          { id: 'UQRZvDPYHTI', v: true,  title: 'שחקני שטח עם תאטרון רקיע | לכל מקום יש סיפור' },
+    // embed:false — יוטיוב חוסם את הניגון של הסרטון הזה בתוך אתרים, אז הוא נפתח ישירות ביוטיוב.
+    // כשמאפשרים הטמעה ב-YouTube Studio (פרטים > הצגת עוד > "אישור הטמעה") — למחוק את embed:false.
+    home:          { id: 'UQRZvDPYHTI', v: true,  title: 'שחקני שטח עם תאטרון רקיע | לכל מקום יש סיפור', embed: false },
     // "שנייה בשטח" בעמוד שחקני שטח
     sadehMain:     { id: '1EK4kjVrPS8', v: true,  title: 'ערך בחוויה – שחקני שטח של תאטרון רקיע' },
     sadehJerusalem:{ id: '53kMiGN2aAo', v: false, title: 'ירושלים של משחק – סיור חלומי לכל אירוע' }

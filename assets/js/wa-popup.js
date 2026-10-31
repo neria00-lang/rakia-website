@@ -37,7 +37,7 @@
     box.setAttribute('aria-modal', 'false');
     box.setAttribute('aria-labelledby', 'wa-pop-title');
     box.innerHTML =
-      '<img class="cast-img wa-pop-char" src="/media/cast/c13.webp" alt="" aria-hidden="true" width="681" height="772">' +
+      '<img class="cast-img wa-pop-char" src="/media/cast/c13.webp?v=3" alt="" aria-hidden="true" width="681" height="772">' +
       '<button type="button" class="wa-pop-x" aria-label="סגירת ההודעה">&times;</button>' +
       '<p class="wa-pop-kicker">בחינם · בלי התחייבות</p>' +
       '<h2 id="wa-pop-title">רוצים תוכן חינמי לחגים?</h2>' +

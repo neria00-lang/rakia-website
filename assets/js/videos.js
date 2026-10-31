@@ -27,6 +27,12 @@
     b.className = 'yt-lite' + (o.v ? ' v' : ' h');
     b.dataset.yt = o.id;
     b.setAttribute('aria-label', 'ניגון סרטון: ' + label);
+    // embed:false = יוטיוב לא מאפשר לנגן את הסרטון בתוך אתר ("שגיאה בהגדרות של נגן הווידאו") —
+    // פותחים אותו ישירות ביוטיוב במקום להציג שגיאה
+    if(o.embed === false){
+      b.dataset.noembed = '1';
+      b.setAttribute('aria-label', 'צפייה ביוטיוב (נפתח בכרטיסייה חדשה): ' + label);
+    }
     b.innerHTML =
       '<img src="' + thumb(o.id) + '" alt="" loading="lazy" decoding="async">' +
       '<span class="yt-play" aria-hidden="true"></span>' +
@@ -42,8 +48,12 @@
     if(playing === frameWrap) playing = null;
   }
   function play(btn){
-    if(playing) stop(playing);
     var id = btn.dataset.yt;
+    if(btn.dataset.noembed){
+      window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener');
+      return;
+    }
+    if(playing) stop(playing);
     var wrap = document.createElement('div');
     wrap.className = btn.className.replace('yt-lite', 'yt-frame');
     wrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +

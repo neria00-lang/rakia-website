@@ -71,7 +71,7 @@
     window.addEventListener('resize', place);
     var setHead = function(){
       var img = peek.querySelector('img');
-      img.src = '/media/cast/' + HEADS[idx % HEADS.length] + '.webp';
+      img.src = '/media/cast/' + HEADS[idx % HEADS.length] + '.webp?v=3';
       idx++;
       try { sessionStorage.setItem('rakia_cast_head', String(idx)); } catch(e){}
     };
