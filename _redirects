@@ -1,0 +1,7 @@
+# Cloudflare Pages — קבצים פנימיים שלא אמורים להיות נגישים מבחוץ (כמו ב-serve.json)
+/AGENTS.md          /  301
+/package.json       /  301
+/package-lock.json  /  301
+/serve.json         /  301
+/_headers           /  301
+/_redirects         /  301

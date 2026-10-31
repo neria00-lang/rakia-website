@@ -1,0 +1,14 @@
+# Cloudflare Pages — כותרות אבטחה (המקבילה של "headers" ב-serve.json, שמשמש את Railway).
+# לשמור את שני הקבצים מסונכרנים כשמשנים CSP.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+
+# תמונות עם ?v= בכתובת — מותר לשמור במטמון שבוע
+/media/*
+  Cache-Control: public, max-age=604800
