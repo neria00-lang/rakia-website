@@ -93,26 +93,34 @@ assets/css/cast.css + assets/js/cast.js ← מנגנון הדמויות (נטע�
 
 ## 4. דיפלוי (Production) — כל הפרטים
 
-- **Hosting**: Railway (PaaS). **בלי** `railway.json` בפרויקט הזה — Railway
-  מזהה אוטומטית שזה Node app לפי `package.json` ומריץ `npm start`
-  שמריץ `serve . -l $PORT` (חבילת `serve` שמוגדרת כ-dependency).
+- **Hosting (מ-1/11/2026): Cloudflare Pages** — פרויקט `rakia-website` בחשבון Cloudflare של
+  neria00@gmail.com (Workers & Pages → rakia-website). מחובר ל-GitHub: כל push ל-`main` נפרס
+  אוטומטית תוך דקה. הגדרות: Framework None, בלי build command, output directory = שורש (`/`),
+  משתנה סביבה `SKIP_DEPENDENCY_INSTALL=1`. כותרות אבטחה/CSP ב-`_headers`, חסימת קבצים פנימיים
+  ב-`_redirects` (Pages לא קורא את `serve.json`). `404.html` מוגש אוטומטית לנתיב חסר.
+- **דומיין**: `teatronrakia.co.il` (+ `www.`) — רשום ב-**LiveDNS** (עד 1/11/2031, חשבון של נריה),
+  שרתי השמות מצביעים ל-Cloudflare (`vin.ns.cloudflare.com`, `violet.ns.cloudflare.com`);
+  ה-DNS מנוהל ב-Cloudflare (zone `teatronrakia.co.il`, חבילת Free). http→https אוטומטי.
+- **כתובות חיות**: `https://teatronrakia.co.il/` (ראשית), `https://rakia-website.pages.dev/` (גיבוי).
 - **GitHub repo**: `neria00-lang/rakia-website`
   URL: `https://github.com/neria00-lang/rakia-website.git`, branch: `main`.
-- **כתובת חיה**: `https://rakia-website-production.up.railway.app/`
-  (אין עדיין דומיין מותאם אישית — רק סאב-דומיין של Railway).
-- **Railway project id**: `db9fc2a9-ad1a-45b9-a64f-d7755f61292b`
-- **Railway service id**: `5fba8bb3-feb8-4c6f-bd4f-8e11017b44d5`
-- **Railway environment id (production)**: `a800b20f-d3e1-4a86-90d0-e6880f35339e`
+- **Railway (ישן, לסגירה)**: `https://rakia-website-production.up.railway.app/` — הפסיק לפרוס
+  עדכונים אחרי 19/10/2026 (אירוע האבטחה של Railway ב-21/10). `package.json` (`serve . -l $PORT`)
+  ו-`serve.json` נשארו רק בשבילו; אפשר למחוק אחרי שה-service נסגר.
+  project `db9fc2a9-ad1a-45b9-a64f-d7755f61292b`, service `5fba8bb3-feb8-4c6f-bd4f-8e11017b44d5`.
 - **אין env vars מיוחדים** לפרויקט הזה (זה סטטי, בלי DB/API keys).
+- **סינון תוכן (Netspark/רימון/אתרוג)**: במחשבים מסוננים תמונות עלולות להיות מוחלפות בתמונות
+  ריקות (1×1) ולהישמר כך במטמון. כל כתובות התמונות מגיעות עם `?v=N` — אם משנים תמונה/צריך לרענן
+  לכולם, מעלים את N בכל העמודים.
 
 ### תהליך פרסום שינוי (חובה בכל שינוי!)
 1. ערוך את הקבצים (HTML/CSS/JS/מדיה).
 2. `git add -A`
 3. `git commit -m "תיאור ברור באנגלית או עברית"`
 4. `git push origin main`
-5. Railway מזהה את ה-push אוטומטית ומתחיל build+deploy (סטטוס `BUILDING` → `SUCCESS`).
-   אם יש לך גישת MCP ל-Railway, אפשר לבדוק סטטוס עם `list-deployments`
-   (projectId+serviceId למעלה). בלי MCP — פשוט תבדוק את האתר החי אחרי דקה-שתיים.
+5. Cloudflare Pages מזהה את ה-push אוטומטית ופורס תוך ~דקה. בודקים את
+   `https://teatronrakia.co.il/` (עם `?r=<random>` כדי לעקוף מטמון). סטטוס הפריסות:
+   Cloudflare dashboard → Workers & Pages → rakia-website → Deployments.
 6. **אם עובד מסביבת ענן/sandbox מבודדת**: ייתכן שאין הרשאת push ל-repo הזה
    (הודעת שגיאה טיפוסית: `not in this session's authorized repository set`).
    הפתרון: להוסיף את `neria00-lang/rakia-website` לרשימת ה-repos המורשים
