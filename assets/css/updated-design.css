@@ -131,3 +131,22 @@ footer{background:#04101f;padding:38px 4vw;border-top:0}footer img{height:48px}
   nav.main-nav a.active{color:var(--teal-dark)}
 }
 @media(max-width:800px){nav.main-nav{top:64px}}/* גובה ה-header במובייל */
+
+/* לוגו בתחתית: גרסה עם אותיות בהירות (logo-footer.png) — השחורות נעלמו על הרקע הכהה */
+footer img.footer-logo{height:80px;width:auto}
+@media(max-width:800px){footer img.footer-logo{height:72px}}
+
+/* ===== ניגודיות (בדיקת פרטיות ונגישות, 11/2026) =====
+   מילות כתב-היד בזהב (--gold #f2aa23) על הרקעים הבהירים נמדדו ב-1.5:1 בלבד. על רקע בהיר הן מקבלות
+   "זהב כהה" (#b35c00): 3.6:1 על התכלת ו-4:1 על הטורקיז הבהיר — מעל 3:1 הנדרש לטקסט גדול.
+   על רקעים כהים (navy) הזהב הרגיל נשאר. */
+:root{--gold-ink:#b35c00}
+.hero h1 .script,.page-hero .script,.cat.teal h2 span{color:var(--gold-ink)}
+/* "לפרטים המלאים ←" בכרטיסי ההצגות (היה טורקיז 3.06:1 על לבן) */
+.show-card .more{color:var(--teal-dark)}
+/* "לצפייה בפלייליסט המלא ביוטיוב" — קישור על פס כהה (היה טורקיז כהה על כחול כהה) */
+.free-content .playlist-link a{color:#fff;border-bottom-color:var(--gold)}
+/* חתימה "נריה צור, מייסד רקיע" (היה טורקיז 2.94:1) */
+.story-flex .txt .sign{color:var(--teal-dark)}
+/* תגיות קטנות: לא פחות מ-12.8px */
+.tag{font-size:.8rem}

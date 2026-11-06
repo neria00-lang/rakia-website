@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     var picked = pool.slice(0, Math.min(3, pool.length));
     testiGrid.innerHTML = picked.map(function(t){
-      return '<div class="card"><div class="q">&#8220;</div>' +
+      return '<div class="card"><div class="q" aria-hidden="true">&#8220;</div>' +
         '<p>' + esc(t.quote) + '</p>' +
         '<div class="who"><span><b>' + esc(t.name) + '</b> · ' + esc(t.role) + '</span>' +
         '<span class="tag">' + esc(t.tag) + '</span></div></div>';

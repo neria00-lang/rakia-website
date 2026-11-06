@@ -43,7 +43,8 @@
       '<h2 id="wa-pop-title">רוצים תוכן חינמי לחגים?</h2>' +
       '<p class="wa-pop-text">הצטרפו לקבוצת הוואטסאפ שלנו וקבלו ראשונים סרטונים, הפעלות וחומרים לכל חג — ישר לנייד.</p>' +
       '<a class="btn-wa wa-pop-join" href="' + GROUP + '" target="_blank" rel="noopener">' + WA_ICON + ' להצטרפות לקבוצה</a>' +
-      '<button type="button" class="wa-pop-later">לא עכשיו</button>';
+      '<button type="button" class="wa-pop-later">לא עכשיו</button>' +
+      '<p class="wa-pop-fine">בהצטרפות, מספר הטלפון שלכם עשוי להיות גלוי למנהלי הקבוצה ולחבריה. <a href="/privacy.html">מדיניות הפרטיות</a></p>';
     document.body.appendChild(box);
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ box.classList.add('open'); }); });
 

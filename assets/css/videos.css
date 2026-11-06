@@ -27,7 +27,7 @@
 /* תג קטן מעל כרטיס (ירושלים של משחק / חנוכה ...) */
 .yt-cell{position:relative;min-width:0}
 .yt-cell[hidden]{display:none}
-.yt-tag{display:inline-block;margin-bottom:8px;background:var(--teal);color:#fff;font-size:.75rem;font-weight:700;padding:3px 11px;border-radius:20px}
+.yt-tag{display:inline-block;margin-bottom:8px;background:var(--teal-dark);color:#fff;font-size:.8rem;font-weight:700;padding:3px 11px;border-radius:20px}
 
 /* קיר / שורה */
 .yt-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:26px 22px;align-items:center;max-width:1240px;margin:0 auto}
@@ -89,3 +89,6 @@
 html.a11y-reduce-motion .yt-lite img,html.a11y-reduce-motion .yt-play{transition:none}
 @media print{.yt-row,.yt-feature,.yt-duo,.yt-trailer,.trailer-btn{display:none!important}}
 .yt-duo figure{margin:0}
+
+/* עמוד "תוכן חינמי": הכרטיס הקל ממלא את מסגרת ה-16:9 של .video-card */
+.video-card .frame .yt-lite,.video-card .frame .yt-frame{position:absolute;inset:0;height:100%;aspect-ratio:auto;border:0;border-radius:inherit;box-shadow:none}

@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
 <title>הצהרת נגישות | רקיע – חינוך יצירתי</title>
 <meta name="description" content="הצהרת הנגישות של אתר תיאטרון רקיע – חינוך יצירתי: רמת ההנגשה לפי תקן ישראלי ת&quot;י 5568, אמצעי הנגישות באתר, מגבלות ידועות ודרכי פנייה בנושא נגישות.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/Heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/a11y.css">
 <link rel="stylesheet" href="assets/css/updated-design.css">
 <link rel="stylesheet" href="assets/css/cast.css">
+<link rel="stylesheet" href="assets/css/motion.css">
 <script>
 /* נגישות: החלת העדפות תצוגה שמורות לפני הצביעה הראשונה (מניעת הבהוב) */
 (function(){try{var p=JSON.parse(localStorage.getItem('rakia_a11y_v1'));if(!p||p.version!==1)return;var c=document.documentElement.classList;
@@ -65,7 +68,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 
 <article class="a11y-doc" lang="he">
   <h1>הצהרת נגישות</h1>
-  <p class="updated">עודכן לאחרונה: 19 באוקטובר 2026</p>
+  <p class="updated">עודכן לאחרונה: 6 בנובמבר 2026</p>
 
   <h2>המחויבות שלנו</h2>
   <p>
@@ -78,8 +81,9 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 
   <h2>רמת הנגישות של האתר</h2>
   <p>
-    האתר הונגש בהתאם לתקן הישראלי <strong>ת"י 5568</strong> להנגשת תכנים באינטרנט,
+    פעלנו להנגיש את האתר לפי התקן הישראלי <strong>ת"י 5568</strong> להנגשת תכנים באינטרנט,
     המבוסס על הנחיות <strong>WCAG 2.0</strong> של ארגון W3C, ברמת הנגישות <strong>AA</strong>.
+    ההנגשה נבדקה בבדיקה עצמית שלנו (ראו "פרטי הבדיקה" בסוף העמוד).
     האתר בנוי בעברית מלאה עם כיווניות מימין לשמאל (RTL) ומותאם לצפייה במחשב, בטאבלט ובנייד.
   </p>
 
@@ -88,10 +92,14 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
     <li>מבנה סמנטי תקני עם אזורי ניווט (landmarks) וכותרות היררכיות לניווט מהיר בעזרת קורא מסך.</li>
     <li>קישור "דלג לתוכן הראשי" בתחילת כל עמוד.</li>
     <li>ניווט מלא באמצעות מקלדת בכל חלקי האתר, כולל תפריטים, חלונות מודאליים וגלריות, עם חיווי מיקוד (focus) ברור.</li>
-    <li>תאימות לקוראי מסך נפוצים (NVDA, JAWS, VoiceOver, TalkBack), כולל תוויות בעברית לכפתורים ולשדות.</li>
+    <li>תוויות בעברית לכל הכפתורים, הקישורים ושדות הטופס, ומבנה שמיועד לעבודה עם קוראי מסך.</li>
     <li>טקסט חלופי לתמונות בעלות משמעות; תמונות דקורטיביות מוסתרות מטכנולוגיות מסייעות.</li>
-    <li>ניגודיות צבעים העומדת ביחס של 4.5:1 לפחות בטקסט רגיל.</li>
-    <li>כיבוד העדפת המערכת "הפחתת תנועה" (prefers-reduced-motion) — עצירת אנימציות ומצגות רקע.</li>
+    <li>ניגודיות צבעים ביחס של 4.5:1 לפחות בטקסט רגיל ו-3:1 לפחות בטקסט גדול.</li>
+    <li>כיבוד העדפת המערכת "הפחתת תנועה" (prefers-reduced-motion): עצירת אנימציות ומצגות רקע.
+      במצב הזה הציפור שעפה בדף הבית נשארת בלוגו, פס שמות המוסדות עוצר, וקטע "ההצגות שלנו"
+      הופך לשורת כרטיסים רגילה שגוללים בה הצידה.</li>
+    <li>קטע "ההצגות שלנו" בדף הבית נגיש במקלדת: מעבר בין הכרטיסים במקש Tab מביא כל כרטיס למרכז המסך.</li>
+    <li>האתר אינו אוסף פרטים: טופס הפנייה רק פותח הודעת וואטסאפ מוכנה. פרטים נוספים ב<a href="privacy.html">מדיניות הפרטיות</a>.</li>
     <li>
       <strong>תפריט נגישות</strong> בכל עמוד (כפתור עגול בפינת המסך, או במקלדת: <kbd>Alt</kbd> + <kbd>A</kbd>),
       המאפשר לכל משתמש להתאים לעצמו: הדגשת קישורים, ניגודיות גבוהה / הפוכה / גווני אפור,
@@ -118,8 +126,9 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
       תמלול מלא בכתב לכל סרטון. מתוכננת השלמה.
     </li>
     <li>
-      פס לוגו הלקוחות הנע — נעצר בעת מעבר עכבר, בעת מיקוד מקלדת, כשמופעלת "הפחתת תנועה"
-      במערכת ההפעלה, וכשמופעלת "עצירת אנימציות" בתפריט הנגישות.
+      רכיבים נעים (פס לוגו הלקוחות, פס שמות המוסדות, הציפור שעפה בדף הבית) — נעצרים כשמופעלת
+      "הפחתת תנועה" במערכת ההפעלה או "עצירת אנימציות" בתפריט הנגישות. פס הלוגואים נעצר גם במעבר עכבר.
+      הרכיבים האלה דקורטיביים, ושמות המוסדות זמינים גם כרשימה רגילה לקוראי מסך.
     </li>
   </ul>
   <p>
@@ -146,10 +155,12 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
     במשרד המשפטים.<span class="sr-only"> (הקישור נפתח בכרטיסייה חדשה)</span>
   </p>
 
-  <h2>פרטי הביקורת</h2>
+  <h2>פרטי הבדיקה</h2>
   <ul>
-    <li><strong>תאריך ביצוע ביקורת הנגישות האחרונה:</strong> 31 באוגוסט 2026</li>
-    <li><strong>תאריך פרסום / עדכון ההצהרה:</strong> 19 באוקטובר 2026</li>
+    <li><strong>בדיקה אחרונה:</strong> 6 בנובמבר 2026. בדיקה עצמית: סריקה אוטומטית של כל העמודים (שפה, כותרות,
+      טקסט חלופי, שמות נגישים, תוויות, ניגודיות), ניווט מקלדת ותצוגה ברוחב 320 פיקסלים.
+      טרם בוצעה בדיקה מלאה עם קורא מסך או בדיקה של מורשה נגישות.</li>
+    <li><strong>תאריך פרסום / עדכון ההצהרה:</strong> 6 בנובמבר 2026</li>
     <li><strong>תקן ההנגשה:</strong> ת"י 5568 (מבוסס WCAG 2.0), רמה AA</li>
   </ul>
 </article>
@@ -157,7 +168,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 </main>
 
 <footer>
-  <img src="media/logo-real.png?v=3" alt="רקיע – חינוך יצירתי">
+  <img class="footer-logo" src="media/logo-footer.png?v=3" alt="רקיע – חינוך יצירתי" width="782" height="781">
   <nav class="flinks" aria-label="ניווט תחתון">
     <a href="higia-hazman.html">הצגות "הגיע הזמן"</a>
     <a href="sadeh.html">שחקני שטח</a>
@@ -166,6 +177,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
     <a href="about.html#faq">שאלות נפוצות</a>
     <a href="index.html#cta">צור קשר</a>
     <a href="negishut.html" aria-current="page">הצהרת נגישות</a>
+    <a href="privacy.html">מדיניות פרטיות</a>
   </nav>
   <div class="socials">
     <a href="https://wa.me/972526154838" aria-label="שליחת הודעה בוואטסאפ"><svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.001 3C9.383 3 4 8.373 4 15c0 2.634.858 5.079 2.312 7.062L4.8 27.2l5.302-1.68A11.94 11.94 0 0 0 16.001 27C22.619 27 28 21.627 28 15S22.619 3 16.001 3zm6.965 16.541c-.297.836-1.47 1.53-2.403 1.727-.639.135-1.474.243-4.283-.92-3.594-1.487-5.906-5.14-6.086-5.379-.173-.239-1.456-1.939-1.456-3.699 0-1.76.897-2.623 1.216-2.982.297-.334.648-.418.865-.418.216 0 .433.002.622.011.216.01.483-.082.756.577.297.716.996 2.472 1.083 2.653.087.181.146.393.029.632-.115.239-.173.388-.343.597-.173.209-.362.467-.518.627-.173.179-.354.373-.152.732.202.359.897 1.481 1.926 2.398 1.325 1.182 2.443 1.549 2.802 1.727.359.179.567.15.777-.09.216-.239.867-1.011 1.099-1.359.231-.348.462-.29.777-.174.318.116 2.011.949 2.357 1.121.347.174.577.26.663.404.087.144.087.836-.211 1.672z"/></svg></a>
@@ -178,6 +190,7 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 <script src="assets/js/main.js"></script>
 <script src="assets/js/a11y.js"></script>
 <script src="assets/js/cast.js"></script>
+<script src="assets/js/motion.js"></script>
 <script src="assets/js/wa-popup.js"></script>
 </body>
 </html>

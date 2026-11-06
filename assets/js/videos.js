@@ -72,6 +72,11 @@
     Array.prototype.slice.call(root.querySelectorAll('.yt-frame')).forEach(stop);
   }
 
+  /* ---------- סרטון בודד לפי id (עמוד "תוכן חינמי"): <div data-yt-lite="ID" data-title="..."> ---------- */
+  document.querySelectorAll('[data-yt-lite]').forEach(function(el){
+    el.parentNode.replaceChild(lite({ id: el.getAttribute('data-yt-lite'), v: false, title: el.getAttribute('data-title') }), el);
+  });
+
   /* ---------- סרטון ראשי ---------- */
   document.querySelectorAll('[data-yt-feature]').forEach(function(el){
     var f = D.FEATURES[el.getAttribute('data-yt-feature')];
@@ -224,10 +229,26 @@
     document.body.style.overflow = '';
     if(vmReturn && vmReturn.focus) vmReturn.focus();
   }
+  // trailer:chanukah | feature:home | video:<id מתוך ITEMS>; אפשר שרשרת חלופות עם "|"
+  // (למשל "trailer:purim|video:xEmjz9ZpCW4" — כשיתווסף טריילר לפורים הוא יחליף את הסרטון לבד).
+  // רכיב [data-yt-label] בתוך הכפתור מקבל "צפו בטריילר" / "צפו בסרטון" לפי מה שנמצא.
+  function resolve(spec){
+    var parts = spec.split('|');
+    for(var i = 0; i < parts.length; i++){
+      var s = parts[i].split(':'), o = null;
+      if(s[0] === 'trailer') o = D.TRAILERS[s[1]];
+      else if(s[0] === 'feature') o = D.FEATURES[s[1]];
+      else if(s[0] === 'video' && byId[s[1]]){ var it = byId[s[1]]; o = { id: it.id, v: it.v, title: it.who + ': ' + it.quote }; }
+      if(o) return { o: o, kind: s[0] };
+    }
+    return null;
+  }
   document.querySelectorAll('[data-yt-open]').forEach(function(btn){
-    var spec = btn.getAttribute('data-yt-open').split(':'); // trailer:chanukah | feature:home
-    var o = spec[0] === 'trailer' ? D.TRAILERS[spec[1]] : D.FEATURES[spec[1]];
-    if(!o){ btn.hidden = true; return; }
+    var r = resolve(btn.getAttribute('data-yt-open'));
+    if(!r){ btn.hidden = true; return; }
+    var o = r.o;
+    var lbl = btn.querySelector('[data-yt-label]');
+    if(lbl) lbl.textContent = r.kind === 'trailer' ? 'צפו בטריילר' : 'צפו בסרטון';
     btn.addEventListener('click', function(e){
       e.preventDefault();
       e.stopPropagation();
