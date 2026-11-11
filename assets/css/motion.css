@@ -130,4 +130,6 @@
 .rk-bird.is-flying .rk-bird-turn{filter:drop-shadow(0 12px 10px rgba(7,21,40,.22))}
 .rk-feather{position:fixed;top:0;left:0;width:9px;height:11px;z-index:57;pointer-events:none;opacity:0;
   clip-path:polygon(50% 0,100% 100%,0 100%);will-change:transform,opacity}
+/* בנייד הציפור נחה בתוך פס הכותרת (ראה perch ב-motion.js) — לכן מעל הכותרת (z-index 60) */
+@media (max-width:919px){.rk-bird{z-index:61}}
 @media print{.rk-bird,.rk-feather{display:none!important}}

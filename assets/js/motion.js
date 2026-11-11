@@ -174,7 +174,7 @@
     var fw = narrow ? 52 : clamp(vw * 0.062, 70, 104);
     var logoTop = docTop(logo), logoLeft = docLeft(logo);
     var A = [];
-    var add = function(at, fn){ A.push({ at: at, fn: fn }); };
+    var add = function(at, fn, walk){ A.push({ at: at, fn: fn, walk: !!walk }); };
     var side = function(fx, fy){ return function(){ return { x: vw * fx, y: H + (vh - H) * fy, w: fw }; }; };
     var sec = function(sel){ var e = document.querySelector(sel); return e ? docTop(e) : null; };
 
@@ -183,41 +183,49 @@
       var lw = logo.offsetWidth, lh = logo.offsetHeight, w = lw * IN_LOGO.w;
       return { x: logoLeft + lw * IN_LOGO.x + w / 2, y: logoTop - y + lh * IN_LOGO.y + w * BIRD_RATIO / 2, w: w, rest: true };
     });
-    var corner = side(0.07, 0.1);
+    // מובייל: אין שוליים פנויים ליד הטקסט — הציפור "נחה" בתוך פס הכותרת העליון, ברווח שבין
+    // כפתור התפריט ללוגו, ולא מעל התוכן. perch(0) / perch(1) = שתי נקודות קרובות באותו רווח.
+    var perch = function(k){
+      return function(){
+        var hb = document.querySelector('.hamburger'), lg = document.querySelector('header .logo');
+        var l = hb ? hb.getBoundingClientRect().right : 56, r = lg ? lg.getBoundingClientRect().left : vw * 0.5;
+        var gap = Math.max(40, r - l), w = Math.min(44, gap * 0.45);
+        return { x: l + gap * (k ? 0.68 : 0.32), y: H / 2, w: w, inHeader: true };
+      };
+    };
     if(narrow){
-      // מובייל: הציפור מלווה בפינה, מתחת לכותרת, ולא מסתירה טקסט
-      var c = sec('#cats'); if(c != null) add(Math.max(140, c - vh * 0.75), function(){ return { x: 34, y: H + 34, w: fw }; });
+      var c = sec('#cats'); if(c != null) add(Math.max(140, c - vh * 0.75), perch(0));
     } else {
-      var t1 = sec('#cats'); if(t1 != null) add(t1 - vh * 0.55, side(0.055, 0.2));
+      var t1 = sec('#cats'); if(t1 != null) add(t1 - vh * 0.55, side(0.045, 0.2));
     }
-    // ההצגות שלנו: הציפור "הולכת" על פס ההתקדמות מתחת לכרטיסים
-    if(S && S.on && S.rail){
-      var railY = function(){ return H + S.rail.offsetTop + S.rail.offsetHeight / 2 - fw * BIRD_RATIO * 0.42; };
+    // ההצגות שלנו: הציפור "הולכת" על פס ההתקדמות מתחת לכרטיסים (במחשב בלבד — בנייד הכרטיסים צמודים לפס)
+    if(!narrow && S && S.on && S.rail){
+      // הציפור עומדת על הפס עצמו (מרכזה מעט מעליו) — לא עולה על הכפתורים שבתחתית הכרטיסים
+      // (המיקום נמדד חי מהמסך — החישוב הקודם לפי offsetTop הציב אותה ~100px מעל הפס, על הכפתורים)
+      var railY = function(){ var r = S.rail.getBoundingClientRect(); return r.top + r.height / 2 - fw * BIRD_RATIO * 0.3; };
       var railR = docLeft(S.rail) + S.rail.offsetWidth, railL = docLeft(S.rail);
-      add(S.start, function(){ return { x: railR - fw * 0.3, y: railY(), w: fw }; });
-      add(S.start + S.len, function(){ return { x: railL + fw * 0.3, y: railY(), w: fw }; });
+      add(S.start, function(){ return { x: railR - fw * 0.3, y: railY(), w: fw }; }, true);
+      add(S.start + S.len, function(){ return { x: railL + fw * 0.3, y: railY(), w: fw }; }, true);
     }
+    // במחשב: x קרוב לקצה המסך (0.045 / 0.955) — מחוץ לעמודת הטקסט
     var plan = narrow ? [
-      ['.fit', 0.6, 34, 0.06], ['.reel', 0.6, -34, 0.06], ['.gallery', 0.6, 34, 0.06],
-      ['#testi', 0.6, -34, 0.06], ['.clients', 0.6, 34, 0.06]
+      ['.fit', 0.6, 1], ['.reel', 0.6, 0], ['.gallery', 0.6, 1],
+      ['#testi', 0.6, 0], ['.clients', 0.6, 1]
     ] : [
-      ['.fit', 0.5, 0.06, 0.24], ['.reel', 0.5, 0.94, 0.3], ['.gallery', 0.5, 0.06, 0.26],
-      ['#testi', 0.5, 0.94, 0.22], ['.clients', 0.55, 0.5, 0.12]
+      ['.fit', 0.5, 0.045, 0.24], ['.reel', 0.5, 0.955, 0.3], ['.gallery', 0.5, 0.045, 0.26],
+      ['#testi', 0.5, 0.955, 0.22], ['.clients', 0.55, 0.955, 0.15]
     ];
     plan.forEach(function(p){
       var t = sec(p[0]); if(t == null) return;
-      if(narrow){
-        var px = p[2] > 0 ? p[2] : vw + p[2];
-        add(t - vh * p[1], function(){ return { x: px, y: H + 34, w: fw }; });
-      } else add(t - vh * p[1], side(p[2], p[3]));
+      add(t - vh * p[1], narrow ? perch(p[2]) : side(p[2], p[3]));
     });
     var maxS = Math.max(0, document.documentElement.scrollHeight - vh);
-    // ריחוף מעל הפינה העליונה של טופס הפנייה
+    // ריחוף בשוליים, משמאל לטופס הפנייה (לא מעליו — שם היא כיסתה את השדות). במחשב בלבד.
     var form = document.querySelector('.quote-form');
-    if(form){
-      var fTop = docTop(form), fLeft = docLeft(form), fWidth = form.offsetWidth;
+    if(form && !narrow){
+      var fTop = docTop(form), fLeft = docLeft(form);
       add(Math.min(maxS - 260, fTop - vh * 0.45), function(y){
-        return { x: fLeft + Math.min(fWidth * 0.18, 80), y: Math.max(H + fw * 0.5, fTop - y - fw * BIRD_RATIO * 0.4), w: fw };
+        return { x: Math.max(fw * 0.6, fLeft - fw * 0.65), y: Math.max(H + fw * 0.6, fTop - y + fw * 0.6), w: fw };
       });
     }
     // נחיתה: חוזרת הביתה — אל הציפור שבלוגו בתחתית העמוד (סוגרת מעגל עם הלוגו שבראש העמוד)
@@ -240,15 +248,22 @@
     while(i < A.length - 2 && y >= A[i + 1].at) i++;
     if(A.length === 1) return A[0].fn(y);
     var a = A[i], b = A[i + 1];
-    var t = clamp((y - a.at) / (b.at - a.at), 0, 1);
+    // הציפור מחכה בנקודת העגינה (בשוליים) ועפה רק בקטע הגלילה האחרון לפני הנקודה הבאה —
+    // כך כמעט אף פעם היא לא "נתקעת" באמצע המסך מעל טקסט/כפתור כשמפסיקים לגלול.
+    // (ההליכה על פס ההתקדמות של "ההצגות שלנו" — walk — נשארת רציפה לאורך כל הקטע.)
+    var span = b.at - a.at;
+    var fly = (a.walk && b.walk) ? span : Math.min(span, Math.max(220, window.innerHeight * 0.35));
+    var t = clamp((y - (b.at - fly)) / fly, 0, 1);
     var e = smooth(t);
     var pa = a.fn(y), pb = b.fn(y);
     var dx = pb.x - pa.x, dy = pb.y - pa.y, dist = Math.sqrt(dx * dx + dy * dy);
     // מעוף בקשת: באמצע המעבר הציפור מתרוממת מעל הקו הישר
-    var arc = Math.sin(Math.PI * e) * Math.min(140, dist * 0.28);
+    // (בהליכה על הפס אין קשת — אחרת היא "קפצה" 140px למעלה, על הכפתורים של הכרטיסים)
+    var arc = (a.walk && b.walk) ? 0 : Math.sin(Math.PI * e) * Math.min(140, dist * 0.28);
     return {
       x: lerp(pa.x, pb.x, e), y: lerp(pa.y, pb.y, e) - arc, w: lerp(pa.w, pb.w, e),
-      rest: (t < 0.002 && pa.rest) || (t > 0.998 && pb.rest), perch: t > 0.998 && pb.perch
+      rest: (t < 0.002 && pa.rest) || (t > 0.998 && pb.rest), perch: t > 0.998 && pb.perch,
+      inHeader: !!(pa.inHeader || pb.inHeader)
     };
   }
 
@@ -266,7 +281,8 @@
   function paintBird(y, dt, now){
     var tg = birdTarget(y);
     // באוויר — לא נכנסת מתחת לפס הניווט העליון (גם כשהלוגו עצמו כבר גלל אל מתחתיו)
-    if(y > 2 && !tg.perch) tg.y = Math.max(tg.y, B.hdr + tg.w * BIRD_RATIO * 0.6);
+    // (חוץ ממנוחה בתוך פס הכותרת בנייד — שם היא מעל הכותרת, ראה perch ו-motion.css)
+    if(y > 2 && !tg.perch && !tg.inHeader) tg.y = Math.max(tg.y, B.hdr + tg.w * BIRD_RATIO * 0.6);
     var k = tg.rest && (y < 2 || tg.perch) ? 1 - Math.exp(-dt * 14) : 1 - Math.exp(-dt * 5.5);
     if(!B.ready){ B.x = tg.x; B.y = tg.y; B.w = tg.w; B.ready = true; k = 1; }
     var nx = lerp(B.x, tg.x, k), ny = lerp(B.y, tg.y, k), nw = lerp(B.w, tg.w, k);
