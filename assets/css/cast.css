@@ -227,3 +227,30 @@ html.a11y-reduce-motion .cat .photo img.hz{transition:none;opacity:1;animation:n
 html.a11y-reduce-motion .cat .photo img.hz-puppet{transform:none}
 html.a11y-reduce-motion .cat .photo img.hz-sheep{transform:rotate(-8deg)}
 html.a11y-reduce-motion .cat .photo img.hz-dog{transform:rotate(6deg)}
+
+/* =====================================================================
+   עמוד "הגיע הזמן": איורים מספר הקומיקס (media/higia/*.webp)
+   ===================================================================== */
+.page-hero.hz-hero{position:relative}
+@media(min-width:921px){.page-hero.hz-hero{padding-left:calc(6vw + clamp(170px,18vw,250px))}}
+.page-hero.hz-hero::before{display:none}
+.hz-ill{position:absolute;height:auto;pointer-events:none;user-select:none;z-index:1}
+.hz-ill-mascot{left:4vw;top:50%;width:clamp(170px,18vw,250px);translate:0 -50%;rotate:-4deg;
+  filter:drop-shadow(0 10px 18px rgba(18,54,92,.22));animation:hzIn .9s cubic-bezier(.34,1.56,.64,1) both,hzFloat 5s ease-in-out 1s infinite}
+@keyframes hzIn{from{opacity:0;transform:translateX(-60px) scale(.85)}to{opacity:1;transform:none}}
+@keyframes hzFloat{0%,100%{rotate:-4deg}50%{rotate:2deg}}
+.hz-sec{position:relative;overflow:hidden}
+.hz-ill-boy{left:1.5vw;bottom:0;width:clamp(150px,13vw,210px);filter:drop-shadow(0 6px 10px rgba(18,54,92,.2))}
+.hz-ill-girl{right:2vw;top:36px;width:clamp(90px,8vw,130px);rotate:4deg;filter:drop-shadow(0 6px 10px rgba(18,54,92,.2))}
+.cta .side.hz-side{align-self:flex-end;width:220px;padding:0}
+.cta .side.hz-side img{border:0;box-shadow:none;border-radius:0;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+/* הקטלוג: מקום לילד בצד שמאל למטה, שלא יכסה כרטיסים */
+.catalog.hz-sec{padding-bottom:200px}
+@media(max-width:1180px){.hz-ill-girl{display:none}}
+@media(max-width:920px){
+  .hz-ill-mascot{position:relative;display:block;top:auto;left:auto;translate:none;width:160px;margin:22px auto 6px}
+  .hz-ill-boy{width:120px}
+  .catalog.hz-sec{padding-bottom:150px}
+}
+@media(prefers-reduced-motion:reduce){.hz-ill-mascot{animation:none}}
+html.a11y-reduce-motion .hz-ill-mascot{animation:none}

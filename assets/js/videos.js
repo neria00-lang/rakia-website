@@ -111,7 +111,16 @@
       return first.concat(mixed);
     }
     var tags = spec.split(',');
-    return D.ITEMS.filter(function(it){ return tags.indexOf(it.tag) !== -1; });
+    var all = D.ITEMS.filter(function(it){ return tags.indexOf(it.tag) !== -1; });
+    if(tags.length < 2) return all;
+    // כמה הצגות באותה שורה: מערבבים לסירוגין (חנוכה, ירושלים, פורים, סיגד, חנוכה...) במקום קבוצות
+    var g = {}, ord = [], out = [], more = true;
+    all.forEach(function(it){ if(!g[it.tag]){ g[it.tag] = []; ord.push(it.tag); } g[it.tag].push(it); });
+    while(more){
+      more = false;
+      ord.forEach(function(t){ var it = g[t].shift(); if(it){ out.push(it); more = true; } });
+    }
+    return out;
   }
   var rows = [];
   document.querySelectorAll('[data-yt-row]').forEach(function(el){
