@@ -182,3 +182,5 @@ footer img.footer-logo{height:80px;width:auto}
   .gallery .pol.wide{width:50%}
 }
 @media(prefers-reduced-motion:reduce){.gallery .pol{transition:none}}
+/* עמוד "הגיע הזמן": תווית הכותרת */
+.page-hero.hz-hero::after{content:"[ הצגות בשיתוף הקומיקס האהוב · הגיע הזמן ]"}
