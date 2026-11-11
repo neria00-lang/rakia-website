@@ -32,6 +32,14 @@
 /* קיר / שורה */
 .yt-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:26px 22px;align-items:center;max-width:1240px;margin:0 auto}
 .yt-cell.h{grid-column:span 2}
+/* dense: סרטון רוחבי (2 עמודות) לא משאיר חורים בשורה — הסרטונים הבאים ממלאים אותם */
+.yt-row{grid-auto-flow:row dense}
+/* שם הדובר מתחת לכרטיס (הציטוט כבר כתוב בתמונה של הסרטון) */
+.yt-who-below{margin:12px 2px 0;font-size:.88rem;font-weight:700;color:#405266;line-height:1.35;text-align:center}
+/* "עוד המלצות" — במחשב בלבד (בנייד השורה נגללת הצידה) */
+.yt-cell.is-extra{display:none}
+.yt-more{display:block;margin:34px auto 0}
+.yt-more[hidden]{display:none}
 .yt-row.picks{grid-template-columns:repeat(4,minmax(0,1fr));max-width:980px}
 .yt-swipe-hint{display:none}
 .yt-empty{text-align:center;color:#526273;font-size:1.05rem;margin:10px auto 0;max-width:520px}
@@ -78,6 +86,7 @@
   .yt-row,.yt-row.picks{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 15px 16px;margin:0 -15px;
     scrollbar-width:thin;-webkit-overflow-scrolling:touch}
   .yt-cell{scroll-snap-align:center}
+  .yt-cell.is-extra{display:block}.yt-more{display:none!important}
   .yt-cell.v{flex:0 0 62%}
   .yt-cell.h{flex:0 0 86%}
   .yt-swipe-hint{display:block;text-align:center;color:#526273;font-size:.85rem;margin:-4px 0 12px}

@@ -33,11 +33,20 @@
       b.dataset.noembed = '1';
       b.setAttribute('aria-label', 'צפייה ביוטיוב (נפתח בכרטיסייה חדשה): ' + label);
     }
+    // הציטוט כבר כתוב בתמונה של הסרטון עצמו — לא מכפילים אותו בפס כהה מעל הפנים.
+    // שם הדובר מופיע מתחת לכרטיס (whoLine), הציטוט המלא נשאר ב-aria-label.
     b.innerHTML =
       '<img src="' + thumb(o.id) + '" alt="" loading="lazy" decoding="async">' +
-      '<span class="yt-play" aria-hidden="true"></span>' +
-      (o.quote ? '<span class="yt-cap" aria-hidden="true"><q>' + esc(o.quote) + '</q><span class="yt-who">' + esc(o.who) + '</span></span>' : '');
+      '<span class="yt-play" aria-hidden="true"></span>';
     return b;
+  }
+  function whoLine(it){
+    if(!it.who) return null;
+    var p = document.createElement('p');
+    p.className = 'yt-who-below';
+    p.setAttribute('aria-hidden', 'true'); // כבר נקרא בתוך aria-label של הכפתור
+    p.textContent = it.who;
+    return p;
   }
 
   /* ---------- ניגון: מחליף את הכרטיס ב-iframe; רק סרטון אחד מתנגן בכל רגע ---------- */
@@ -100,10 +109,48 @@
       if(showTag) cell.innerHTML = '<span class="yt-tag">' + esc(it.sub || TAG_LABEL[it.tag] || '') + '</span>';
       else if(it.sub) cell.innerHTML = '<span class="yt-tag">' + esc(it.sub) + '</span>';
       cell.appendChild(lite(it));
+      var w = whoLine(it); if(w) cell.appendChild(w);
       el.appendChild(cell);
     });
     rows.push(el);
+    setupMore(el);
   });
+
+  /* ---------- "עוד המלצות": במחשב מציגים רק 2 שורות, והשאר בלחיצה ----------
+     (בנייד השורה נגללת הצידה, אז שם הכל מוצג — ה-CSS מסתיר רק במחשב) */
+  function cols(row){
+    var t = getComputedStyle(row).gridTemplateColumns;
+    return t && t !== 'none' ? t.split(' ').length : 4;
+  }
+  function applyLimit(row){
+    if(!row._more) return;
+    var cells = Array.prototype.filter.call(row.querySelectorAll('.yt-cell'), function(c){ return !c.hidden; });
+    var max = cols(row) * 2, used = 0, extra = 0;
+    cells.forEach(function(c){
+      used += c.classList.contains('h') ? 2 : 1;
+      var over = !row._expanded && used > max;
+      c.classList.toggle('is-extra', over);
+      if(over) extra++;
+    });
+    row._more.hidden = extra === 0;
+    row._more.textContent = 'לעוד ' + extra + ' המלצות בווידאו';
+  }
+  function setupMore(row){
+    if(row.getAttribute('data-yt-row') === 'home-picks') return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'yt-more btn-dark';
+    row.parentNode.insertBefore(btn, row.nextSibling);
+    row._more = btn;
+    btn.addEventListener('click', function(){
+      var first = row.querySelector('.yt-cell.is-extra');
+      row._expanded = true; applyLimit(row);
+      if(first){ var f = first.querySelector('.yt-lite'); if(f) f.focus({ preventScroll: true }); }
+    });
+    applyLimit(row);
+  }
+  var rt;
+  window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ rows.forEach(applyLimit); }, 150); });
 
   /* ---------- טריילר שמתחלף לפי הסינון (עמוד "הגיע הזמן") ---------- */
   var trailerBox = document.querySelector('[data-yt-trailer]');
@@ -144,6 +191,7 @@
         var empty = row.parentNode.querySelector('.yt-empty');
         if(empty) empty.hidden = shown > 0;
         row.scrollLeft = 0;
+        row._expanded = false; applyLimit(row);
       });
       setTrailer(tag && tag !== 'none' ? tag : (tag === 'none' ? '__none__' : null));
     });
@@ -180,6 +228,7 @@
             var cell = document.createElement('div');
             cell.className = 'yt-cell' + (pick.v ? ' v' : ' h');
             cell.appendChild(lite(pick));
+            var pw = whoLine(pick); if(pw) cell.appendChild(pw);
             mVideo.appendChild(cell);
           }
         }

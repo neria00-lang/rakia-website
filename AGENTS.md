@@ -277,6 +277,13 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - **להוסיף טריילר**: למלא את `TRAILERS.jerusalem = {id, title}` — יופיע אוטומטית בעמוד "הגיע הזמן"
   (בסינון ירושלים/בין המצרים) ובחלונות "חוזרים לירושלים" + "בין המצרים" (`SHOW_TRAILER`).
 - **סרטון ראשי**: `FEATURES` (home / sadehMain / sadehJerusalem). **בחירות**: `HOME_PICKS`, `SHOW_PICK`.
+- **כרטיסי המלצות (11/2026)**: הציטוט כבר כתוב בתמונת הסרטון, לכן אין פס ציטוט מעל התמונה — רק שם הדובר מתחת
+  לכרטיס (`.yt-who-below`). בקיר הסרטונים: `grid-auto-flow:dense` (סרטון רוחבי לא משאיר חורים), ובמחשב מוצגות
+  רק 2 שורות + כפתור "לעוד N המלצות בווידאו" (`.yt-more`, `applyLimit`; מתאפס בכל לחיצה על סינון). בנייד — הכל בשורה נגללת.
+- **סרטון דף הבית** (`FEATURES.home`, UQRZvDPYHTI) עדיין `embed:false`: גם אחרי "אישור הטמעה" ב-YouTube Studio
+  הנגן הציג "הסרטון לא זמין". לבדוק ביוטיוב: סטטוס (ציבורי/לא רשום), הגבלת גיל, זכויות מוזיקה.
+- **פוסטרים לגובה בכרטיס רוחבי**: יוצרים גרסה רחבה (הפוסטר שלם במרכז על רקע מטושטש שלו) — למשל
+  `media/shows/purim/poster-wide.jpg` (1800×1200, Pillow). המקור נשאר בחלון ההצגה ובגלריה.
 - **מנגנון** (`assets/js/videos.js` + `assets/css/videos.css`): כרטיס "קל" — תמונה (`i.ytimg.com/vi/ID/hqdefault.jpg`)
   + כפתור ניגון; ה-iframe של `youtube-nocookie.com` נטען רק בלחיצה, וסרטון אחד מתנגן בכל רגע.
   נקודות עגינה ב-HTML: `data-yt-feature`, `data-yt-row` (+`data-yt-filtered` לחיבור לסינון), `data-yt-trailer`,

@@ -107,10 +107,14 @@
   opacity:0;translate:-50% 0;animation:castCostume 9s infinite}
 .cast-change .cast-img:nth-child(2){animation-delay:3s}
 .cast-change .cast-img:nth-child(3){animation-delay:6s}
+/* הדמות "יורדת" מתחת לקצה הכרטיס והבאה "קופצת" למעלה — בלי שקיפות חלקית
+   (ה-crossfade הקודם הראה רגעים של שתי דמויות חצי-שקופות זו על זו) */
+.cat .cast-change{overflow-x:visible;overflow-y:clip}
 @keyframes castCostume{
-  0%{opacity:0;transform:translateY(10%) scale(.94)}
-  5%,30%{opacity:1;transform:none}
-  35%,100%{opacity:0;transform:translateY(4%) scale(.97)}
+  0%{opacity:1;transform:translateY(102%)}
+  3.5%{opacity:1;transform:translateY(102%)}
+  9%,30%{opacity:1;transform:none}
+  34%,100%{opacity:1;transform:translateY(102%)}
 }
 
 /* ---------- 5. קריאה לפעולה: דמות שמצביעה על הכפתור ---------- */
