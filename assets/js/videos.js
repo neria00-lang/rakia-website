@@ -13,7 +13,7 @@
   if(!D) return;
   var byId = {};
   D.ITEMS.forEach(function(it){ byId[it.id] = it; });
-  var TAG_LABEL = { chanukah: 'חנוכה · בימים ההם', purim: 'פורים · הליצן משושן', jerusalem: 'ירושלים · חוזרים לירושלים', sadeh: 'שחקני שטח' };
+  var TAG_LABEL = { chanukah: 'חנוכה · בימים ההם', purim: 'פורים · הליצן משושן', jerusalem: 'ירושלים · חוזרים לירושלים', sigd: 'סיגד · המסע לירושלים', sadeh: 'שחקני שטח' };
 
   function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
   function thumb(id){ return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
@@ -124,6 +124,7 @@
   }
   function applyLimit(row){
     if(!row._more) return;
+    Array.prototype.forEach.call(row.querySelectorAll('.yt-cell[hidden]'), function(c){ c.classList.remove('is-extra'); });
     var cells = Array.prototype.filter.call(row.querySelectorAll('.yt-cell'), function(c){ return !c.hidden; });
     var max = cols(row) * 2, used = 0, extra = 0;
     cells.forEach(function(c){

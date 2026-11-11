@@ -86,7 +86,7 @@
   .yt-row,.yt-row.picks{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 15px 16px;margin:0 -15px;
     scrollbar-width:thin;-webkit-overflow-scrolling:touch}
   .yt-cell{scroll-snap-align:center}
-  .yt-cell.is-extra{display:block}.yt-more{display:none!important}
+  .yt-cell.is-extra:not([hidden]){display:block}.yt-more{display:none!important}
   .yt-cell.v{flex:0 0 62%}
   .yt-cell.h{flex:0 0 86%}
   .yt-swipe-hint{display:block;text-align:center;color:#526273;font-size:.85rem;margin:-4px 0 12px}

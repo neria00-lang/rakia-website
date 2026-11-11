@@ -272,7 +272,10 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 (`window.RAKIA_VIDEOS`). אין סרטוני mp4 באתר — הכל ביוטיוב (ערוץ תאטרון רקיע, הפלייליסטים:
 שחקני השטח `PLQnDjcG0Gx6w`, חנוכה `PLCUS2wST2bAM`, פורים `PLS2j8pYsvec0`, ירושלים `PLS_2XXddNh9A`).
 - **להוסיף המלצה בווידאו**: שורה חדשה ב-`ITEMS` — `{id, tag, v, who, quote}`.
-  `tag`: `chanukah`/`purim`/`jerusalem` (עמוד "הגיע הזמן", מסונן לפי כפתורי החגים) או `sadeh` (עמוד שחקני שטח).
+  `tag`: `chanukah`/`purim`/`jerusalem`/`sigd` (עמוד "הגיע הזמן", מסונן לפי כפתורי החגים) או `sadeh` (עמוד שחקני שטח).
+  (סיגד: פלייליסט "המלצות על הצגת חג הסיגד" `PLLwSROafGb_w`, 4 סרטונים רוחביים, נוסף 11/2026.)
+  **רשימת סרטונים מפלייליסט כשיוטיוב חסום בסינון (Netspark)**: ה-RSS `youtube.com/feeds/videos.xml?playlist_id=ID`
+  נפתח דרך puppeteer (לא curl), וכיווניות דרך `youtube.com/oembed?format=json&url=...` (רוחב/גובה).
   `v:true` = אנכי (שורטס/רילס). `who`/`quote` — מתוך כותרת הסרטון ביוטיוב (ציטוט אמיתי בלבד!).
 - **להוסיף טריילר**: למלא את `TRAILERS.jerusalem = {id, title}` — יופיע אוטומטית בעמוד "הגיע הזמן"
   (בסינון ירושלים/בין המצרים) ובחלונות "חוזרים לירושלים" + "בין המצרים" (`SHOW_TRAILER`).

@@ -49,6 +49,12 @@ window.RAKIA_VIDEOS = {
     { id: 'DccmieToRIE', tag: 'jerusalem', v: true,  who: 'אריאל, תל אביב', quote: 'הילדים נהנו, אנחנו ההורים נהנינו' },
     { id: 'Czqzk7vZfc4', tag: 'jerusalem', v: true,  who: 'אברהם, מורה ואבא מעלי', quote: 'הילדים היו מרותקים' },
 
+    // ---- סיגד: "המסע לירושלים" (פלייליסט "המלצות על הצגת חג הסיגד | הגיע הזמן", PLLwSROafGb_w) ----
+    { id: 'fHauxrQgFSk', tag: 'sigd', v: false, who: 'בת אל הלוי, רכזת ת״ת אורות אליהו, שדרות', quote: '300 בנים, דממת אלחוט' },
+    { id: 'GWOhUfudxbA', tag: 'sigd', v: false, who: 'יונתן, סגן מנהל בית ספר ברקאי, חיפה', quote: 'הצגה ערכית, מלאה בצחוקים' },
+    { id: 'gUEryAdeM2E', tag: 'sigd', v: false, who: 'מורה מבית ספר ראשית, שדרות', quote: 'הצגה נהדרת, הרבה מקצועיות והשקעה' },
+    { id: 'z3H4H4ADwj8', tag: 'sigd', v: false, who: 'אביחי, מורה בבית ספר ברקאי, חיפה', quote: 'הופעה מטורפת, מצחיק בטירוף' },
+
     // ---- שחקני שטח ----
     { id: 'X1mzMVSHVj0', tag: 'sadeh', v: true,  who: 'רכזת מרכז שפירא', quote: 'הילדים היו פעורי פה וממש רצו לשמוע עוד' },
     { id: 'xnADL2zlMHA', tag: 'sadeh', v: true,  who: 'הרב חן, בית הספר נועם רז, לוד', quote: 'היה ממש הנאה גדולה', sub: 'ירושלים של משחק' },
@@ -61,11 +67,11 @@ window.RAKIA_VIDEOS = {
   ],
 
   // ההמלצה המוצגת בחלון הפרטים של כל הצגה (לפי data-holiday-key של כרטיס ההצגה)
-  SHOW_PICK: { chanukah: '8gDIINJr0yw', purim: 'xEmjz9ZpCW4', atzmaut: 'h9UWckVjoRw', metzarim: '0mMX0reVQFw' },
+  SHOW_PICK: { chanukah: '8gDIINJr0yw', purim: 'xEmjz9ZpCW4', atzmaut: 'h9UWckVjoRw', metzarim: '0mMX0reVQFw', sigd: 'fHauxrQgFSk' },
   // לאיזה טריילר כל הצגה שייכת
   SHOW_TRAILER: { chanukah: 'chanukah', atzmaut: 'jerusalem', metzarim: 'jerusalem' },
   // חיבור כפתורי סינון החגים בעמוד "הגיע הזמן" לתגי הסרטונים
-  FILTER_TAG: { all: null, chanukah: 'chanukah', purim: 'purim', atzmaut: 'jerusalem', metzarim: 'jerusalem', sigd: 'none' },
+  FILTER_TAG: { all: null, chanukah: 'chanukah', purim: 'purim', atzmaut: 'jerusalem', metzarim: 'jerusalem', sigd: 'sigd' },
 
   // ההמלצות הנבחרות בדף הבית (אחת מכל תחום)
   HOME_PICKS: ['8gDIINJr0yw', 'h9UWckVjoRw', 'xEmjz9ZpCW4', 'X1mzMVSHVj0']
