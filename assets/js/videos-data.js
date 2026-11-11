@@ -9,7 +9,8 @@
 window.RAKIA_VIDEOS = {
   TRAILERS: {
     chanukah:  { id: 'mFgkA-UprSo', title: 'טריילר – "בימים ההם", הצגת חנוכה' },
-    jerusalem: { id: 'M3XiGhFwUNc', title: 'טריילר – "שחוברה לה יחדיו", הצגה על ירושלים' }
+    jerusalem: { id: 'M3XiGhFwUNc', title: 'טריילר – "שחוברה לה יחדיו", הצגה על ירושלים' },
+    sigd:      { id: 'V71HbXoW9Xo', title: 'טריילר – "המסע לירושלים", הצגה לחג הסיגד' }
   },
 
   FEATURES: {
@@ -69,7 +70,7 @@ window.RAKIA_VIDEOS = {
   // ההמלצה המוצגת בחלון הפרטים של כל הצגה (לפי data-holiday-key של כרטיס ההצגה)
   SHOW_PICK: { chanukah: '8gDIINJr0yw', purim: 'xEmjz9ZpCW4', atzmaut: 'h9UWckVjoRw', metzarim: '0mMX0reVQFw', sigd: 'fHauxrQgFSk' },
   // לאיזה טריילר כל הצגה שייכת
-  SHOW_TRAILER: { chanukah: 'chanukah', atzmaut: 'jerusalem', metzarim: 'jerusalem' },
+  SHOW_TRAILER: { chanukah: 'chanukah', atzmaut: 'jerusalem', metzarim: 'jerusalem', sigd: 'sigd' },
   // חיבור כפתורי סינון החגים בעמוד "הגיע הזמן" לתגי הסרטונים
   FILTER_TAG: { all: null, chanukah: 'chanukah', purim: 'purim', atzmaut: 'jerusalem', metzarim: 'jerusalem', sigd: 'sigd' },
 
