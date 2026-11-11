@@ -47,6 +47,16 @@
     }
   }
 
+  /* כרטיס "הצגות הגיע הזמן": הכבש והאיורים מהספר נכנסים כשהכרטיס נגלל לתצוגה (CSS ב-cast.css) */
+  document.querySelectorAll('.cat').forEach(function(card){
+    if(!card.querySelector('.hz')) return;
+    if(!('IntersectionObserver' in window)){ card.classList.add('hz-in'); return; }
+    var io = new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){ card.classList.add('hz-in'); io.disconnect(); }
+    }, { threshold: 0.35 });
+    io.observe(card);
+  });
+
   /* ================= 3. ההצגות שלנו — גלילה אופקית ננעלת ================= */
   var sc = document.querySelector('.showcase');
   var S = null;

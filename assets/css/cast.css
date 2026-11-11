@@ -191,3 +191,39 @@ html.a11y-reduce-motion .cast-change .cast-img,html.a11y-reduce-motion .cast-pee
 html.a11y-reduce-motion .cast-change .cast-img:first-child{opacity:1}
 html.a11y-reduce-motion .wa-peek{display:none}
 @media print{.cast-peek,.cast-lineup,.cast-change,.cast-side .cast-img,.wa-peek{display:none!important}}
+
+/* =====================================================================
+   כרטיס "הצגות הגיע הזמן" בדף הבית: הכבש (בובה) קופץ מלמטה ליד השחקן,
+   ושני איורים מהספר (הכבש והכלב) נכנסים כמו מדבקות כשהכרטיס נגלל לתצוגה.
+   המחלקה .hz-in נוספת ב-motion.js (IntersectionObserver).
+   ===================================================================== */
+.cat .photo img.hz{position:absolute;height:auto;object-fit:contain;border-radius:0;box-shadow:none;pointer-events:none;
+  opacity:0;transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .45s ease}
+.cat .photo img.hz-puppet{left:-6%;bottom:-3%;width:38%;max-width:160px;z-index:2;transform:translateY(105%);transform-origin:50% 100%}
+.cat .photo img.hz-sheep{left:4%;bottom:calc(100% + 6px);width:34%;max-width:132px;filter:drop-shadow(3px 5px 6px rgba(18,54,92,.25));
+  transform:translateX(-170%) rotate(-30deg)}
+.cat .photo img.hz-dog{left:44%;bottom:calc(100% + 14px);width:30%;max-width:118px;border:4px solid #fff;border-radius:6px;
+  box-shadow:4px 5px 0 rgba(18,54,92,.18);transform:translateY(-260%) rotate(18deg)}
+.cat.hz-in .photo img.hz{opacity:1}
+.cat.hz-in .photo img.hz-puppet{transform:none;transition-delay:.15s;animation:hzBob 3.6s ease-in-out 1.3s infinite}
+.cat.hz-in .photo img.hz-sheep{transform:rotate(-8deg);transition-delay:.55s}
+.cat.hz-in .photo img.hz-dog{transform:rotate(6deg);transition-delay:.85s}
+@keyframes hzBob{0%,100%{rotate:0deg}50%{rotate:-4deg}}
+/* במחשב צר: הכלב היה נוגע בטקסט — רק הכבשים */
+@media (min-width:921px) and (max-width:1199px){.cat .photo img.hz-dog{display:none}}
+@media (max-width:920px){
+  .cat.yellow .photo{position:relative}
+  .cat .photo img.hz-puppet{left:-2%;bottom:0;width:30%;max-width:130px}
+  .cat .photo img.hz-sheep{left:3%;bottom:auto;top:10px;width:26%;max-width:110px}
+  .cat .photo img.hz-dog{left:auto;right:3%;bottom:auto;top:12px;width:24%;max-width:100px}
+}
+@media (prefers-reduced-motion:reduce){
+  .cat .photo img.hz{transition:none;opacity:1}
+  .cat .photo img.hz-puppet{transform:none;animation:none!important}
+  .cat .photo img.hz-sheep{transform:rotate(-8deg)}
+  .cat .photo img.hz-dog{transform:rotate(6deg)}
+}
+html.a11y-reduce-motion .cat .photo img.hz{transition:none;opacity:1;animation:none!important}
+html.a11y-reduce-motion .cat .photo img.hz-puppet{transform:none}
+html.a11y-reduce-motion .cat .photo img.hz-sheep{transform:rotate(-8deg)}
+html.a11y-reduce-motion .cat .photo img.hz-dog{transform:rotate(6deg)}

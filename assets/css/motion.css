@@ -48,6 +48,9 @@
 .sc-count b{font-weight:400;font-size:2.4rem;color:#fffaf0;margin-inline-end:4px}
 .sc-viewport{position:relative;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:10px 0 24px;perspective:1300px}
 .sc-track{position:relative;display:flex;gap:clamp(18px,3vw,40px);width:max-content;list-style:none;margin:0;padding:6px 5vw;transform-style:preserve-3d}
+/* הכרטיסים נדחקים לעומק (translateZ שלילי) — אז ה"מסילה" יושבת מעליהם ובולעת את הלחיצות.
+   המסילה לא מקבלת לחיצות; רק הכרטיסים */
+.sc-track{pointer-events:none}.sc-card{pointer-events:auto}
 .sc-card{--cw:clamp(280px,31vw,430px);width:var(--cw);flex-shrink:0;scroll-snap-align:center;transform-origin:center;will-change:transform}
 .sc-box{position:relative;display:flex;flex-direction:column;height:100%;text-align:right;color:var(--navy);background:#fffaf0;
   border:2px solid var(--navy);border-radius:16px;overflow:hidden;box-shadow:9px 9px 0 var(--gold);

@@ -64,8 +64,18 @@
 .m-trailer[hidden],.m-video[hidden],.m-img[hidden]{display:none!important}
 .m-video{margin:18px 0 6px}
 .m-video-title{font-weight:800;color:var(--navy);margin-bottom:10px}
-.m-video .yt-cell.v{max-width:210px}
-.m-video .yt-cell.h{max-width:420px}
+/* כל ההמלצות של ההצגה בחלון: רשת קטנה; רוחבי תופס 2 עמודות */
+.m-video-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));grid-auto-flow:row dense;gap:20px 16px;align-items:start}
+.m-video-row .yt-cell.h{grid-column:span 2}
+.m-video-row .yt-lite,.m-video-row .yt-frame{box-shadow:4px 4px 0 var(--gold);border-width:2px}
+.m-video-row .yt-play{width:48px;height:48px;margin:-24px 0 0 -24px}
+.m-video-row .yt-who-below{font-size:.8rem;margin-top:8px}
+@media(max-width:800px){
+  .m-video-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:10px}
+  .m-video-row .yt-cell{scroll-snap-align:start}
+  .m-video-row .yt-cell.v{flex:0 0 46%}
+  .m-video-row .yt-cell.h{flex:0 0 82%}
+}
 
 /* כפתור "צפו בטריילר" (כרטיס "הגיע הזמן" בדף הבית) */
 .trailer-btn{display:inline-flex;align-items:center;gap:9px;margin-top:16px;align-self:flex-start;background:#fff;color:var(--navy);
@@ -101,3 +111,23 @@ html.a11y-reduce-motion .yt-lite img,html.a11y-reduce-motion .yt-play{transition
 
 /* עמוד "תוכן חינמי": הכרטיס הקל ממלא את מסגרת ה-16:9 של .video-card */
 .video-card .frame .yt-lite,.video-card .frame .yt-frame{position:absolute;inset:0;height:100%;aspect-ratio:auto;border:0;border-radius:inherit;box-shadow:none}
+
+/* דף הבית: המלצות בווידאו בשורה נגללת עם חיצים (videos.js → carousel) */
+.yt-carousel{position:relative;max-width:1180px;margin:0 auto;padding:0 58px}
+.yt-row.picks.is-carousel{display:flex;max-width:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:22px;align-items:flex-start;
+  padding:8px 12px 18px;margin:0;scrollbar-width:none}
+.yt-row.picks.is-carousel::-webkit-scrollbar{display:none}
+.yt-row.picks.is-carousel .yt-cell{flex:0 0 calc((100% - 66px) / 4);scroll-snap-align:start;text-align:center}
+.yt-arrow{position:absolute;top:calc(50% - 30px);width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy);
+  border:2px solid var(--navy);box-shadow:3px 3px 0 var(--navy);font-size:1.5rem;font-weight:900;line-height:1;z-index:2;cursor:pointer;
+  transition:transform .15s,opacity .2s}
+.yt-arrow:hover{transform:scale(1.08)}
+.yt-next{left:0}.yt-prev{right:0}
+.yt-arrow:disabled{opacity:.3;cursor:default;transform:none}
+@media(max-width:800px){
+  .yt-carousel{padding:0}
+  .yt-row.picks.is-carousel{padding:6px 15px 16px;margin:0 -15px}
+  .yt-row.picks.is-carousel .yt-cell{flex:0 0 62%;scroll-snap-align:center}
+  .yt-arrow{width:42px;height:42px;font-size:1.3rem;top:calc(50% - 40px)}
+  .yt-next{left:-6px}.yt-prev{right:-6px}
+}

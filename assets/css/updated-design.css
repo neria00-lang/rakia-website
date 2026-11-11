@@ -154,3 +154,31 @@ footer img.footer-logo{height:80px;width:auto}
 .story-flex .txt .sign{color:var(--teal-dark)}
 /* תגיות קטנות: לא פחות מ-12.8px */
 .tag{font-size:.8rem}
+/* "למי אנחנו מתאימים": 5 ריבועים, כותרת בלי תיאור */
+.fit-item h3{margin-bottom:0}
+@media(min-width:921px){.fit-grid{grid-template-columns:repeat(5,1fr);max-width:1180px}}
+@media(max-width:920px){.fit-grid{grid-template-columns:repeat(2,1fr)}.fit-item:last-child:nth-child(odd){grid-column:1/-1}}
+/* חותמת עגולה "מוכרים בגפ"ן" / "מוכרים בניטוטק" בפינת הריבוע */
+.fit-badge{position:absolute;top:-22px;left:-14px;width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--gold);color:var(--navy);border:2px dashed var(--navy);box-shadow:0 0 0 4px var(--gold),3px 4px 0 4px var(--navy);
+  font-family:'Secular One',sans-serif;font-size:.98rem;line-height:1.1;text-align:center;rotate:-12deg;z-index:2}
+@media(max-width:600px){.fit-badge{width:70px;height:70px;font-size:.9rem;top:-18px;left:-8px}}
+/* "רגעים מהשטח": קולאז' בתפזורת — כל תמונה בצורה המקורית שלה, בלי חיתוך */
+.gallery .polaroids{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0;max-width:1240px;margin:0 auto 46px;padding:10px 0}
+.gallery .pol{position:relative;width:170px;margin:-4px -10px;padding:8px 8px 22px;
+  transform:rotate(var(--r,0deg)) translateY(var(--y,0px))!important;transition:transform .25s}
+.gallery .pol.wide{width:250px}
+.gallery .pol img{width:100%;height:auto!important;max-height:none!important;object-fit:contain;display:block}
+.gallery .pol:nth-child(6n+1){--r:-6deg;--y:8px}
+.gallery .pol:nth-child(6n+2){--r:4deg;--y:-16px;z-index:1}
+.gallery .pol:nth-child(6n+3){--r:-2deg;--y:12px}
+.gallery .pol:nth-child(6n+4){--r:7deg;--y:-6px;z-index:1}
+.gallery .pol:nth-child(6n+5){--r:-4deg;--y:-14px}
+.gallery .pol:nth-child(6n+6){--r:3deg;--y:14px;z-index:1}
+.gallery .pol:hover{z-index:5;transform:rotate(0deg) scale(1.07)!important}
+@media(max-width:800px){
+  .gallery .polaroids{display:flex;padding:6px 0}
+  .gallery .pol{width:36%;margin:-3px -2%;padding:5px 5px 15px;box-shadow:3px 3px 0 var(--navy)}
+  .gallery .pol.wide{width:50%}
+}
+@media(prefers-reduced-motion:reduce){.gallery .pol{transition:none}}

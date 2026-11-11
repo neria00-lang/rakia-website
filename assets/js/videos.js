@@ -94,7 +94,22 @@
 
   /* ---------- שורות המלצות ---------- */
   function rowItems(spec){
-    if(spec === 'home-picks') return D.HOME_PICKS.map(function(id){ return byId[id]; }).filter(Boolean);
+    if(spec === 'home-picks'){
+      // הנבחרות קודם, ואחריהן כל שאר ההמלצות האנכיות — לסירוגין בין ההצגות
+      var first = D.HOME_PICKS.map(function(id){ return byId[id]; }).filter(Boolean);
+      var groups = {}, order = [];
+      D.ITEMS.forEach(function(it){
+        if(!it.v || D.HOME_PICKS.indexOf(it.id) !== -1) return;
+        if(!groups[it.tag]){ groups[it.tag] = []; order.push(it.tag); }
+        groups[it.tag].push(it);
+      });
+      var mixed = [], left = true;
+      while(left){
+        left = false;
+        order.forEach(function(t){ var it = groups[t].shift(); if(it){ mixed.push(it); left = true; } });
+      }
+      return first.concat(mixed);
+    }
     var tags = spec.split(',');
     return D.ITEMS.filter(function(it){ return tags.indexOf(it.tag) !== -1; });
   }
@@ -114,7 +129,34 @@
     });
     rows.push(el);
     setupMore(el);
+    if(el.getAttribute('data-yt-row') === 'home-picks') carousel(el);
   });
+
+  /* ---------- דף הבית: שורת המלצות נגללת עם חיצים ---------- */
+  function carousel(row){
+    row.classList.add('is-carousel');
+    var box = document.createElement('div');
+    box.className = 'yt-carousel';
+    row.parentNode.insertBefore(box, row);
+    box.appendChild(row);
+    // RTL: ההמלצות הבאות נמצאות משמאל
+    var next = document.createElement('button'), prev = document.createElement('button');
+    next.type = prev.type = 'button';
+    next.className = 'yt-arrow yt-next'; next.setAttribute('aria-label', 'להמלצות הבאות'); next.innerHTML = '&#8592;';
+    prev.className = 'yt-arrow yt-prev'; prev.setAttribute('aria-label', 'להמלצות הקודמות'); prev.innerHTML = '&#8594;';
+    box.appendChild(prev); box.appendChild(next);
+    function step(){ return Math.max(200, row.clientWidth * 0.8); }
+    next.addEventListener('click', function(){ row.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    prev.addEventListener('click', function(){ row.scrollBy({ left: step(), behavior: 'smooth' }); });
+    function update(){
+      var x = Math.abs(row.scrollLeft), max = row.scrollWidth - row.clientWidth;
+      prev.disabled = x < 4;
+      next.disabled = x > max - 4;
+    }
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
 
   /* ---------- "עוד המלצות": במחשב מציגים רק 2 שורות, והשאר בלחיצה ----------
      (בנייד השורה נגללת הצידה, אז שם הכל מוצג — ה-CSS מסתיר רק במחשב) */
@@ -216,21 +258,29 @@
           if(t) mTrailer.appendChild(lite({ id: t.id, v: false, title: t.title }));
         }
         if(mImg) mImg.hidden = !!t;
-        // המלצה נבחרת
-        var pick = byId[D.SHOW_PICK[key]];
+        // כל ההמלצות של ההצגה (לפי התג שלה), הנבחרת (SHOW_PICK) ראשונה
+        var tag = D.FILTER_TAG[key], pickId = D.SHOW_PICK[key];
+        var list = D.ITEMS.filter(function(it){ return tag && it.tag === tag; });
+        if(!list.length && byId[pickId]) list = [byId[pickId]];
+        list.sort(function(a, b){ return (b.id === pickId) - (a.id === pickId); });
         if(mVideo){
           mVideo.textContent = '';
-          mVideo.hidden = !pick;
-          if(pick){
+          mVideo.hidden = !list.length;
+          if(list.length){
             var h = document.createElement('p');
             h.className = 'm-video-title';
-            h.textContent = 'מה אומרים אחרי ההצגה';
+            h.textContent = list.length > 1 ? 'מה אומרים אחרי ההצגה (' + list.length + ' המלצות)' : 'מה אומרים אחרי ההצגה';
             mVideo.appendChild(h);
-            var cell = document.createElement('div');
-            cell.className = 'yt-cell' + (pick.v ? ' v' : ' h');
-            cell.appendChild(lite(pick));
-            var pw = whoLine(pick); if(pw) cell.appendChild(pw);
-            mVideo.appendChild(cell);
+            var grid = document.createElement('div');
+            grid.className = 'm-video-row';
+            list.forEach(function(it){
+              var cell = document.createElement('div');
+              cell.className = 'yt-cell' + (it.v ? ' v' : ' h');
+              cell.appendChild(lite(it));
+              var pw = whoLine(it); if(pw) cell.appendChild(pw);
+              grid.appendChild(cell);
+            });
+            mVideo.appendChild(grid);
           }
         }
       });
@@ -304,5 +354,12 @@
       e.stopPropagation();
       openModal({ id: o.id, v: !!o.v, title: o.title });
     });
+  });
+  // קרוסלת ההצגות בדף הבית: לחיצה על התמונה של כרטיס פותחת את אותו סרטון כמו הכפתור שלו
+  document.querySelectorAll('.sc-box').forEach(function(box){
+    var btn = box.querySelector('[data-yt-open]'), media = box.querySelector('.sc-media');
+    if(!btn || !media || btn.hidden) return;
+    media.style.cursor = 'pointer';
+    media.addEventListener('click', function(){ btn.click(); });
   });
 })();
