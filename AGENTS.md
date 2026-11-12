@@ -232,6 +232,9 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - כותרות (title) ותיאורים נכתבו עם מילות החיפוש: "הצגות לחנוכה/פורים/יום העצמאות/סיגד", "שחקני שטח לבתי ספר", "בתי ספר, עיריות, קהילות".
 - נשאר לבעל האתר: אימות ב-Google Search Console והגשת sitemap; הפניית www → בלי www ב-Cloudflare (כרגע www מחזיר 200 — ה-canonical מטפל בכפילות).
 
+### מדידת כניסות (Cloudflare Web Analytics)
+- Cloudflare מזריק לכל דף סקריפט מדידה (static.cloudflareinsights.com/beacon.min.js) ששולח נתונים ל-cloudflareinsights.com. עד 12.11.2026 ה-CSP חסם אותו, כך שלא נספרו כניסות. עכשיו שני הדומיינים מאושרים ב-script-src / connect-src ב-_headers וב-serve.json. **לא להסיר אותם כשמשנים CSP.** הנתונים: לוח הבקרה של Cloudflare ← Analytics & Logs ← Web Analytics.
+
 ### דפי הצגה בודדים (12.11.2026) — לקידום בגוגל
 - `chanukah.html` (בימים ההם), `purim.html` (הליצן משושן), `yom-haatzmaut.html` + `bein-hametzarim.html` (חוזרים לירושלים), `sigd.html` (המסע לירושלים).
 - נבנו מהתבנית של higia-hazman.html (אותו header/footer/המלצות/לקוחות/טופס). כל דף: hero עם h1 "הצגה ל[חג]: [שם]", טריילר (`data-yt-lite`; בפורים פוסטר), פרטים (`.sp-facts`), גלריה (`media/shows/p-<key>/N.webp`, חלקן סטילס מהקטעים ב"קטעים לאתר"), שורת סרטוני המלצה לפי תג (`data-yt-row`), 5 שאלות נפוצות + JSON-LD FAQPage ו-BreadcrumbList, "עוד הצגות" (`.sp-card`), וטופס עם type ייעודי.
