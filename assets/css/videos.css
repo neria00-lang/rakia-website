@@ -131,3 +131,8 @@ html.a11y-reduce-motion .yt-lite img,html.a11y-reduce-motion .yt-play{transition
   .yt-arrow{width:42px;height:42px;font-size:1.3rem;top:calc(50% - 40px)}
   .yt-next{left:-6px}.yt-prev{right:-6px}
 }
+
+/* סרטוני המלצה: כפתור ההפעלה בפינה התחתונה ולא במרכז — שלא יסתיר את הציטוט שכתוב בתמונת הסרטון (12.11.2026) */
+.yt-row .yt-lite .yt-play,.m-video-row .yt-lite .yt-play{top:auto;left:12px;bottom:12px;width:54px;height:54px;margin:0;
+  box-shadow:0 4px 14px rgba(7,21,40,.35)}
+@media(max-width:700px){.yt-row .yt-lite .yt-play,.m-video-row .yt-lite .yt-play{left:9px;bottom:9px;width:46px;height:46px}}
