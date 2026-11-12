@@ -252,7 +252,7 @@ html.nav-tucked .showcase.is-pinned .sc-sticky{top:0}
 .sp-strip a:hover,.sp-strip a:focus-visible{background:var(--gold)}
 .modal .m-cta .m-page{background:#fff;color:var(--navy);border:2px solid var(--navy)}
 .modal .m-cta .m-page[hidden]{display:none}
-.sc-page{display:inline-block;margin-top:10px;font-weight:800;font-size:.92rem;color:var(--teal-dark);text-decoration:underline;text-underline-offset:3px}
+.sc-page{position:relative;z-index:3;display:inline-block;margin-top:10px;font-weight:800;font-size:.92rem;color:var(--teal-dark);text-decoration:underline;text-underline-offset:3px}
 
 /* ===== כרטיסי "הגיע הזמן" + "שחקני שטח" בדף הבית (12.11.2026, עיצוב c2) ===== */
 .c2-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1240px;margin:0 auto}
