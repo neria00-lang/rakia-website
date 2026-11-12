@@ -431,3 +431,19 @@
   }
   requestAnimationFrame(frame);
 })();
+
+/* מסך פתיחה: סרטון הרקע עוצר כשמבקשים הפחתת תנועה (הגדרת מערכת או תפריט הנגישות) */
+(function(){
+  var v = document.querySelector('.hero-video');
+  if(!v) return;
+  var root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  function sync(){
+    var calm = (mq && mq.matches) || root.classList.contains('a11y-reduce-motion');
+    if(calm){ v.pause(); }
+    else if(v.paused){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+  }
+  sync();
+  if(mq && mq.addEventListener) mq.addEventListener('change', sync);
+  if(window.MutationObserver) new MutationObserver(sync).observe(root, {attributes:true, attributeFilter:['class']});
+})();

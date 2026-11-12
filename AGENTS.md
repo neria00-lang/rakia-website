@@ -84,7 +84,7 @@ assets/js/a11y.js           ← תפריט נגישות (ראה סעיף 9)
 assets/js/testimonials-data.js
 assets/fonts/DanaYadAlefAlefAlef-Normal.{otf,woff}
 media/                      ← תמונות/וידאו כלליים
-media/hero/                 ← hero-1..4.jpg — 4 תמונות הסליידשואו של דף הבית (דחוסות, 1920px)
+media/hero/                 ← hero-reel.mp4 (מחשב, 1152px) + hero-reel-m.mp4 (טלפון, 720px) + hero-reel-poster.jpg — סרטון הרקע של דף הבית. hero-1..4.jpg = הסליידשואו הישן (לא בשימוש)
 media/clients/              ← 13 לוגואים אמיתיים של לקוחות (למרקיע הנע)
 media/sadeh/                ← תמונות/וידאו לעמוד sadeh
 media/shows/<שם>/            ← תמונות/פוסטרים לפי הצגה ספציפית
@@ -226,6 +226,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
   `.video-card`, `.groups`.
 
 ### לשנות את ה-Hero של דף הבית (סליידשואו תמונות + טקסט גדול מיושר לימין)
+> **עדכון 12.11.2026:** במקום סליידשואו התמונות יש עכשיו `<video class="hero-video">` (autoplay muted loop playsinline) — מונטאז׳ של 17 קטעים של 2.5 שנ׳ מ-`מדיה תאטרון רקיע/תיעוד הצגות/קטעים לאתר` עם מעברי fade של 0.4 שנ׳ (ffmpeg xfade, ~36 שנ׳). שני מקורות: `hero-reel-m.mp4` ל-≤800px ו-`hero-reel.mp4` למחשב. CSS: `.hero-video` בסוף updated-design.css. ב-motion.js הסרטון נעצר בהפחתת תנועה. להחלפת קטעים: לבנות מחדש את שני הקבצים (crf 32, -an, +faststart) ולהעלות את ה-`?v=` ב-index.html. מה שכתוב למטה על hero-1..4 מתאר את הסליידשואו הישן.
 ה-Hero בדף הבית (`index.html`, `<section class="hero">`) הוא **סליידשואו רקע**
 של 4 תמונות שמתחלפות ב-crossfade + זום עדין (Ken Burns), עם טקסט גדול מיושר
 לימין וממורכז אנכית (בהשראת shahart.co.il). **CSS טהור — בלי JS.**

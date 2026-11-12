@@ -184,3 +184,7 @@ footer img.footer-logo{height:80px;width:auto}
 @media(prefers-reduced-motion:reduce){.gallery .pol{transition:none}}
 /* עמוד "הגיע הזמן": תווית הכותרת */
 .page-hero.hz-hero::after{content:"[ הצגות בשיתוף הקומיקס האהוב · הגיע הזמן ]"}
+
+/* מסך פתיחה: סרטון קטעים מההצגות במקום הסליידשואו (media/hero/hero-reel*.mp4) */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.03);background:#bde9e2}
+@media print{.hero-video{display:none}}
