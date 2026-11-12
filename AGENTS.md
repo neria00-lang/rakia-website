@@ -225,6 +225,13 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - CSS ייעודי ב-`style.css` תחת הכותרת "תוכן חינמי": `.free-content`, `.video-grid`,
   `.video-card`, `.groups`.
 
+### SEO — קידום בגוגל (12.11.2026, לפי הסקיל seo-audit של coreyhaines31/marketingskills)
+- `robots.txt` + `sitemap.xml` בשורש. **דף חדש = להוסיף ל-sitemap.xml** (כתובת נקייה בלי .html, כי Cloudflare מפנה ‎/x.html → ‎/x) ולעדכן lastmod.
+- בכל דף ב-<head> (מיד אחרי meta description): `canonical` לכתובת הנקייה ב-https://teatronrakia.co.il (בלי www), תגיות og:* ו-twitter:card. תמונות השיתוף: `media/og/og-home|og-higia|og-sadeh.jpg` (1200×630).
+- index.html: JSON-LD מסוג TheaterGroup (פרטי העסק, טלפון, מייסד) + WebSite. about.html: JSON-LD מסוג FAQPage שנבנה מ-8 השאלות שבדף — **שינוי בשאלות בדף = לעדכן גם את ה-JSON-LD**.
+- כותרות (title) ותיאורים נכתבו עם מילות החיפוש: "הצגות לחנוכה/פורים/יום העצמאות/סיגד", "שחקני שטח לבתי ספר", "בתי ספר, עיריות, קהילות".
+- נשאר לבעל האתר: אימות ב-Google Search Console והגשת sitemap; הפניית www → בלי www ב-Cloudflare (כרגע www מחזיר 200 — ה-canonical מטפל בכפילות).
+
 ### הסרגל העליון מתקפל בגלילה (12.11.2026)
 - ב-main.js (כל העמודים): אחרי 140px גלילה נוספת ל-`<html>` המחלקה `nav-tucked` — ה-header עולה מחוץ למסך, ובפינה השמאלית העליונה מופיע כפתור `.nav-peek` ("☰ תפריט"; בטלפון רק ☰).
 - לחיצה עליו מחזירה את הסרגל (בטלפון גם פותחת את התפריט, אחרי 360ms — transform על ה-header כולא את התפריט ה-fixed בזמן המעבר). אחרי עוד ~80px גלילה הסרגל מתקפל שוב. בראש הדף הוא תמיד גלוי, ואין חזרה אוטומטית בגלילה למעלה (בכוונה — בעל האתר ביקש שלא ילווה את הגלילה).
