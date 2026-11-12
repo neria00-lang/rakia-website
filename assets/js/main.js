@@ -207,6 +207,8 @@ document.addEventListener('DOMContentLoaded', function(){
         });
         var msg = encodeURIComponent('שלום נריה, מתעניין/ת בהצגה "' + d.title + '" מסדרת הגיע הזמן. נשמח לשמוע פרטים והצעת מחיר.');
         mWa.href = 'https://wa.me/972526154838?text=' + msg;
+        var mPage = overlay.querySelector('.m-page'); // קישור לעמוד ההצגה הבודד (chanukah.html וכו')
+        if(mPage){ mPage.hidden = !d.page; if(d.page) mPage.href = d.page; }
         lastModalFocus = card;
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';

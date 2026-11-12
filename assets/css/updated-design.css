@@ -211,3 +211,46 @@ html.a11y-reduce-motion header,html.a11y-reduce-motion .nav-peek{transition:none
 @media print{.nav-peek{display:none!important}}
 /* "ההצגות שלנו" ננעלת בראש המסך כשהסרגל מקופל */
 html.nav-tucked .showcase.is-pinned .sc-sticky{top:0}
+
+/* =====================================================================
+   דפי הצגה בודדים (chanukah.html, purim.html, yom-haatzmaut.html,
+   bein-hametzarim.html, sigd.html) — sp-* = show page
+   ===================================================================== */
+.page-hero .crumb a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.sp-main{padding:64px 4vw 30px;background:var(--cream)}
+.sp-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:46px;align-items:start}
+.sp-media .yt-lite{box-shadow:7px 7px 0 var(--gold)}
+.sp-poster{display:block;width:100%;max-width:420px;height:auto;margin:0 auto;border:3px solid var(--navy);border-radius:14px;box-shadow:7px 7px 0 var(--gold)}
+.sp-media-cap{margin-top:14px;text-align:center;color:#405266;font-weight:700;font-size:.95rem}
+.sp-info h2{font-family:'Secular One',sans-serif;color:var(--navy);font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.2;margin-bottom:14px}
+.sp-info>p{font-size:1.08rem;line-height:1.8;color:#2f3d4f;margin-bottom:20px}
+.sp-facts{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+.sp-facts li{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:baseline;background:#fff;border:2px solid var(--navy);border-radius:12px;padding:11px 16px;box-shadow:3px 3px 0 rgba(7,21,40,.12)}
+.sp-facts b{color:var(--teal-dark);font-weight:800}
+.sp-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.sp-actions .btn-wa{margin:0}
+.sp-link{font-weight:800;color:var(--navy);text-decoration:underline;text-underline-offset:4px}
+.sp-gallery{padding-top:50px}
+.sp-videos .section-sub{margin-bottom:26px}
+.sp-more{padding:70px 4vw 80px;background:var(--cream2,#f6efe2)}
+.sp-more-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.sp-card{display:block;background:#fff;border:2px solid var(--navy);border-radius:16px;overflow:hidden;box-shadow:5px 5px 0 var(--navy);color:var(--navy);transition:transform .2s,box-shadow .2s}
+.sp-card:hover,.sp-card:focus-visible{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--navy)}
+.sp-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.sp-card span{display:block;padding:12px 14px 2px;font-size:.82rem;font-weight:800;color:var(--teal-dark)}
+.sp-card b{display:block;padding:0 14px 14px;font-family:'Secular One',sans-serif;font-size:1.2rem}
+.sp-all{text-align:center;margin-top:34px}
+@media(max-width:920px){
+  .sp-grid{grid-template-columns:1fr;gap:34px}
+  .sp-more-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+}
+@media(max-width:480px){.sp-facts li{grid-template-columns:90px 1fr;padding:10px 12px}}
+@media(prefers-reduced-motion:reduce){.sp-card{transition:none}}
+/* קישורים לדפי ההצגות: שורה בדף ההצגות, כפתור במודאל, קישור בקרוסלה בדף הבית */
+.sp-strip{max-width:1160px;margin:34px auto 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 12px;padding:0 4vw}
+.sp-strip span{font-weight:800;color:var(--navy)}
+.sp-strip a{background:#fff;border:2px solid var(--navy);border-radius:999px;padding:7px 16px;font-weight:700;color:var(--navy);box-shadow:3px 3px 0 var(--gold)}
+.sp-strip a:hover,.sp-strip a:focus-visible{background:var(--gold)}
+.modal .m-cta .m-page{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.modal .m-cta .m-page[hidden]{display:none}
+.sc-page{display:inline-block;margin-top:10px;font-weight:800;font-size:.92rem;color:var(--teal-dark);text-decoration:underline;text-underline-offset:3px}
