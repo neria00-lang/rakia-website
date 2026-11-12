@@ -83,6 +83,47 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
+  /* ---------- הסרגל העליון מתקפל בגלילה ----------
+     אחרי ~140px גלילה הסרגל נעלם (html.nav-tucked) ובפינה נשאר כפתור קטן (.nav-peek).
+     לחיצה עליו מחזירה את הסרגל (בטלפון — פותחת ישר את התפריט). הסרגל נשאר פתוח עד
+     שגוללים עוד ~80px. ליד ראש הדף הסרגל תמיד גלוי. CSS: סוף updated-design.css */
+  (function(){
+    var header = document.querySelector('header');
+    if(!header) return;
+    var root = document.documentElement;
+    var peek = document.createElement('button');
+    peek.type = 'button';
+    peek.className = 'nav-peek';
+    peek.setAttribute('aria-label', 'פתיחת סרגל הניווט');
+    peek.innerHTML = '<span class="nav-peek-lines" aria-hidden="true"><i></i><i></i><i></i></span><span class="nav-peek-txt">תפריט</span>';
+    document.body.appendChild(peek);
+    var TOP = 140, shownAt = null, ticking = false;
+    var menuOpen = function(){ return nav && nav.classList.contains('open'); };
+    var update = function(){
+      ticking = false;
+      var y = window.scrollY || window.pageYOffset;
+      var tuck;
+      if(y < TOP || menuOpen()) tuck = false;
+      else if(shownAt !== null && Math.abs(y - shownAt) < 80) tuck = false;
+      else { shownAt = null; tuck = true; }
+      // משתמשי מקלדת: כל עוד הפוקוס (הנראה) בתוך הסרגל — לא מקפלים
+      try { if(header.querySelector(':focus-visible')) tuck = false; } catch(e){}
+      root.classList.toggle('nav-tucked', tuck);
+    };
+    window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+    peek.addEventListener('click', function(e){
+      shownAt = window.scrollY || window.pageYOffset;
+      root.classList.remove('nav-tucked');
+      // בטלפון: פותחים את התפריט אחרי שהסרגל חזר (transform על ה-header כולא את התפריט ה-fixed)
+      if(burger && getComputedStyle(burger).display !== 'none' && !menuOpen()) setTimeout(function(){ burger.click(); }, 360);
+      else if(e.detail === 0){ var a = header.querySelector('nav a, a'); if(a) a.focus({preventScroll:true}); } // הפעלה במקלדת
+    });
+    // מקלדת: מעבר בטאב לתוך הסרגל מחזיר אותו
+    header.addEventListener('focusin', function(){ try { if(header.querySelector(':focus-visible')) root.classList.remove('nav-tucked'); } catch(e){} });
+    header.addEventListener('focusout', function(){ setTimeout(update, 0); });
+    update();
+  })();
+
   /* ---------- וידאו-רילז: לחיצה על פוסטר -> הפעלה ---------- */
   document.querySelectorAll('.reel-box').forEach(function(box){
     box.addEventListener('click', function(){
