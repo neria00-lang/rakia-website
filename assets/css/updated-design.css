@@ -302,3 +302,15 @@ html.nav-tucked .showcase.is-pinned .sc-sticky{top:0}
 html.a11y-reduce-motion .c2,html.a11y-reduce-motion .c2-fig img{animation:none!important;transition:none!important}
 html.a11y-reduce-motion .c2-fig.swap .a,html.a11y-reduce-motion .c2-fig.trio img:first-child{opacity:1;transform:none}
 html.a11y-reduce-motion .c2-fig.swap .b,html.a11y-reduce-motion .c2-fig.trio img:not(:first-child){opacity:0}
+
+/* ===== דף הבית במחשב: כל ראש הדף (כותרת, טקסט, כפתורים) + פס המוסדות נכנסים במסך הראשון (12.11.2026) =====
+   גובה ה-hero = גובה המסך פחות הסרגל העליון (76px) ופס המוסדות (73px). הגדלים מתכווצים לפי גובה המסך (vh). */
+@media(min-width:921px){
+  .hero{min-height:440px;height:calc(100vh - 149px);height:calc(100svh - 149px);max-height:820px}
+  .hero-inner{padding-bottom:34px}
+  .hero-logo{width:min(175px,20vh);margin-bottom:min(12px,1.2vh)}
+  .hero h1{font-size:min(clamp(3.4rem,6.2vw,5.9rem),10.2vh)}
+  .hero p{font-size:min(1.22rem,2.4vh);margin:min(24px,2.6vh) 0 min(32px,3.4vh)}
+  .hero .btn{min-height:min(88px,9.5vh);padding-block:min(17px,1.6vh)}
+  .hero-arrow{bottom:min(18px,1.6vh)}
+}
