@@ -203,8 +203,7 @@ html.nav-tucked .nav-peek{opacity:1;visibility:visible;transform:none;transition
 @media(max-width:800px){
   .nav-peek{top:10px;left:12px;padding:10px 12px}
   .nav-peek-txt{display:none}
-  /* הציפור שיושבת בסרגל בטלפון — נעלמת יחד איתו */
-  html.nav-tucked .rk-bird{opacity:0;transition:opacity .25s}
+  /* (הציפור כבר לא נעלמת עם הסרגל — כשהוא מקופל היא יושבת ליד .nav-peek, ראה perch ב-motion.js) */
 }
 @media(prefers-reduced-motion:reduce){header,.nav-peek{transition:none}}
 html.a11y-reduce-motion header,html.a11y-reduce-motion .nav-peek{transition:none}

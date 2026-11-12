@@ -197,6 +197,12 @@
     // כפתור התפריט ללוגו, ולא מעל התוכן. perch(0) / perch(1) = שתי נקודות קרובות באותו רווח.
     var perch = function(k){
       return function(){
+        // כשהסרגל מקופל (html.nav-tucked) — יושבת ליד הכפתור הקטן שבפינה (.nav-peek), כדי שלא תיעלם עם הסרגל
+        var pk = document.documentElement.classList.contains('nav-tucked') && document.querySelector('.nav-peek');
+        if(pk){
+          var pr = pk.getBoundingClientRect();
+          if(pr.width){ var pw = 40; return { x: pr.right + pw * 0.75 + (k ? 10 : 0), y: pr.top + pr.height / 2, w: pw, inHeader: true }; }
+        }
         var hb = document.querySelector('.hamburger'), lg = document.querySelector('header .logo');
         var l = hb ? hb.getBoundingClientRect().right : 56, r = lg ? lg.getBoundingClientRect().left : vw * 0.5;
         var gap = Math.max(40, r - l), w = Math.min(44, gap * 0.45);
@@ -270,8 +276,11 @@
     // מעוף בקשת: באמצע המעבר הציפור מתרוממת מעל הקו הישר
     // (בהליכה על הפס אין קשת — אחרת היא "קפצה" 140px למעלה, על הכפתורים של הכרטיסים)
     var arc = (a.walk && b.walk) ? 0 : Math.sin(Math.PI * e) * Math.min(140, dist * 0.28);
+    var w = lerp(pa.w, pb.w, e);
+    // ההמראה מהלוגו: בהתחלה הציפור גדלה קצת (שיא ברבע הדרך), ואז מתכווצת חזרה לגודל המעוף הרגיל
+    if(i === 0 && pa.rest) w += pa.w * 0.32 * Math.sin(Math.PI * clamp(e / 0.55, 0, 1));
     return {
-      x: lerp(pa.x, pb.x, e), y: lerp(pa.y, pb.y, e) - arc, w: lerp(pa.w, pb.w, e),
+      x: lerp(pa.x, pb.x, e), y: lerp(pa.y, pb.y, e) - arc, w: w,
       rest: (t < 0.002 && pa.rest) || (t > 0.998 && pb.rest), perch: t > 0.998 && pb.perch,
       inHeader: !!(pa.inHeader || pb.inHeader)
     };
