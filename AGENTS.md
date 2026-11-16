@@ -58,7 +58,7 @@
 - **פונטים**: כולם מתארחים באתר עצמו ב-`assets/fonts/` — **אין יותר Google Fonts** (הוסר 11/2026 מסיבות
   פרטיות: כל טעינה שלחה את כתובת ה-IP של הגולש לגוגל). Heebo (טקסט, קובץ משתנה אחד לכל המשקלים) ו-Secular One
   (כותרות), תת-קבוצות hebrew+latin, מוגדרים ב-`assets/css/fonts.css` (נטען ראשון בכל עמוד, עם preload ל-Heebo העברי).
-  פונט "Dana Yad" (כתב יד עברי, otf+woff) משמש ל-class `.script`. ה-CSP ב-`_headers`/`serve.json` הוא `font-src 'self'` —
+  פונט "Dana Yad" (כתב יד עברי, otf+woff) משמש ל-class `.script`. ה-CSP ב-`_headers` הוא `font-src 'self'` —
   אל תחזירו קישור ל-fonts.googleapis.com.
 - **מדיה**: תיקיית `media/` — תמונות, וידאו, ותת-תיקיות `media/sadeh/`,
   `media/shows/<שם הצגה>/`, `media/clients/` (לוגואים של לקוחות).
@@ -75,7 +75,6 @@ privacy.html                ← מדיניות פרטיות (ראה "פרטיו�
 assets/css/fonts.css + assets/fonts/ ← גופנים מקומיים
 assets/css/motion.css + assets/js/motion.js ← תנועה בגלילה (ראה סעיף 5)
 media/bird/                 ← שכבות הציפור המונפשת
-package.json
 assets/css/style.css
 assets/css/a11y.css         ← שכבת נגישות (ראה סעיף 9)
 assets/css/updated-design.css ← שכבת עיצוב עליונה, נטענת אחרונה (ראה סעיף 2)
@@ -120,17 +119,14 @@ assets/css/cast.css + assets/js/cast.js ← מנגנון הדמויות (נטע�
   neria00@gmail.com (Workers & Pages → rakia-website). מחובר ל-GitHub: כל push ל-`main` נפרס
   אוטומטית תוך דקה. הגדרות: Framework None, בלי build command, output directory = שורש (`/`),
   משתנה סביבה `SKIP_DEPENDENCY_INSTALL=1`. כותרות אבטחה/CSP ב-`_headers`, חסימת קבצים פנימיים
-  ב-`_redirects` (Pages לא קורא את `serve.json`). `404.html` מוגש אוטומטית לנתיב חסר.
+  ב-`_redirects`. `404.html` מוגש אוטומטית לנתיב חסר.
 - **דומיין**: `teatronrakia.co.il` (+ `www.`) — רשום ב-**LiveDNS** (עד 1/11/2031, חשבון של נריה),
   שרתי השמות מצביעים ל-Cloudflare (`vin.ns.cloudflare.com`, `violet.ns.cloudflare.com`);
   ה-DNS מנוהל ב-Cloudflare (zone `teatronrakia.co.il`, חבילת Free). http→https אוטומטי.
 - **כתובות חיות**: `https://teatronrakia.co.il/` (ראשית), `https://rakia-website.pages.dev/` (גיבוי).
 - **GitHub repo**: `neria00-lang/rakia-website`
   URL: `https://github.com/neria00-lang/rakia-website.git`, branch: `main`.
-- **Railway (ישן, לסגירה)**: `https://rakia-website-production.up.railway.app/` — הפסיק לפרוס
-  עדכונים אחרי 19/10/2026 (אירוע האבטחה של Railway ב-21/10). `package.json` (`serve . -l $PORT`)
-  ו-`serve.json` נשארו רק בשבילו; אפשר למחוק אחרי שה-service נסגר.
-  project `db9fc2a9-ad1a-45b9-a64f-d7755f61292b`, service `5fba8bb3-feb8-4c6f-bd4f-8e11017b44d5`.
+- **Railway (ישן)**: נסגר ונמחק ב-16/11/2026. האתר מוגש רק מ-Cloudflare Pages.
 - **אין env vars מיוחדים** לפרויקט הזה (זה סטטי, בלי DB/API keys).
 - **סינון תוכן (Netspark/רימון/אתרוג)**: במחשבים מסוננים תמונות עלולות להיות מוחלפות בתמונות
   ריקות (1×1) ולהישמר כך במטמון. כל כתובות התמונות מגיעות עם `?v=N` — אם משנים תמונה/צריך לרענן
@@ -233,7 +229,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - נשאר לבעל האתר: אימות ב-Google Search Console והגשת sitemap; הפניית www → בלי www ב-Cloudflare (כרגע www מחזיר 200 — ה-canonical מטפל בכפילות).
 
 ### מדידת כניסות (Cloudflare Web Analytics)
-- Cloudflare מזריק לכל דף סקריפט מדידה (static.cloudflareinsights.com/beacon.min.js) ששולח נתונים ל-cloudflareinsights.com. עד 12.11.2026 ה-CSP חסם אותו, כך שלא נספרו כניסות. עכשיו שני הדומיינים מאושרים ב-script-src / connect-src ב-_headers וב-serve.json. **לא להסיר אותם כשמשנים CSP.** הנתונים: לוח הבקרה של Cloudflare ← Analytics & Logs ← Web Analytics.
+- Cloudflare מזריק לכל דף סקריפט מדידה (static.cloudflareinsights.com/beacon.min.js) ששולח נתונים ל-cloudflareinsights.com. עד 12.11.2026 ה-CSP חסם אותו, כך שלא נספרו כניסות. עכשיו שני הדומיינים מאושרים ב-script-src / connect-src ב-_headers. **לא להסיר אותם כשמשנים CSP.** הנתונים: לוח הבקרה של Cloudflare ← Analytics & Logs ← Web Analytics.
 
 ### דפי הצגה בודדים (12.11.2026) — לקידום בגוגל
 - `chanukah.html` (בימים ההם), `purim.html` (הליצן משושן), `yom-haatzmaut.html` + `bein-hametzarim.html` (חוזרים לירושלים), `sigd.html` (המסע לירושלים).
@@ -350,7 +346,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
   + כפתור ניגון; ה-iframe של `youtube-nocookie.com` נטען רק בלחיצה, וסרטון אחד מתנגן בכל רגע.
   נקודות עגינה ב-HTML: `data-yt-feature`, `data-yt-row` (+`data-yt-filtered` לחיבור לסינון), `data-yt-trailer`,
   `data-yt-open="trailer:chanukah"` (כפתור שפותח חלון), `.m-trailer`/`.m-video` במודאל ההצגות.
-- **CSP** (`serve.json`): `img-src` כולל `https://i.ytimg.com`, `frame-src` = `youtube-nocookie.com`. לא להסיר.
+- **CSP** (`_headers`): `img-src` כולל `https://i.ytimg.com`, `frame-src` = `youtube-nocookie.com`. לא להסיר.
 - כדי לשלוף רשימת סרטונים מפלייליסט: דף הפלייליסט (ytInitialData, רשומות עם `playlistId` תואם) + oEmbed לכותרת/כיווניות.
 
 ### תנועה בגלילה (motion) — הציפור, "ההצגות שלנו", פס רץ, פס התקדמות

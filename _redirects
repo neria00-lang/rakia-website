@@ -1,4 +1,4 @@
-# Cloudflare Pages — קבצים פנימיים שלא אמורים להיות נגישים מבחוץ (כמו ב-serve.json)
+# Cloudflare Pages — קבצים פנימיים שלא אמורים להיות נגישים מבחוץ
 /AGENTS.md          /  301
 /package.json       /  301
 /package-lock.json  /  301

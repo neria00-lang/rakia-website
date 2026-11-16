@@ -1,5 +1,4 @@
-# Cloudflare Pages — כותרות אבטחה (המקבילה של "headers" ב-serve.json, שמשמש את Railway).
-# לשמור את שני הקבצים מסונכרנים כשמשנים CSP.
+# Cloudflare Pages — כותרות אבטחה ו-CSP של האתר.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
