@@ -363,3 +363,6 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 });
+
+/* פתיחת כרטיסייה מתקפלת (details) כשמגיעים לעמוד עם #עוגן, למשל sadeh.html#tours */
+(function(){function o(){var h=location.hash.slice(1);if(!h)return;var el=document.getElementById(decodeURIComponent(h));if(el&&el.tagName==='DETAILS'){el.open=true;}}o();window.addEventListener('hashchange',o);})();
