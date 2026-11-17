@@ -361,3 +361,19 @@ details.usecase .uc-body{padding:0 20px 22px;text-align:center}
 details.usecase .uc-body p{font-size:.92rem;color:#33415a;line-height:1.6;margin:0 0 8px}
 @media(max-width:920px){.usecase-grid.uc6{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.usecase-grid.uc6{grid-template-columns:1fr}}
+
+/* sadeh: origami corner in the bird's brand colors + marker highlight on the heading (option 4), a different hue per card. 17.11.2026 */
+.usecase-grid.uc6>details:nth-child(1){--oa:#35d4a5;--ob:#a9eed6;--oc:#0f8f6f}
+.usecase-grid.uc6>details:nth-child(2){--oa:#1ba6d6;--ob:#a6def3;--oc:#0e6f93}
+.usecase-grid.uc6>details:nth-child(3){--oa:#2a3be0;--ob:#b9bff6;--oc:#1a2690}
+.usecase-grid.uc6>details:nth-child(4){--oa:#9b3fd1;--ob:#e0c0f2;--oc:#6a2a99}
+.usecase-grid.uc6>details:nth-child(5){--oa:#ff5a4a;--ob:#ffc9c2;--oc:#c23a2c}
+.usecase-grid.uc6>details:nth-child(6){--oa:#f6b31b;--ob:#fde3a3;--oc:#c47f00}
+details.usecase>summary{position:relative}
+.uc-ori{position:absolute;top:0;left:0;width:52px;height:52px;border-top-left-radius:6px;overflow:hidden;pointer-events:none}
+.uc-ori{background:var(--oc);clip-path:polygon(0 0,100% 0,63% 50%,37% 43%,0 100%)}
+.uc-ori::before,.uc-ori::after{content:"";position:absolute;inset:0}
+.uc-ori::before{background:var(--oa);clip-path:polygon(0 0,100% 0,37% 43%)}
+.uc-ori::after{background:var(--ob);clip-path:polygon(0 0,37% 43%,0 100%)}
+details.usecase h3{font-size:1.45rem;margin:6px 0 8px}
+details.usecase .uc-t{background:linear-gradient(transparent 56%,var(--ob,#ffd27a) 56%);padding:0 5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
