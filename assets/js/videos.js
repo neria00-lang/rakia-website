@@ -13,7 +13,7 @@
   if(!D) return;
   var byId = {};
   D.ITEMS.forEach(function(it){ byId[it.id] = it; });
-  var TAG_LABEL = { chanukah: 'חנוכה · בימים ההם', purim: 'פורים · הליצן משושן', jerusalem: 'ירושלים · חוזרים לירושלים', sigd: 'סיגד · המסע לירושלים', sadeh: 'שחקני שטח' };
+  var TAG_LABEL = { chanukah: 'חנוכה · בימים ההם', purim: 'פורים · הליצן משושן', jerusalem: 'ירושלים · שחוברה לה יחדיו', sigd: 'סיגד · המסע לירושלים', sadeh: 'שחקני שטח' };
 
   function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
   function thumb(id){ return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
