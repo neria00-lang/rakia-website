@@ -375,5 +375,9 @@ details.usecase>summary{position:relative}
 .uc-ori::before,.uc-ori::after{content:"";position:absolute;inset:0}
 .uc-ori::before{background:var(--oa);clip-path:polygon(0 0,100% 0,37% 43%)}
 .uc-ori::after{background:var(--ob);clip-path:polygon(0 0,37% 43%,0 100%)}
-details.usecase h3{font-size:1.45rem;margin:6px 0 8px}
+details.usecase h3{font-size:1.8rem;line-height:1.25;margin:6px 0 8px}
 details.usecase .uc-t{background:linear-gradient(transparent 56%,var(--ob,#ffd27a) 56%);padding:0 5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+.uc-ico{display:block;color:var(--oc,var(--teal-dark));margin:0 auto 6px;width:46px;height:46px}
+.uc-ico svg{width:100%;height:100%;display:block}
+@media(max-width:920px){details.usecase h3{font-size:1.55rem}}
