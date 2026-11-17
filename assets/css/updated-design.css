@@ -336,3 +336,12 @@ html.a11y-reduce-motion .c2-fig.swap .b,html.a11y-reduce-motion .c2-fig.trio img
 /* Hero brand line above the opening sentence (16.11.2026) */
 .hero p.hero-tag{margin:min(20px,2.2vh) 0 calc(-1 * min(14px,1.6vh));font-weight:700;color:var(--teal-dark);font-size:min(1.08rem,2.1vh);letter-spacing:.02em}
 @media(max-width:920px){.hero p.hero-tag{font-size:.95rem;margin:14px 0 -8px}}
+
+
+/* ===== הבלטת שורת הערכים והפסקה בראש דף הבית (אפשרות 2, 17.11.2026) — הכפתורים הוסרו מהגיבור כי הכרטיסים מתחת מובילים לאותם עמודים ===== */
+.hero p.hero-tag{display:inline;background:linear-gradient(transparent 45%,rgba(247,190,40,.75) 45%);color:var(--navy);font-size:1.2rem;font-weight:800;padding:0 4px;margin:0}
+.hero .hero-tag + p{border-right:6px solid var(--teal-dark);padding-right:16px;color:var(--navy);font-weight:600;font-size:1.28rem;margin:min(22px,2.4vh) 0 0}
+.hero h1{margin-bottom:min(22px,2.4vh)}
+.hero .trust-chips{margin-top:min(22px,2.4vh)}
+@media(min-width:921px){.hero .hero-tag + p{font-size:min(1.28rem,2.6vh)}.hero p.hero-tag{font-size:min(1.2rem,2.4vh)}}
+@media(max-width:920px){.hero p.hero-tag{font-size:1.02rem}.hero .hero-tag + p{font-size:1.06rem;margin:16px 0 0}.hero{min-height:0}.hero-inner{padding-bottom:34px}}
