@@ -345,3 +345,19 @@ html.a11y-reduce-motion .c2-fig.swap .b,html.a11y-reduce-motion .c2-fig.trio img
 .hero .trust-chips{margin-top:min(22px,2.4vh)}
 @media(min-width:921px){.hero .hero-tag + p{font-size:min(1.28rem,2.6vh)}.hero p.hero-tag{font-size:min(1.2rem,2.4vh)}}
 @media(max-width:920px){.hero p.hero-tag{font-size:1.02rem}.hero .hero-tag + p{font-size:1.06rem;margin:16px 0 0}.hero{min-height:0}.hero-inner{padding-bottom:34px}}
+
+/* sadeh: expandable "what can you do" cards (details/summary), 17.11.2026 */
+.usecase-grid.uc6{grid-template-columns:repeat(3,1fr);align-items:start}
+.uc-hint{margin:-6px auto 0}
+details.usecase{padding:0;transition:box-shadow .2s,transform .2s}
+details.usecase>summary{list-style:none;cursor:pointer;display:block;padding:26px 20px;border-radius:inherit}
+details.usecase>summary::-webkit-details-marker{display:none}
+details.usecase>summary:hover{background:rgba(23,124,114,.06)}
+details.usecase .ico{display:block}
+details.usecase .uc-lead{display:block;font-size:.86rem;color:#5a5a5a;line-height:1.5}
+details.usecase .uc-more{display:inline-block;margin-top:12px;font-weight:700;font-size:.85rem;color:var(--teal-dark)}
+details.usecase[open] .uc-more{display:none}
+details.usecase .uc-body{padding:0 20px 22px;text-align:center}
+details.usecase .uc-body p{font-size:.92rem;color:#33415a;line-height:1.6;margin:0 0 8px}
+@media(max-width:920px){.usecase-grid.uc6{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.usecase-grid.uc6{grid-template-columns:1fr}}

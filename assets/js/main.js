@@ -274,13 +274,15 @@ document.addEventListener('DOMContentLoaded', function(){
     function show(){
       var item = currentSet[currentIdx];
       lbImg.src = item.src;
+      lbImg.alt = item.alt || item.cap || '';
       lbCap.textContent = item.cap || '';
     }
     document.querySelectorAll('.case-card').forEach(function(card){
       card.addEventListener('click', function(){
         var imgs = (card.dataset.images || card.dataset.img).split('|').filter(Boolean);
         var cap = card.dataset.title || '';
-        var set = imgs.map(function(src){ return {src: src, cap: cap}; });
+        var alts = (card.dataset.alts || '').split('|');
+        var set = imgs.map(function(src, i){ return {src: src, cap: cap, alt: alts[i] || cap}; });
         lastModalFocus = card;
         openLightbox(set, 0);
       });
