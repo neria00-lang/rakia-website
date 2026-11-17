@@ -387,6 +387,8 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
   סטטוס (ציבורי/לא רשום), הגבלת גיל, זכויות מוזיקה.
 - **פוסטרים לגובה בכרטיס רוחבי**: יוצרים גרסה רחבה (הפוסטר שלם במרכז על רקע מטושטש שלו) — למשל
   `media/shows/purim/purim-play-clown-from-shushan-wide.jpg` (1800×1200, Pillow). המקור נשאר בחלון ההצגה ובגלריה.
+  **פורים (17.11.2026):** בכרטיסים יש עכשיו חיתוך של ראש הפלייר (כותרת "הליצן משושן") בלי רקע מטושטש —
+  `media/shows/purim/purim-play-clown-from-shushan-card.webp` (1400×875, יחס 16:10). הקובץ ה-wide הוסר — נריה לא רוצה רקע מטושטש בכרטיסים.
 - **מנגנון** (`assets/js/videos.js` + `assets/css/videos.css`): כרטיס "קל" — תמונה (`i.ytimg.com/vi/ID/hqdefault.jpg`)
   + כפתור ניגון; ה-iframe של `youtube-nocookie.com` נטען רק בלחיצה, וסרטון אחד מתנגן בכל רגע.
   נקודות עגינה ב-HTML: `data-yt-feature`, `data-yt-row` (+`data-yt-filtered` לחיבור לסינון), `data-yt-trailer`,
