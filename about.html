@@ -74,7 +74,21 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 
 <section class="about-story">
   <div class="story-flex">
-    <div class="txt" style="max-width:820px;margin:0 auto">
+    <div class="img">
+      <div class="about-slides">
+        <img src="media/about/neria-tzur-historical-character-bowler-hat-book.webp?v=3" alt="נריה צור, מייסד תיאטרון רקיע, בדמות היסטורית עם מגבעת שחורה, משקפיים עגולים וספר ביד" width="900" height="1200" decoding="async" style="object-position:50% 30%" class="on">
+        <img src="media/about/neria-tzur-field-actor-headscarf-stone-wall.webp?v=3" alt="נריה צור כשחקן שטח בדמות היסטורית עם כיסוי ראש ופנים מאובקות ליד חומת אבן" width="1200" height="675" loading="lazy" decoding="async" style="object-position:55% 40%">
+        <img src="media/about/neria-tzur-historical-character-cane-top-hat.webp?v=3" alt="נריה צור בדמות היסטורית עם כובע, מקל הליכה ומעיל אדום" width="675" height="1200" loading="lazy" decoding="async" style="object-position:50% 30%">
+        <img src="media/about/neria-tzur-historical-character-mustache-old-city.webp?v=3" alt="נריה צור בדמות היסטורית עם שפם ופאות, מדבר אל הקהל בסיור מומחז" width="1200" height="675" loading="lazy" decoding="async" style="object-position:58% 40%">
+        <img src="media/about/neria-tzur-field-actor-straw-hat-vest.webp?v=3" alt="נריה צור כשחקן שטח בדמות חלוץ עם כובע קש ואפוד" width="900" height="1200" loading="lazy" decoding="async" style="object-position:50% 30%">
+        <img src="media/about/neria-tzur-historical-character-glasses-tin-cup.webp?v=3" alt="נריה צור בדמות היסטורית עם כובע מצחייה, משקפיים וכוס פח ליד קיר אבן" width="1200" height="675" loading="lazy" decoding="async" style="object-position:55% 40%">
+        <img src="media/about/neria-tzur-field-actor-keffiyeh-mustache.webp?v=3" alt="נריה צור כשחקן שטח בדמות היסטורית עם כאפייה ושפם" width="900" height="1200" loading="lazy" decoding="async" style="object-position:50% 30%">
+        <img src="media/about/neria-tzur-actor-round-glasses-classroom.webp?v=3" alt="נריה צור בדמות היסטורית עם משקפיים עגולים וכובע, בהצגה בבית ספר" width="1200" height="675" loading="lazy" decoding="async" style="object-position:96% 40%">
+        <img src="media/about/neria-tzur-historical-character-glasses-close-up.webp?v=3" alt="נריה צור בדמות היסטורית במשקפיים וכובע מצחייה, בתקריב" width="1200" height="675" loading="lazy" decoding="async" style="object-position:62% 40%">
+        <img src="media/about/neria-tzur-dramatized-tour-white-robe-children.webp?v=3" alt="נריה צור בגלימה לבנה מוביל ילדים בסיור מומחז בין חומות אבן" width="1200" height="675" loading="lazy" decoding="async" style="object-position:42% 50%">
+      </div>
+    </div>
+    <div class="txt">
       <h2>הסיפור של רקיע</h2>
       <p>תיאטרון רקיע הוקם על ידי <b>נריה צור</b>, מתוך אמונה פשוטה: היסטוריה וערכים לא חייבים להישאר על הדף. הם יכולים לצאת לחיים, לעמוד מול הילדים, לגעת בהם ולהישאר איתם הרבה אחרי שהמסך יורד.</p>
       <p>היום אנחנו עושים שני דברים: <b>הצגות "הגיע הזמן"</b> – הצגות מלאות לחגים, סביב מעגל השנה היהודי, ו<b>שחקני שטח</b> – דמויות היסטוריות שנכנסות לתוך האירוע שלכם ומדברות עם הקהל.</p>
@@ -199,5 +213,15 @@ c.toggle('a11y-reduce-motion',!!p.reduceMotion);
 <script src="assets/js/cast.js?v=20261116b"></script>
 <script src="assets/js/motion.js?v=20261116b"></script>
 <script src="assets/js/wa-popup.js?v=20261116b"></script>
+<style>
+.about-slides{position:relative;aspect-ratio:4/5;max-width:440px;margin:0 auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:#e9e4d6}
+.about-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;border-radius:0;box-shadow:none}
+.about-slides img.on{opacity:1}
+</style>
+<script>
+(function(){var w=document.querySelector('.about-slides');if(!w)return;var a=w.querySelectorAll('img'),i=0;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+setInterval(function(){if(document.hidden)return;a[i].classList.remove('on');i=(i+1)%a.length;a[i].classList.add('on');},3500);})();
+</script>
 </body>
 </html>
