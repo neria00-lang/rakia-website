@@ -295,7 +295,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - **Religious-audience FAQ (all pages):** "...ואנחנו מוכנים בשמחה לעבור על התוכן מראש עם נציג מטעמכם" (not "גורם רבני").
 - **Removed site-wide:** the tag "[ האור עולה · הסיפור מתעורר ]" (`.page-hero::after{content:none}`).
 - **Free content:** Google title "סיור סליחות לילדים בווידאו – "הגיע הזמן"".
-- **Still open with Neria:** his background for the about page, whether to show a price, and whether the WhatsApp group is still named "קייטנת סליחות".
+- **Neria's decisions (19.11.2026):** **do not write about his background** on the about page. **Do not show prices** on the site (only "הצעת מחיר"). The WhatsApp group is still named "קייטנת סליחות 'הגיע הזמן'".
 
 ### ראש דף הבית נכנס כולו במסך הראשון במחשב (12.11.2026)
 - ב-≥921px גובה ה-.hero = 100svh פחות הסרגל (76px) ופס המוסדות (73px), והלוגו/הכותרת/הטקסט/הכפתורים מתכווצים לפי vh (סוף updated-design.css). אם משנים את גובה הסרגל או הפס — לעדכן את ה-149px.
