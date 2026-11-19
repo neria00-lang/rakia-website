@@ -381,3 +381,16 @@ details.usecase .uc-t{background:linear-gradient(transparent 56%,var(--ob,#ffd27
 .uc-ico{display:block;color:var(--oc,var(--teal-dark));margin:0 auto 6px;width:46px;height:46px}
 .uc-ico svg{width:100%;height:100%;display:block}
 @media(max-width:920px){details.usecase h3{font-size:1.55rem}}
+
+/* about: values as cards in the style of the sadeh cards (origami corner, monochrome icon, marker heading). 19.11.2026 */
+.page-hero.no-tag::after{content:none}
+.values-strip.vs-cards{background:transparent;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:1150px;margin:0 auto;padding:110px 5vw 70px;color:var(--ink)}
+.values-strip.vs-cards .v.vc{max-width:none;position:relative;background:#fff;border:2px solid var(--navy);border-radius:8px;box-shadow:6px 6px 0 var(--teal);padding:30px 16px 24px;text-align:center}
+.values-strip.vs-cards .vc h3{font-size:1.28rem;line-height:1.3;margin:4px 0 0;color:var(--navy)}
+.values-strip.vs-cards .vc:nth-of-type(1){--oa:#35d4a5;--ob:#a9eed6;--oc:#0f8f6f}
+.values-strip.vs-cards .vc:nth-of-type(2){--oa:#1ba6d6;--ob:#a6def3;--oc:#0e6f93}
+.values-strip.vs-cards .vc:nth-of-type(3){--oa:#9b3fd1;--ob:#e0c0f2;--oc:#6a2a99}
+.values-strip.vs-cards .vc:nth-of-type(4){--oa:#ff5a4a;--ob:#ffc9c2;--oc:#c23a2c}
+.values-strip.vs-cards .uc-t{background:linear-gradient(transparent 56%,var(--ob) 56%);padding:0 5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media(max-width:920px){.values-strip.vs-cards{grid-template-columns:1fr 1fr;padding-top:100px}}
+@media(max-width:430px){.values-strip.vs-cards{grid-template-columns:1fr}}
