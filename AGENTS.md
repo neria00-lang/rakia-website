@@ -287,6 +287,16 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - CTA תחתון בדף הבית (17.11.2026, לפי עמית: לסיים בשאלה, להתחיל בבירור צרכים): "מתכננים אירוע לחג הקרוב?" + "ספרו לנו מי הקהל ומתי, ונבדוק איזו הצגה מתאימה ואם התאריך עוד פנוי."
 - להימנע מ"חוויה בלתי נשכחת", "מרימים את האירוע", "מוצר" — לכתוב מה קורה בפועל (דמות, מקום, תגובת הקהל מתוך המלצה אמיתית). לא להמציא מספרים/עובדות; מה שחסר — לשאול את נריה.
 
+### Copy review with Neria, page by page (16–19.11.2026): decisions not to undo
+- **Home:** Google title "הצגות לחגים ודמויות שטח לכל נושא ואירוע | תיאטרון רקיע". Description: holidays + "לכל נושא ואירוע: הפנינג, סיור, מסיבת סידור או יום שיא". Not only schools (also municipalities and communities), not only holidays. Above the opening paragraph sits the line `.hero-tag` "חינוך יצירתי · 100% ערך · 100% חוויה". Neria asked to remove the technical sentence "אנחנו מביאים שחקנים, תפאורה והגברה" from the top of the page; don't bring it back. Ticker: "נהנו מהתוכן שלנו:". The "למי אנחנו מתאימים" box: "עיריות, מתנ"סים וקהילות" (4 boxes). Video section: "תראו כמה כיף איתנו! :)". The carousel has a 6th card, "סיור הצגה חי" → `sadeh.html#tours`.
+- **Terminology:** "סיור הצגה חי" in visible text, not "סיור מומחז". "סיור מומחז" stays only in alt text and SEO, because that's what people search for. "דמויות שטח" is the market term in Google. Spelling: "חוויה", "חווייתית", "מתנ"סים", "מונטיפיורי".
+- **sadeh:** "מה אפשר לעשות עם שחקני שטח?" = 6 `details.usecase` cards (`.uc6`) that open on click. Each card has an origami corner `.uc-ori`, a monochrome line icon `.uc-ico` and a marker heading `.uc-t`, each in a different hue from the bird's colors (nth-child variables `--oa/--ob/--oc` in updated-design.css). Neria wants the general site palette (navy border, teal shadow) to stay, with only the small origami touch in brand colors. The portfolio heading is "עשינו היסטוריה!". The galleries have `data-alts` (an alt per image, read by main.js). `#hash` to a `<details>` opens it (main.js).
+- **about:** "חוויה של תיאטרון, חינוך וערכים". The values are cards in the same style (`.values-strip.vs-cards`). FAQ: 6 questions. Neria removed "שחקן מאחר" and "גשם/חוץ".
+- **Religious-audience FAQ (all pages):** "...ואנחנו מוכנים בשמחה לעבור על התוכן מראש עם נציג מטעמכם" (not "גורם רבני").
+- **Removed site-wide:** the tag "[ האור עולה · הסיפור מתעורר ]" (`.page-hero::after{content:none}`).
+- **Free content:** Google title "סיור סליחות לילדים בווידאו – "הגיע הזמן"".
+- **Still open with Neria:** his background for the about page, whether to show a price, and whether the WhatsApp group is still named "קייטנת סליחות".
+
 ### ראש דף הבית נכנס כולו במסך הראשון במחשב (12.11.2026)
 - ב-≥921px גובה ה-.hero = 100svh פחות הסרגל (76px) ופס המוסדות (73px), והלוגו/הכותרת/הטקסט/הכפתורים מתכווצים לפי vh (סוף updated-design.css). אם משנים את גובה הסרגל או הפס — לעדכן את ה-149px.
 
@@ -302,7 +312,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - CSS: סוף updated-design.css. המחלקות הישנות `.cat`, `.hz-swap`, `.cast-change` כבר לא בשימוש בדף הבית.
 
 ### לשנות את ה-Hero של דף הבית (סליידשואו תמונות + טקסט גדול מיושר לימין)
-> **עדכון 12.11.2026:** במקום סליידשואו התמונות יש עכשיו `<video class="hero-video">` (autoplay muted loop playsinline) — מונטאז׳ של כל הקטעים בתיקייה (19 קטעים של 2–3 שנ׳ נכון ל-12.11.2026; בעל האתר מוסיף ומוחק קטעים בתיקייה — בכל בנייה לקחת את מה שיש בה עכשיו) מ-`מדיה תאטרון רקיע/תיעוד הצגות/קטעים לאתר` עם מעברי fade של 0.4 שנ׳ (ffmpeg xfade, offset מצטבר לפי אורך כל קטע, ~41 שנ׳). קטעים חדשים נחתכים לתיקייה ב-1920×1080, 30fps, בלי קול, crf 14. שני מקורות: `hero-reel-m.mp4` ל-≤800px ו-`hero-reel.mp4` למחשב. CSS: `.hero-video` בסוף updated-design.css. ב-motion.js הסרטון נעצר בהפחתת תנועה. להחלפת קטעים: לבנות מחדש ישר מהמקור — לא לדחוס פעמיים (בעל האתר התלונן על איכות ירודה ב-crf 32). הגדרות נוכחיות: hqdn3d=1.5:1.5:4:4, lanczos, x264 slower, מחשב crf 24 maxrate 3M, טלפון crf 25 maxrate 1500k, -tune film -an +faststart ולהעלות את ה-`?v=` ב-index.html. מה שכתוב למטה על hero-1..4 מתאר את הסליידשואו הישן.
+> **עדכון 12.11.2026:** במקום סליידשואו התמונות יש עכשיו `<video class="hero-video">` (autoplay muted loop playsinline) — מונטאז׳ של כל הקטעים בתיקייה (19 קטעים של 2–3 שנ׳ נכון ל-12.11.2026; בעל האתר מוסיף ומוחק קטעים בתיקייה — בכל בנייה לקחת את מה שיש בה עכשיו) מ-`מדיה תאטרון רקיע/08 כללי ואתר/קטעים לדף הבית` עם מעברי fade של 0.4 שנ׳ (ffmpeg xfade, offset מצטבר לפי אורך כל קטע, ~41 שנ׳). קטעים חדשים נחתכים לתיקייה ב-1920×1080, 30fps, בלי קול, crf 14. שני מקורות: `hero-reel-m.mp4` ל-≤800px ו-`hero-reel.mp4` למחשב. CSS: `.hero-video` בסוף updated-design.css. ב-motion.js הסרטון נעצר בהפחתת תנועה. להחלפת קטעים: לבנות מחדש ישר מהמקור — לא לדחוס פעמיים (בעל האתר התלונן על איכות ירודה ב-crf 32). הגדרות נוכחיות: hqdn3d=1.5:1.5:4:4, lanczos, x264 slower, מחשב crf 24 maxrate 3M, טלפון crf 25 maxrate 1500k, -tune film -an +faststart ולהעלות את ה-`?v=` ב-index.html. מה שכתוב למטה על hero-1..4 מתאר את הסליידשואו הישן.
 ה-Hero בדף הבית (`index.html`, `<section class="hero">`) הוא **סליידשואו רקע**
 של 4 תמונות שמתחלפות ב-crossfade + זום עדין (Ken Burns), עם טקסט גדול מיושר
 לימין וממורכז אנכית (בהשראת shahart.co.il). **CSS טהור — בלי JS.**
@@ -326,7 +336,7 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
   `.hero-center`, `.hero h1`, `.hero-arrow`.
 
 ### דמויות גזורות (cast) — שילוב, החלפה, הוספה
-מקור: `C:\Users\neria\OneDrive\Desktop\מדיה תאטרון רקיע\רקעים ואיורים\דמויות_שחקני_שטח_מאושרות`
+מקור: `C:\Users\neria\OneDrive\Desktop\מדיה תאטרון רקיע\00 מיתוג\דמויות_שחקני_שטח_מאושרות`
 (PNG כבדים). באתר: `media/cast/cNN.webp` — NN = 2 הספרות הראשונות בשם הקובץ המקורי.
 עיבוד (Pillow): חיתוך שוליים שקופים, הקטנה לגובה ≤760 / רוחב ≤960, WebP איכות 80 (25–140KB).
 הדמויות **לא ממוסגרות** — קו לבן "מדבקה" + צל (`--cast-fx`). כולן דקורטיביות (`aria-hidden`, `alt=""`).
@@ -361,13 +371,13 @@ fatal: cannot lock ref 'HEAD': .git/HEAD.lock File exists.
 - **"למי אנחנו מתאימים"**: 5 ריבועים בלי תיאור (כולל ספריות), חותמות `.fit-badge` "מוכרים בגפ"ן" / "מוכרים בניטוטק".
 - **"רגעים מהשטח"**: קולאז' של 12 תמונות בלי חיתוך (`.pol.wide` = תמונה רוחבית), גם בנייד 2 בשורה בתפזורת.
 - **עמוד "הגיע הזמן" — איורים מהקומיקס** (`media/higia/`: mascot-book, boy-sock, girl, soldier; נחתכו מקבצים ב-
-  `מדיה תאטרון רקיע/תיעוד הצגות/איורים הגיע הזמן` ו-`קבצי מדיה לאתר/תמונות לדף על מוצרים של הגיע הזמן`):
+  `מדיה תאטרון רקיע/00 מיתוג/איורים הגיע הזמן` ו-`קבצי מדיה לאתר/תמונות לדף על מוצרים של הגיע הזמן`):
   הכבש עם הספר בכותרת (`.hz-ill-mascot`), הילד בתחתית הקטלוג, הילדה ליד הסרטונים (מחשב רחב בלבד), החייל עם הכבש
   והכלב בטופס הפנייה. CSS בסוף cast.css. תווית הכותרת: "הצגות בשיתוף הקומיקס האהוב · הגיע הזמן" (`.hz-hero`).
-- **עוד איורים בעמוד "הגיע הזמן"** (מקור: `מדיה תאטרון רקיע/איורים`): הספר (book.webp) ליד הכבש שבכותרת, כבש עם מגפון ליד הסרטונים,
+- **עוד איורים בעמוד "הגיע הזמן"** (מקור: `מדיה תאטרון רקיע/00 מיתוג/איורים נוספים`): הספר (book.webp) ליד הכבש שבכותרת, כבש עם מגפון ליד הסרטונים,
   כבש עם קונפטי בהמלצות, כבש מציץ מאחורי הטופס (`.hz-form`). בטופס הפנייה: השחקנים והכבש מהצגת חנוכה בלי רקע
   (`hanukkah-play-actors-sheep-puppet.webp`, לשעבר cast-chanukah; נחתך עם rembg — מותקן במחשב). תמונות ההצגות (חנוכה/ירושלים/סיגד) = תמונות הנושא של הטריילרים
-  (`bimim-hahem/hanukkah-play-bimim-hahem.jpg`, `chozrim-atzmaut/jerusalem-play-chozrim-lirushalayim.jpg`, לשעבר trailer-thumb.jpg; מתוך `מדיה תאטרון רקיע/טריילרים`).
+  (`bimim-hahem/hanukkah-play-bimim-hahem.jpg`, `chozrim-atzmaut/jerusalem-play-chozrim-lirushalayim.jpg`, לשעבר trailer-thumb.jpg; מתוך תיקיות `טריילר` של כל הצגה ב-`מדיה תאטרון רקיע`).
 - **שורות המלצות של כמה הצגות** (למשל "הגיע הזמן") — מעורבבות לסירוגין בין ההצגות (`rowItems` ב-videos.js).
 - **מטמון**: כל קישורי CSS/JS בעמודים עם `?v=...` — כשמשנים קובץ CSS/JS, לעדכן את המספר בכל העמודים
   (Cloudflare שומר JS/CSS 4 שעות בדפדפן, אחרת השינוי לא נראה).
